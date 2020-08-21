@@ -1,0 +1,90 @@
+{{!
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template theme_boost/navbar-secure
+
+    This template renders the icon navbar.
+
+}}
+
+
+<div class="sidebar">
+    <div class="">
+
+      <a href="{{{coursehomeurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{coursehome}}}" class="sideicon"><i class="fa fa-home"></i></a>
+
+
+
+      {{{ editpage }}}
+
+      {{#userisediting}}
+          <a href="{{{addblockurl}}}" data-key="addblock" data-tooltip="tooltip" data-placement= "right" class="btn-danger sideicon" title="{{{addblock}}}" class="sideicon"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+      {{/userisediting}}
+
+      
+
+{{#showincourseonly}}
+  {{#showcoursemanagebutton}}
+          <div data-region="drawer-toggle">
+              <a href="#" aria-expanded="{{#navdraweropen}}true{{/navdraweropen}}{{^navdraweropen}}false{{/navdraweropen}}" aria-controls="nav-drawer" data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav" data-tooltip="tooltip" data-placement= "right" title="{{{courseadmin}}}"class="sideicon"><i class="fa fa-cog"></i><span class="sr-only">{{{courseadmin}}}</span></a>
+          </div>
+  {{/showcoursemanagebutton}}
+
+  {{#showcourseadminlink}}
+        <div data-region="drawer-toggle">
+            <a href="{{{directcourseadminlink}}}" data-tooltip="tooltip" data-placement= "right" title="{{{courseadmin}}}"class="sideicon"><i class="fa fa-cog"></i><span class="sr-only">{{{courseadmin}}}</span></a>
+        </div>
+  {{/showcourseadminlink}}
+
+<!-- alternate coursemanagement menu as dropright from icon 
+          <div class="dropright">
+
+            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-tooltip="tooltip" data-placement= "right" title="{{{courseadmin}}}" class="sideicon"><i class="fa fa-cog"></i></a>
+
+              <div class="dropdown-menu iconsidebar">
+              <h5>{{{courseadmin}}}</h5>
+              
+              {{{ courseadminlinks }}}
+               
+              </div>
+          </div>
+End Alt menu-->
+      {{/showincourseonly}}
+
+      {{#showloggedinonly}}
+
+          {{#showincourseonly}}
+              <a href="{{{mycoursesurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{mycourses}}}" class="sideicon mydashboard"><i class="fa fa-user"></i></a>
+          {{/showincourseonly}}
+
+          {{#showondashboardonly}}
+
+            {{#hascreatecourse}}
+              <a href="{{{createcourseurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{createcourse}}}" class="sideicon attention"><i class="fa fa-plus-square"></i></a>
+            {{/hascreatecourse}}
+            
+            <a href="{{{viewcoursesurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{viewcourses}}}" class="sideicon"><i class="fa fa-graduation-cap"></i></a>
+          {{/showondashboardonly}}
+
+          {{#hasadminlink}}
+            <a href="{{{siteadminurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{siteadmintitle}}}" class="sideicon siteadmin"><i class="fa fa-sitemap" aria-hidden="true"></i></a>
+          {{/hasadminlink}}
+          <a href="{{{logouturl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{logouttitle}}}" class="sideicon"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+
+      {{/showloggedinonly}}
+      
+    </div>
+</div>

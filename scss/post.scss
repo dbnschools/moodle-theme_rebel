@@ -1,0 +1,17 @@
+// Post SCSS for the theme.
+
+body.pagelayout-embedded,
+body.pagelayout-popup,
+body.pagelayout-secure,
+body.pagelayout-print {
+    background-image: none;
+}
+
+body {
+	background-color: $body-bg;
+}
+
+//fixing moodle stuff
+#page-my-index {
+    background-color: $body-bg;
+}

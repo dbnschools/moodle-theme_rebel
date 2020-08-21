@@ -1,0 +1,412 @@
+// rebel SCSS for the theme.
+
+// Navbar
+.navbar {
+    background-color: $navbar-bg;
+    border-bottom: 1px solid $gray-500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
+    padding: .5rem 1rem .5rem 2px;
+    line-height: 0;
+    max-height: 45px;
+    color: $navbartextcolor
+}
+.navbar a {
+  color: $navbartextcolor; 
+}
+.navbar a:hover {
+  color: darken($navbartextcolor, 10%); 
+}
+
+// Footer
+#page-wrapper #page-footer {
+    background-color: $footer-bg;
+    color: $footertextcolor;
+    border-top: 1px solid $gray-400;
+}
+#page-wrapper #page-footer a {
+    color: $footerlinkcolor;
+}
+#page-footer a .icon {
+    color: $footertextcolor;
+}
+
+// Remove margins
+#page {
+    margin-top: 0px;
+    background-color: $white;
+}
+
+// Remove borders
+section#region-main, section#region-main .card, header#page-header .card {
+    border: 0;
+    background-color: transparent;
+}
+
+// Main learning content styling
+@media (min-width: 700px) {
+  div#learningcontent {
+      margin: 30px 30px 30px 90px;
+  }
+}
+div#learningcontent {
+    box-shadow: 0px 0px 25px -5px rgba($black,.6);
+}
+.region_main_settings_menu_proxy {
+    background-color: transparent;
+}
+a#message-user-button {
+    display: none;
+}
+.headerlinks {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: .75rem 1.5rem .75rem .5rem;
+  text-align: center;
+  background-color: $headerlinks-bg;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+a.headerlink {
+    margin-left: 1rem;
+}
+header#page-header {
+  background-color: $header-bg;
+  border-bottom: 1px solid $gray-400;
+}
+[data-region="blocks-column"] {
+    padding-top: 1rem;
+}
+section#easyenrol {
+    color: $easyenrolltextcolor;
+    background-color: $easyenroll-bg;
+}
+@media (max-width: 480px) {
+  .navbar .popover-region .popover-region-container {
+      top: 110px;
+  }
+}
+
+// Sidebar Icon Navigation Sidebar
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 60px;
+  background-color: $sidebar-bg;
+  position: fixed;
+  top: 80px;
+  left: 0;
+  overflow: visible;
+  z-index: 4;
+}
+#page-grade-report-grader-index .sidebar {
+    position: absolute;
+}
+.sidebar a.sideicon {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  
+}
+.sidebar a.sideicon i {
+  color: $sidebar-iconcolor;
+  font-size: 24px;
+}
+.sidebar a.sideicon.attention {
+  background-color: $sidebar-aattention;
+}
+.sidebar a.sideicon:hover:not(.active) {
+  background-color: $sidebar-ahover-bg;
+  border-right: 7px solid $sidebar-borderright-color;
+}
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top:0;
+    left: 0;
+  }
+  .sidebar a.sideicon {float: left; font-size: initial;}
+  div#learningcontent {
+        margin-top: 70px;
+  }
+}
+.dropdown-menu.iconsidebar.show {
+    height: 250px;
+    overflow-y: scroll;
+    padding: 1rem .5rem;
+    width: 250px;
+    border-radius: 7px;
+}
+@media screen and (max-width: 400px) {
+  a.sideicon.siteadmin {
+      display: none;
+  }
+  #page-my-index a.sideicon.siteadmin {
+      display: block;
+  }
+}
+
+// Sidebar Course Settings Scrollbars.
+.dropdown-menu.iconsidebar.show::-webkit-scrollbar {
+    width: 9px;
+}
+.dropdown-menu.iconsidebar.show::-webkit-scrollbar-track {
+    background-color: #555;
+}
+.dropdown-menu.iconsidebar.show::-webkit-scrollbar-thumb {
+    background-color: $brand-primary;
+}
+
+// NavDrawer
+body.drawer-open-left {
+    margin-left: 0;
+}
+#nav-drawer {
+        border: 1px solid #ccc;
+        z-index: 3;
+        border-radius: 10px;
+        height:100%
+    }
+@media screen and (min-width: 700px) {
+    #nav-drawer {
+        left: 60px;
+        top: 0px;
+    }
+}
+@media screen and (max-width: 700px) {
+    #nav-drawer {
+        top: 62px;
+        height: calc(100% - 62px);
+        padding: 1rem 0;
+    } 
+}
+
+// Sidebar Course Settings Scrollbars.
+[data-region="drawer"]::-webkit-scrollbar {
+    width: 9px;
+}
+
+[data-region="drawer"]::-webkit-scrollbar-track {
+    background-color: #555;
+}
+
+[data-region="drawer"]::-webkit-scrollbar-thumb {
+    background-color: $brand-primary;
+}
+
+// Login Image and card background restore.
+body.pagelayout-login section#region-main .card {
+    background-color: $white;
+}
+body.pagelayout-login #page {
+    background-color: transparent;
+}
+body.pagelayout-login {
+    background-image: url([[pix:theme_rebel|loginbkgimage]]);
+    background-size: cover;
+}
+
+// Accessibility links
+.aalink.focus, .aalink:focus,
+#page-footer a:not([class]).focus,
+#page-footer a:not([class]):focus,
+.arrow_link.focus,
+.arrow_link:focus,
+a:not([class]).focus,
+a:not([class]):focus,
+.activityinstance > a.focus,
+.activityinstance > a:focus {
+  outline: none;
+  color: initial;
+  background-color: transparent;
+  box-shadow: none; }
+
+.aalink:focus:hover,
+#page-footer a:not([class]):focus:hover,
+.arrow_link:focus:hover,
+a:not([class]):focus:hover,
+.activityinstance > a:focus:hover {
+  text-decoration: none; }
+
+// Accessible focus styling for links, add .aalink to links with custom css classes to get
+// accessible focus styles.
+.aalink,
+#page-footer a:not([class]),
+.arrow_link,
+a:not([class]),
+.activityinstance > a {
+    &.focus,
+    &:focus {
+        outline: none;
+        color: initial;
+        background-color: transparent;
+        box-shadow: 0;
+    }
+    &:focus:hover {
+        text-decoration: none;
+    }
+}
+
+// Accessible focus styling for buttons like elements that do not use the .btn class. Add
+// .aabtn to you element if you need the same focus styles.
+.aabtn,
+.btn-link,
+.nav-link,
+.atto_link_button,
+[role="button"],
+.list-group-item-action,
+input[type="checkbox"],
+input[type="radio"],
+input[type="file"],
+input[type="image"],
+.sr-only-focusable,
+a.dropdown-item,
+a.dropdown-toggle,
+.modal-dialog[tabindex="0"],
+.moodle-dialogue-base .closebutton,
+button.close {
+    &.focus,
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+    &:focus:hover {
+        text-decoration: none;
+    }
+}
+
+// breadcrumb styling
+
+#page-navbar {
+  z-index:2;
+  position: absolute;
+}
+
+
+@media (max-width: 576px) {
+  #page-navbar {
+    display: none;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .breadcrumb:not(:empty) {
+      width: 100%;
+      border: 0; 
+      padding: 0; 
+      margin-bottom: 0; 
+  }
+}
+
+.breadcrumb{
+  list-style:none;
+  display: inline-block;
+  
+  .icon{
+    font-size: 14px;
+  }
+  
+  li{
+    float:left;
+    a{
+      color:$breadcrumblinkcolor;
+      display:block;
+      background: $breadcrumbblock;
+      text-decoration: none;
+      position:relative;
+      height: 40px;
+      line-height:40px;
+      padding: 0 10px 0 5px;
+      text-align: center;
+      margin-right: 23px;
+    }
+    &:first-child{
+      a{
+        padding-left:15px;
+        @include border-radius(4px 0 0 4px);
+        &:before{
+          border:none;
+         }
+      }
+    }
+    &:last-child{
+      a{
+        background-color: $breadcrumbblock-darken;
+        padding-right:15px;
+        @include border-radius(0 4px 4px 0);
+        &:after{
+          border:none;
+         }
+        &:before{
+          border-color:$breadcrumbblock-darken;
+          border-left-color:transparent;
+         }
+        &:after{
+          border-left-color:$breadcrumbblock-darken;
+        }
+      }
+    }
+    
+    a{   
+      &:before,
+      &:after{
+        content: "";
+        position:absolute;
+        top: 0;
+        border:0 solid $breadcrumbblock;
+        border-width:20px 10px;
+        width: 0;
+        height: 0;
+      }
+      &:before{
+        left:-20px;
+        border-left-color:transparent;
+      }
+      &:after{
+        left:100%;
+        border-color:transparent;
+        border-left-color:$breadcrumbblock;
+      }
+      &:hover{
+        color: $breadcrumblinkcolor-hover;
+        background-color: $breadcrumbblock-highlight;
+        
+        &:before{
+          border-color:$breadcrumbblock-highlight;
+          border-left-color:transparent;
+         }
+        &:after{
+          border-left-color:$breadcrumbblock-highlight;
+        }
+      }
+      &:focus{
+        background-color: $breadcrumbblock-highlight;
+        
+        &:before{
+          border-color:$breadcrumbblock-highlight;
+          border-left-color:transparent;
+         }
+        &:after{
+          border-left-color:$breadcrumbblock-highlight;
+        }
+      }
+      &:active{
+        background-color: $breadcrumbblock-highlight-darken;
+        
+        &:before{
+          border-color:$breadcrumbblock-highlight-darken;
+          border-left-color:transparent;
+         }
+        &:after{
+          border-left-color:$breadcrumbblock-highlight-darken;
+        }
+      }
+    }
+  }
+}
