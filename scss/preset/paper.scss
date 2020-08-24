@@ -61,30 +61,40 @@ $gototop-bottom-position: 50px !default;
 $alert-border-width:                0 !default;
 
 
+// paper SCSS for the theme.
+
 // REBEL variables
-$navbar-bg: #dee9f7 !default;
+$navbar-bg: #E6EDDD !default;
 $navbartextcolor: #000 !default;
-$header-bg: #eef5f9 !default;
+$header-bg: #ecefe8 !default;
 $headerimageheight: 500px !default;
-$headerlinks-bg: #f2f2f2 !default;
-$footer-bg: $gray-600 !default;
+$headerlinks-bg: $white !default;
+$footer-bg: $navbar-bg !default;
 $footerlinkcolor: $black !default;
 $footertextcolor: $black !default;
-$sidebar-bg: #555 !default;
+$sidebar-bg: #ea4d4d !default;
 $sidebar-iconcolor: $white !default;
 $sidebar-ahover-bg: $black !default;
 $sidebar-aattention: #4caf50 !default;
-$sidebar-borderright-color: $white !default;
-$easyenrolltextcolor: $dark !default;
+$sidebar-borderright-color: $sidebar-aattention !default;
+$easyenrolltextcolor: $gray-700 !default;
 $easyenroll-bg: $gray-200 !default;
 
+
+// Tabs
+$nav-tabs-border-color:             $gray-300 !default;
+$nav-tabs-link-hover-border-color:  $gray-200 $gray-200 $nav-tabs-border-color !default;
+$nav-tabs-link-active-color:        $gray-700 !default;
+$nav-tabs-link-active-bg:           $gray-200 !default;
+$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
+
 // Breadcrumb
-$breadcrumbblock: #1F77B2 !default;
-$breadcrumbblock-darken: #114e78 !default;
+$breadcrumbblock: #498482 !default;
+$breadcrumbblock-darken: #097370 !default;
 $breadcrumbblock-highlight: #1abc9c !default;
 $breadcrumbblock-highlight-darken: #16a085 !default;
-$breadcrumblinkcolor: $white;
-$breadcrumblinkcolor-hover: $black;
+$breadcrumblinkcolor: $white !default;
+$breadcrumblinkcolor-hover: $black !default;
 
 // stylelint-disable
 $theme-colors: () !default;
@@ -112,27 +122,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
-// paper SCSS for the theme.
-// REBEL variables
-
-$navbar-bg: #E6EDDD;
-$header-bg: #ecefe8;
-$footer-bg: $navbar-bg;
-$footerlinkcolor: $black;
-$footertextcolor: $black;
-$headerlinks-bg: $white;
-$sidebar-iconcolor: $white;
-$sidebar-ahover-bg: $black;
-$sidebar-aattention: #4caf50;
-$sidebar-bg: #ea4d4d;
-$sidebar-borderright-color: $sidebar-aattention;
-$drawer-bg: $header-bg;
-// Breadcrumb
-$breadcrumbblock: #498482;
-$breadcrumbblock-darken: #097370;
-$breadcrumbblock-highlight: #1abc9c;
-$breadcrumbblock-highlight-darken: #16a085;
 
 
 div#learningcontent {

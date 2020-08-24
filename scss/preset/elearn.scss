@@ -75,9 +75,15 @@ $sidebar-iconcolor: #1D3557 !default;
 $sidebar-ahover-bg: transparent !default;
 $sidebar-aattention: #4caf50 !default;
 $sidebar-borderright-color: #E63946 !default;
-$easyenrolltextcolor: $dark !default;
+$easyenrolltextcolor: $gray-700 !default;
 $easyenroll-bg: #dee9f7 !default;
 
+// Tabs
+$nav-tabs-border-color:             $gray-300 !default;
+$nav-tabs-link-hover-border-color:  $gray-200 $gray-200 $nav-tabs-border-color !default;
+$nav-tabs-link-active-color:        $gray-700 !default;
+$nav-tabs-link-active-bg:           $gray-200 !default;
+$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
 
 // Breadcrumb
 $breadcrumbblock: #1F77B2;

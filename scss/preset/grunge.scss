@@ -75,17 +75,23 @@ $sidebar-iconcolor: $white !default;
 $sidebar-ahover-bg: $black !default;
 $sidebar-aattention: #4caf50 !default;
 $sidebar-borderright-color: $white !default;
-$easyenrolltextcolor: $dark !default;
+$easyenrolltextcolor: $gray-700 !default;
 $easyenroll-bg: #dee9f7 !default;
 
+// Tabs
+$nav-tabs-border-color:             $gray-300 !default;
+$nav-tabs-link-hover-border-color:  $gray-200 $gray-200 $nav-tabs-border-color !default;
+$nav-tabs-link-active-color:        $gray-700 !default;
+$nav-tabs-link-active-bg:           $gray-200 !default;
+$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
 
 // Breadcrumb
-$breadcrumbblock: #1F77B2;
-$breadcrumbblock-darken: #114e78;
-$breadcrumbblock-highlight: #1abc9c;
-$breadcrumbblock-highlight-darken: #16a085;
-$breadcrumblinkcolor: $white;
-$breadcrumblinkcolor-hover: $black;
+$breadcrumbblock: #1F77B2 !default;
+$breadcrumbblock-darken: #114e78 !default;
+$breadcrumbblock-highlight: #1abc9c !default;
+$breadcrumbblock-highlight-darken: #16a085 !default;
+$breadcrumblinkcolor: $white !default;
+$breadcrumblinkcolor-hover: $black !default;
 
 // stylelint-disable
 $theme-colors: () !default;

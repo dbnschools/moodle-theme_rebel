@@ -83,6 +83,15 @@ $sidebar-iconcolor: $white !default;
 $sidebar-ahover-bg: #255673 !default;
 $sidebar-aattention: #4caf50 !default;
 $sidebar-borderright-color: $white !default;
+$easyenrolltextcolor: $gray-700 !default;
+$easyenroll-bg: #dee9f7 !default;
+
+// Tabs
+$nav-tabs-border-color:             $gray-300 !default;
+$nav-tabs-link-hover-border-color:  $gray-200 $gray-200 $nav-tabs-border-color !default;
+$nav-tabs-link-active-color:        $gray-700 !default;
+$nav-tabs-link-active-bg:           $gray-200 !default;
+$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
 
 // Breadcrumbs in Rebel
 $breadcrumbblock: #0F6EEB;
