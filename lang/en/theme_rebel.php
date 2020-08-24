@@ -73,7 +73,7 @@ $string['pluginname'] = 'Rebel';
 // Preset files setting.
 $string['presetfiles'] = 'Additional theme preset files';
 // Preset files help text.
-$string['presetfiles_desc'] = 'Preset files can be used to dramatically alter the appearance of the theme. See <a href=https://docs.moodle.org/dev/Boost_Presets>Boost presets</a> for information on creating and sharing your own preset files, and see the <a href=http://moodle.net/boost>Presets repository</a> for presets that others have shared.';
+$string['presetfiles_desc'] = 'Preset files can be used to dramatically alter the appearance of the theme. See <a href=https://docs.moodle.org/dev/Boost_Presets>Boost presets</a> for information on creating and sharing your own preset files. Rebel requires certain SCSS Preset variables.  You can view the Rebel theme presets here: <a href=https://github.com/dbnschools/moodle-theme_rebel/tree/master/scss/preset target=_blank>Rebel Github Presets repository</a>. ';
 // Preset setting.
 $string['preset'] = 'Theme preset';
 // Preset help text.

@@ -75,7 +75,7 @@ $navbartextcolor: #000 !default;
 $header-bg: #f3f3f3 !default;
 $headerimageheight: 500px !default;
 $headerlinks-bg: $white !default;
-$footer-bg: $gray-700 !default;
+$footer-bg: #255673 !default;
 $footerlinkcolor: $white !default;
 $footertextcolor: $white !default;
 $sidebar-bg: #383e42 !default;
@@ -133,7 +133,7 @@ body {
 
 @media (min-width: 700px) {
   div#learningcontent {
-      margin: 0 20px 0 80px !important;
+      margin: 20px 20px 0 80px !important;
   }
 }
 

@@ -410,3 +410,11 @@ button.close {
     }
   }
 }
+
+// Assignment Grading
+.path-mod-assign [data-region="grading-navigation-panel"] {
+    background-color: $white;
+}
+.path-mod-assign [data-region="grade-actions-panel"] {
+    background-color: $white;
+}
