@@ -11,7 +11,12 @@ REBEL FEATURES
 * Dynamic Icon Sidebar navigation never leaves your side
 * Custom page image
 * Custom login image
-* 5 Style Presets to instantly change the look.  Presets are simple enough to modify and change colors. A link is provided to s
+* 5 Style Presets to instantly change the look.  Presets are simple enough to modify and change colors.
+	* Rebel Preset
+	* Shuffled Paper Preset
+	* eLearn Preset
+	* Grunge Preset
+	* University Preset
 * Customized Course Admin Links for teachers 
 * Super easy setup and install for site admins
 * Super easy interface for users
