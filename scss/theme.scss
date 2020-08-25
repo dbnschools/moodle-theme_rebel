@@ -418,3 +418,12 @@ button.close {
 .path-mod-assign [data-region="grade-actions-panel"] {
     background-color: $white;
 }
+
+@media (min-width: 700px) {
+  .tooltip-inner {
+    font-size:18px;
+    padding: 10px;
+    min-width: 200px;
+    max-width: 350px;
+  }
+}

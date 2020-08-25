@@ -94,10 +94,10 @@ $nav-tabs-link-active-bg:           $gray-200 !default;
 $nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
 
 // Breadcrumbs in Rebel
-$breadcrumbblock: #0F6EEB;
+$breadcrumbblock: #d43f3a;
 $breadcrumbblock-darken: #255673;
 $breadcrumbblock-highlight: #255673;
-$breadcrumbblock-highlight-darken: #0F6EEB;
+$breadcrumbblock-highlight-darken: #d43f3a;
 $breadcrumblinkcolor: $white;
 $breadcrumblinkcolor-hover: $white;
 
@@ -132,9 +132,14 @@ body {
 }
 
 @media (min-width: 700px) {
-  div#learningcontent {
-      margin: 20px 20px 0 80px !important;
-  }
+      div#learningcontent {
+          margin: 20px 20px 20px 80px !important;
+      }
+    // Round buttons
+    .sidebar a.sideicon {
+        border-radius: 15%;
+        margin-bottom: 3px;
+    }
 }
 
 #page {
@@ -150,6 +155,7 @@ aside#block-region-side-pre section.block {
     background-color: $gray-100;
     border-top: 7px solid $navbar-bg;
 }
+
 
 //remove white box for Timeline block in sidebar
 aside#block-region-side-pre section.block_timeline .list-group-item {
@@ -171,4 +177,3 @@ aside#block-region-side-pre section.block_timeline .list-group-item {
     bottom: 0;
     z-index: -1;
 }
-
