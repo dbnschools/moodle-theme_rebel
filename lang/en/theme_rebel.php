@@ -26,14 +26,17 @@
 defined('MOODLE_INTERNAL') || die();
 
 // The name of the second tab in the theme settings.
-$string['advancedsettings'] = 'Advanced settings';
+$string['advancedsettings'] = 'Advanced Settings';
 $string['courseadminmenusettings'] = 'Navigation Menu Settings';
+$string['loginsettings'] = 'Login Settings';
 
 $string['courseadmininfo'] = 'Teacher Course Management Links';
 $string['courseadminreportinfo'] = 'Teacher Course Management Report Links';
 $string['courseadmininfo_desc'] = 'Determine which links you would like to display to teachers in the Course Management navigation drawer.';
 $string['headermenuinfo'] = 'Header Menu Items';
 $string['headermenuinfo_desc'] = 'Determine which links you would like to display in the header area.';
+$string['customlogininfo'] = 'Enhance the Login Page';
+$string['customlogininfo_desc'] = 'Use the options below to enhance the login page for Rebel.';
 
 
 // The backgrounds tab name.
@@ -106,3 +109,17 @@ $string['shownavdrawer_desc'] = 'Would you like the nav drawer to display or wou
 $string['courseadminmenutitle'] = 'Course Management';
 $string['coursereportmenutitle'] = 'Course Reports';
 $string['moreoptions'] = 'More Options...';
+
+// Custom Login Page
+$string['showcustomlogin'] = 'Use Custom Login Page';
+$string['showcustomlogin_desc'] = 'Enable the features below to be displayed on the Moodle login page.';
+$string['logintopimage'] = 'Login Page Image';
+$string['logintopimage_desc'] = 'Upload an image that will be placed to the right of the login form.';
+$string['featuretext'] = 'Featured Text Box';
+$string['featuretext_desc'] = 'One of three featured textboxes that appear below the login form.';
+$string['logintoptext'] = 'Top Textbox';
+$string['logintoptext_desc'] = 'This is a full-width textbox that appears just below the image on the login page.';
+$string['loginbottomtext'] = 'Bottom Textbox';
+$string['loginbottomtext_desc'] = 'This is a full-width textbox that appears at the very bottom of the login page.';
+$string['alert'] = 'Login Page Alert';
+$string['alert_desc'] = 'Add a special alert on your homepage such as an emergency.';

@@ -20,7 +20,8 @@ REBEL FEATURES
 * Customized Course Admin Links for teachers 
 * Super easy setup and install for site admins
 * Super easy interface for users
-
+* Custom login page with image and text features
+* Login page alertbox
 
 # Versions and Updates
 

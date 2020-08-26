@@ -63,22 +63,7 @@ defined('MOODLE_INTERNAL') || die();
         array('maxfiles' => 20, 'accepted_types' => array('.scss')));
     $page->add($setting);
 
-/*  // Toggle Page Layout design
-    $name = 'theme_rebel/pagelayout';
-    $title = get_string('pagelayout' , 'theme_rebel');
-    $description = get_string('pagelayout_desc', 'theme_rebel');
 
-    $pagelayout1 = get_string('rebellayout', 'theme_rebel');
-    $pagelayout2 = get_string('paperlayout', 'theme_rebel');
-    $pagelayout3 = get_string('elearnlayout', 'theme_rebel');
-    $pagelayout4 = get_string('grungelayout', 'theme_rebel');
-
-    $default = '1';
-    $choices = array('1'=>$pagelayout1, '2'=>$pagelayout2, '3'=>$pagelayout3, '4'=>$pagelayout4);
-    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
-    $setting->set_updatedcallback('theme_reset_all_caches');
-    $page->add($setting);
-*/
     // Variable $brand-color.
     // We use an empty default value because the default colour should come from the preset.
     $name = 'theme_rebel/brandcolor';
@@ -110,6 +95,15 @@ defined('MOODLE_INTERNAL') || die();
     // This function will copy the image into the data_root location it can be served from.
     $setting->set_updatedcallback('theme_rebel_update_settings_images');
     // We always have to add the setting to a page for it to have any effect.
+    $page->add($setting);
+
+    // Alert setting.
+    $name = 'theme_rebel/alertbox';
+    $title = get_string('alert', 'theme_rebel');
+    $description = get_string('alert_desc', 'theme_rebel');
+    $default = '';
+    $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
 

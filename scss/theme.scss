@@ -427,3 +427,13 @@ button.close {
     max-width: 350px;
   }
 }
+
+// Custom Login Page
+#page-login-index section#region-main .card.feature {
+    border: 1px solid $gray-400;
+    border-top: 7px solid $gray-600;
+    background-color: $gray-100;
+}
+#page-login-index section#region-main .card.loginbottomtext {
+    border-top: 7px solid $gray-600;
+}

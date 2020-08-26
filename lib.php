@@ -134,3 +134,17 @@ function theme_rebel_update_settings_images($settingname) {
     theme_reset_all_caches();
 }
 
+function theme_rebel_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options = array()) {
+    static $theme;
+    if (empty($theme)) {
+        $theme = theme_config::load('rebel');
+    }
+    if ($context->contextlevel == CONTEXT_SYSTEM && ($filearea === '')) {
+        $theme = theme_config::load('rebel');
+        return $theme->setting_file_serve($filearea, $args, $forcedownload, $options);
+    } else if ($filearea === 'logintopimage') {
+        return $theme->setting_file_serve('logintopimage', $args, $forcedownload, $options);
+    } else {
+        send_file_not_found();
+    }
+}

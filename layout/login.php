@@ -14,20 +14,23 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+defined('MOODLE_INTERNAL') || die();
+
 /**
- * @package   theme_rebel
- * @copyright 2020 Chris Kenniburg
+ * A login page layout for the boost theme.
+ *
+ * @package   theme_boost
+ * @copyright 2016 Damyon Wiese
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+$bodyattributes = $OUTPUT->body_attributes();
 
-if ($ADMIN->fulltree) {
-    // Note new tabs layout for admin settings pages.
-    $settings = new theme_boost_admin_settingspage_tabs('themesettingrebel', get_string('configtitle', 'theme_rebel'));
+$templatecontext = [
+    'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
+    'output' => $OUTPUT,
+    'bodyattributes' => $bodyattributes
+];
 
-    require('settings/general.php');
-    require('settings/navigation.php');
-    require('settings/colors.php');
-    require('settings/login.php');
-}
+echo $OUTPUT->render_from_template('theme_rebel/login', $templatecontext);
+

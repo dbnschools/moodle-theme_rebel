@@ -626,5 +626,47 @@ class core_renderer extends \theme_boost\output\core_renderer {
         return $loggedinas;
     }
 
+    // Csutom login page
+    public function render_login(\core_auth\output\login $form) {
+        global $SITE, $PAGE;
+        $context = $form->export_for_template($this);
+        // Override because rendering is not supported in template yet.
+        $context->cookieshelpiconformatted = $this->help_icon('cookiesenabled');
+        $context->errorformatted = $this->error_text($context->error);
+        $url = $this->get_logo_url();
+        // Custom logins.
+        if (isset($PAGE->theme->settings->feature1text)) {
+           $context->feature1text = format_text($PAGE->theme->settings->feature1text);
+        }
+        if (isset($PAGE->theme->settings->feature2text)) {
+           $context->feature2text = format_text($PAGE->theme->settings->feature2text);
+        }
+        if (isset($PAGE->theme->settings->feature3text)) {
+           $context->feature3text = format_text($PAGE->theme->settings->feature3text);
+        }
+        if (isset($PAGE->theme->settings->loginbottomtext)) {
+           $context->loginbottomtext = format_text($PAGE->theme->settings->loginbottomtext);
+        }
+        if (isset($PAGE->theme->settings->logintoptext)) {
+           $context->logintoptext = format_text($PAGE->theme->settings->logintoptext);
+        }
+        if (null !==$PAGE->theme->setting_file_url('logintopimage', 'logintopimage')) {
+           $context->logintopimage = $PAGE->theme->setting_file_url('logintopimage', 'logintopimage');
+        }
+        if (isset($PAGE->theme->settings->showcustomlogin)) {
+           $context->hascustomlogin = $PAGE->theme->settings->showcustomlogin == 1;
+        }
+        if (isset($PAGE->theme->settings->alertbox)) {
+           $context->alertbox = format_text($PAGE->theme->settings->alertbox, FORMAT_HTML, array('noclean' => true));
+        }
+
+        if ($url) {
+            $url = $url->out(false);
+        }
+        $context->logourl = $url;
+        $context->sitename = format_string($SITE->fullname, true, ['context' => context_course::instance(SITEID) , "escape" => false]);
+        return $this->render_from_template('core/loginform', $context);
+    }
+
 
 }
