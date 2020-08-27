@@ -58,15 +58,23 @@ a#message-user-button {
     display: none;
 }
 .headerlinks {
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: .75rem 1.5rem .75rem .5rem;
-  text-align: center;
-  background-color: $headerlinks-bg;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: .75rem 1.5rem .75rem .5rem;
+    text-align: center;
+    background-color: $headerlinks-bg;
+    border: 1px solid $gray-400;
+    font-size: 16px;
+    margin-bottom: 1.5rem;
+}
+@media (min-width: 700px) {
+  .headerlinks {
+    background-color: $headerlinks-bg;
+    border-bottom: 1px solid $gray-400;
+    border-right: 1px solid $gray-400;
+    margin-bottom: 0;
+  }
 }
 a.headerlink {
     margin-left: 1rem;
@@ -436,4 +444,15 @@ button.close {
 }
 #page-login-index section#region-main .card.loginbottomtext {
     border-top: 7px solid $gray-600;
+}
+
+// Calendar Upcoming Events colors
+.calendar_event_course {
+    border-color: $gray-500;
+}
+.calendar_event_course {
+    background-color: $navbar-bg;
+}
+.path-calendar .maincalendar .calendar_event_course {
+    border-color: $gray-500;
 }

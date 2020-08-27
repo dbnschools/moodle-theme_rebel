@@ -24,19 +24,11 @@
 <div class="sidebar">
     <div class="sidebar-items">
       <a href="{{{mycoursesurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{mycourses}}}" class="sideicon mydashboard"><i class="fa fa-user"></i></a>
-      {{#showincourseonly}}
-        <a href="{{{coursehomeurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{coursehome}}}" class="sideicon"><i class="fa fa-home"></i></a>
-      {{/showincourseonly}}
       {{{ editpage }}}
       {{#userisediting}}
           <a href="{{{addblockurl}}}" data-key="addblock" data-tooltip="tooltip" data-placement= "right" class="btn-danger sideicon" title="{{{addblock}}}" class="sideicon"><i class="fa fa-th-large" aria-hidden="true"></i></a>
       {{/userisediting}}
       {{#showincourseonly}}
-        {{#showcoursemanagebutton}}
-                <div data-region="drawer-toggle">
-                    <a href="#" aria-expanded="{{#navdraweropen}}true{{/navdraweropen}}{{^navdraweropen}}false{{/navdraweropen}}" aria-controls="nav-drawer" data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav" data-tooltip="tooltip" data-placement= "right" title="{{{courseadmin}}}"class="sideicon"><i class="fa fa-cog"></i><span class="sr-only">{{{courseadmin}}}</span></a>
-                </div>
-        {{/showcoursemanagebutton}}
         {{#showcourseadminlink}}
               <div data-region="drawer-toggle">
                   <a href="{{{directcourseadminlink}}}" data-tooltip="tooltip" data-placement= "right" title="{{{courseadmin}}}"class="sideicon"><i class="fa fa-cog"></i><span class="sr-only">{{{courseadmin}}}</span></a>

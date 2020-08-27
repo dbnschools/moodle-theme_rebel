@@ -100,9 +100,9 @@ class core_renderer extends \theme_boost\output\core_renderer {
 
         $calendarurl = '';
         if (isset($COURSE->id) && $COURSE->id > 1 && isloggedin() && !isguestuser()) {
-            $calendarurl = new moodle_url('/calendar/view.php?view=month', array('course' => $PAGE->course->id ));
+            $calendarurl = new moodle_url('/calendar/view.php?view=upcoming', array('course' => $PAGE->course->id ));
         } else {
-            $calendarurl = new moodle_url('/calendar/view.php?view=month');
+            $calendarurl = new moodle_url('/calendar/view.php?view=upcoming');
         }
 
         $gradeurl = '';
@@ -173,7 +173,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                         'url' => new moodle_url('/user/preferences.php'),
                         ),
                     array(
-                        'status' => !isguestuser(),
+                        'status' => !isguestuser() && $isteacher || is_role_switched($course->id),
                         'icon' => 'fa-user-secret',
                         'title' => $switchroletitle,
                         'url' => $switchrolelink,
@@ -279,137 +279,6 @@ class core_renderer extends \theme_boost\output\core_renderer {
         return '';
     }
 
-    public function iconsidebarcourselinks () {
-        global $PAGE, $COURSE, $DB, $CFG, $USER, $OUTPUT;
-
-        $theme = theme_config::load('rebel');
-        $course = $this->page->course;
-        $context = context_course::instance($course->id);
-
-        // Teacher or student.
-        $teachermenu = has_capability('moodle/course:viewhiddenactivities', $context) && $COURSE->id > 1;
-        $userswitchedrole = is_role_switched($course->id) || has_capability('moodle/course:viewhiddenactivities', $context);
-        
-        // Permissions.
-        $hasgradebookshow = $PAGE->course->showgrades == 1;
-        $hasactivitycompletionshow = $PAGE->course->enablecompletion == 1;
-        $hascompetencyshow = get_config('core_competency', 'enabled');
-        $hascontentbankpermission = has_capability('contenttype/h5p:access', $context);
-
-        // Send to template.
-        $coursemanagementlinks = [
-            'teachermenu' => $teachermenu, 
-            'courseadminmenutitle' => get_string('courseadminmenutitle', 'theme_rebel'),
-            'coursereportmenutitle' => get_string('coursereportmenutitle', 'theme_rebel'),
-
-            'teacherlinks' => array(
-                    array(
-                        'status' => isset($theme->settings->contentbank) && $hascontentbankpermission,
-                        'title' => get_string('contentbank', 'moodle'),
-                        'url' => new moodle_url('/contentbank/index.php', array('contextid' => $context->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->gradebook),
-                        'title' => get_string('gradebook', 'grades'),
-                        'url' => new moodle_url('/grade/report/grader/index.php', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->participants),
-                        'title' => get_string('participants', 'moodle'),
-                        'url' => new moodle_url('/user/index.php', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->groups),
-                        'title' =>  get_string('groups', 'group'),
-                        'url' => new moodle_url('/group/index.php', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->badges),
-                        'title' => get_string('managebadges', 'badges'),
-                        'url' => new moodle_url('/badges/index.php?type=2', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->coursecompletion) && $hasactivitycompletionshow,
-                        'title' => get_string('editcoursecompletionsettings', 'completion'),
-                        'url' => new moodle_url('/course/completion.php', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->coursecopy),
-                        'title' => get_string('copycourse', 'moodle'),
-                        'url' => new moodle_url('/backup/copy.php', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->coursereset),
-                        'title' => get_string('reset', 'moodle'),
-                        'url' => new moodle_url('/course/reset.php', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->coursebackup),
-                        'title' => get_string('backup', 'moodle'),
-                        'url' => new moodle_url('/backup/backup.php', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->courserestore),
-                        'title' => get_string('restore', 'moodle'),
-                        'url' => new moodle_url('/backup/restorefile.php', array('contextid' => $PAGE->context->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->courseimport),
-                        'title' => get_string('import', 'moodle'),
-                        'url' => new moodle_url('/backup/import.php', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->recyclebin),
-                        'title' => get_string('pluginname', 'tool_recyclebin'),
-                        'url' => new moodle_url('/admin/tool/recyclebin/index.php', array('contextid' => $PAGE->context->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->courseedit),
-                        'title' => get_string('editcoursesettings', 'moodle'),
-                        'url' => new moodle_url('/course/edit.php', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->courseadmin),
-                        'title' => get_string('moreoptions', 'theme_rebel'),
-                        'url' => new moodle_url('/course/admin.php', array('courseid' => $PAGE->course->id)),
-                        ),
-            ),
-
-
-            'teacherreports' => array(
-                    array(
-                        'status' => isset($theme->settings->activitycompletion) && $hasactivitycompletionshow,
-                        'title' => get_string('activitycompletion', 'completion'),
-                        'url' => new moodle_url('/report/progress/index.php', array('course' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->logs),
-                        'title' => get_string('logs', 'moodle'),
-                        'url' => new moodle_url('/report/log/index.php', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->livelogs),
-                        'title' => get_string('pluginname', 'report_loglive'),
-                        'url' => new moodle_url('/report/livelog/index.php', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->courseparticipation),
-                        'title' => get_string('pluginname', 'report_participation'),
-                        'url' => new moodle_url('/report/participation/index.php', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => isset($theme->settings->competencybreakdown) && $hascompetencyshow,
-                        'title' => get_string('pluginname', 'report_competency'),
-                        'url' => new moodle_url('/report/competency/index.php', array('id' => $PAGE->course->id)),
-                        ),
-            ),
-
-        ];
-
-    return $this->render_from_template('theme_rebel/coursemanagementlinks', $coursemanagementlinks);
-
-    }
-
     public function enrolform () {
         global $PAGE;
         $enrolform = '';
@@ -430,8 +299,6 @@ class core_renderer extends \theme_boost\output\core_renderer {
         return $enrolform;
     }
 
-
-
     Public function iconsidebarmenu () {
         global $PAGE, $COURSE, $CFG, $USER, $OUTPUT;
 
@@ -449,8 +316,6 @@ class core_renderer extends \theme_boost\output\core_renderer {
         
 
         // Icon Links.
-        $coursehome = $PAGE->course->fullname;
-        $coursehomeurl = new moodle_url('/course/view.php', array('id' => $PAGE->course->id ));
 
         $mycourses = get_string('mycourses', 'moodle');
         $mycoursesurl = new moodle_url('/my/');
@@ -461,7 +326,6 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $addblockurl = new moodle_url($PAGE->url, ['bui_addblock' => '', 'sesskey' => sesskey()]);
         
         $courseadmin = get_string('courseadministration', 'moodle');
-        $courseadminlinks = $this->iconsidebarcourselinks();
 
         $hascreatecourse = (isloggedin() && has_capability('moodle/course:create', $context));
         $createcourseurl = new moodle_url('/course/edit.php');
@@ -476,8 +340,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $logouttitle = get_string('logout', 'moodle');
         $logouturl = new moodle_url('/login/logout.php', array('sesskey'=>sesskey()));
 
-        $shownavdrawer = isset($theme->settings->shownavdrawer);
-        $showcourseadminlink = isset($theme->settings->shownavdrawer) && $theme->settings->shownavdrawer == 0;
+        $showcourseadminlink = has_capability('moodle/course:viewhiddenactivities', $context);
         $directcourseadminlink = new moodle_url('/course/admin.php', array('courseid' => $PAGE->course->id));
 
 
@@ -486,7 +349,6 @@ class core_renderer extends \theme_boost\output\core_renderer {
             'showcoursemanagebutton' => $isteacherdash && isset($theme->settings->shownavdrawer) && $theme->settings->shownavdrawer == 1,
             'showincourseonly' => $showincourseonly, 
             'courseadmin' => $courseadmin, 
-            'courseadminlinks' => $courseadminlinks, 
             'hasadminlink' => $hasadminlink, 
             'siteadmintitle' => $siteadmintitle, 
             'siteadminurl' => $siteadminurl,
@@ -498,8 +360,6 @@ class core_renderer extends \theme_boost\output\core_renderer {
             'userisediting' => $userisediting, 
             'viewcoursesurl' => $viewcoursesurl , 
             'viewcourses' => $viewcourses, 
-            'coursehomeurl' => $coursehomeurl, 
-            'coursehome' => $coursehome, 
             'createcourse' => $createcourse, 
             'createcourseurl' => $createcourseurl, 
             'hascreatecourse' => $hascreatecourse, 
