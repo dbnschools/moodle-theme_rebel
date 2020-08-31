@@ -44,9 +44,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
     public function full_header() {
         global $PAGE, $COURSE, $USER, $course, $DB;
         $theme = theme_config::load('rebel');
-        $course = $this->page->course;
-        $context = context_course::instance($course->id);
-        
+
         if ($this->page->include_region_main_settings_in_header_actions() &&
                 !$this->page->blocks->is_block_present('settings')) {
             // Only include the region main settings if the page has requested it and it doesn't already have
@@ -71,174 +69,241 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $header->headeractions = $this->page->get_header_actions();
         $header->activitynav = $this->activity_navigation();
 
-         // Permissions.
-        $hasgradebookshow = $PAGE->course->showgrades == 1;
-        $hasactivitycompletionshow = $PAGE->course->enablecompletion == 1;
-        $hascompetencyshow = get_config('core_competency', 'enabled');
-        $isteacher = has_capability('moodle/course:viewhiddenactivities', $context);
-        $isstudent = !has_capability('moodle/course:viewhiddenactivities', $context);
-        $hascontentbankpermission = has_capability('contenttype/h5p:access', $context);
+        if ($PAGE->pagelayout !== 'coursecategory' && $PAGE->pagelayout !== 'admin') {
+            
+        }
 
-        if (is_role_switched($course->id)) { // Has switched roles
-                $rolename = '';
-                $realuser = \core\session\manager::get_realuser();
-                $fullname = fullname($realuser, true);
-                if ($role = $DB->get_record('role', array('id'=>$USER->access['rsw'][$context->path]))) {
-                    $rolename = ': '.role_get_name($role, $context);
+        // Menus.
+        if (isloggedin() && !isguestuser()) {
+
+            // Header links on dashboard and admin pages.
+            if ($COURSE->id <= 1  && $PAGE->pagelayout !== 'coursecategory' && $PAGE->pagelayout !== 'admin') {
+                $course = $this->page->course;
+                $context = context_course::instance($course->id);
+                $hasgradebookshow = $PAGE->course->showgrades == 1;
+                $hasactivitycompletionshow = $PAGE->course->enablecompletion == 1;
+                $hascompetencyshow = get_config('core_competency', 'enabled');
+                $isteacher = has_capability('moodle/course:viewhiddenactivities', $context);
+                $isstudent = !has_capability('moodle/course:viewhiddenactivities', $context);
+                $hascontentbankpermission = has_capability('contenttype/h5p:access', $context);
+
+                if (is_role_switched($course->id)) { // Has switched roles
+                        $rolename = '';
+                        $realuser = \core\session\manager::get_realuser();
+                        $fullname = fullname($realuser, true);
+                        if ($role = $DB->get_record('role', array('id'=>$USER->access['rsw'][$context->path]))) {
+                            $rolename = ': '.role_get_name($role, $context);
+                        }
+
+                        $loggedinas = get_string('loggedinas', 'moodle', $fullname).$rolename;
                 }
 
-                $loggedinas = get_string('loggedinas', 'moodle', $fullname).$rolename;
-        }
+                if (\core\session\manager::is_loggedinas()) {
+                    $header->loginas = $this->login_info();
+                }
+                if (is_role_switched($course->id) && !\core\session\manager::is_loggedinas()) {
+                    $header->roleswitch = $loggedinas;
+                }
+                
 
-        if (\core\session\manager::is_loggedinas()) {
-            $header->loginas = $this->login_info();
-        }
-        if (is_role_switched($course->id) && !\core\session\manager::is_loggedinas()) {
-            $header->roleswitch = $loggedinas;
-        }
-        
+                $calendarurl = '';
+                if (isset($COURSE->id) && $COURSE->id > 1 && isloggedin() && !isguestuser()) {
+                    $calendarurl = new moodle_url('/calendar/view.php?view=upcoming', array('course' => $PAGE->course->id ));
+                } else {
+                    $calendarurl = new moodle_url('/calendar/view.php?view=upcoming');
+                }
 
-        $calendarurl = '';
-        if (isset($COURSE->id) && $COURSE->id > 1 && isloggedin() && !isguestuser()) {
-            $calendarurl = new moodle_url('/calendar/view.php?view=upcoming', array('course' => $PAGE->course->id ));
-        } else {
-            $calendarurl = new moodle_url('/calendar/view.php?view=upcoming');
-        }
+                $gradeurl = '';
+                $gradestatus = '';
+                // Show on homepage.
+                if ($COURSE->id <= 1 && isloggedin() && !isguestuser() && has_capability('gradereport/overview:view', $context)) {
+                    $gradeurl = new moodle_url('/grade/report/overview/index.php');
+                    $gradestatus = true;
+                }
+                // Show for student in course.
+                if ($COURSE->id > 1 && isloggedin() && !isguestuser() && has_capability('gradereport/user:view', $context) && $hasgradebookshow) {
+                    $gradeurl = new moodle_url('/grade/report/user/index.php', array('id' => $PAGE->course->id));
+                    $gradestatus = true;
+                }
+                // Show for teacher in course.
+                if ($COURSE->id > 1 && has_capability('gradereport/grader:view', $context) && isloggedin() && !isguestuser()) {
+                    $gradeurl = new moodle_url('/grade/report/grader/index.php', array('id' => $PAGE->course->id));
+                    $gradestatus = true;
+                }
 
-        $gradeurl = '';
-        $gradestatus = '';
-        // Show on homepage.
-        if ($COURSE->id <= 1 && isloggedin() && !isguestuser() && has_capability('gradereport/overview:view', $context)) {
-            $gradeurl = new moodle_url('/grade/report/overview/index.php');
-            $gradestatus = true;
-        }
-        // Show for student in course.
-        if ($COURSE->id > 1 && isloggedin() && !isguestuser() && has_capability('gradereport/user:view', $context) && $hasgradebookshow) {
-            $gradeurl = new moodle_url('/grade/report/user/index.php', array('id' => $PAGE->course->id));
-            $gradestatus = true;
-        }
-        // Show for teacher in course.
-        if ($COURSE->id > 1 && has_capability('gradereport/grader:view', $context) && isloggedin() && !isguestuser()) {
-            $gradeurl = new moodle_url('/grade/report/grader/index.php', array('id' => $PAGE->course->id));
-            $gradestatus = true;
-        }
+                $switchroletitle = get_string('switchroleto', 'moodle');
+                $switchrolelink = new moodle_url('/course/switchrole.php', array('id' => $PAGE->course->id, 'switchrole' => '-1', 'returnurl' => '%2Fcourse%2Fview.php%3F', 'id' => $PAGE->course->id));
+                if (is_role_switched($course->id)) {
+                $switchroletitle = get_string('switchrolereturn', 'moodle');
+                $switchrolelink = new moodle_url('/course/switchrole.php', array('id'=>$course->id,'sesskey'=>sesskey(), 'switchrole'=>0, 'returnurl'=>$this->page->url->out_as_local_url(false)));
+                }
 
-        $switchroletitle = get_string('switchroleto', 'moodle');
-        $switchrolelink = new moodle_url('/course/switchrole.php', array('id' => $PAGE->course->id, 'switchrole' => '-1', 'returnurl' => '%2Fcourse%2Fview.php%3F', 'id' => $PAGE->course->id));
-        if (is_role_switched($course->id)) {
-        $switchroletitle = get_string('switchrolereturn', 'moodle');
-        $switchrolelink = new moodle_url('/course/switchrole.php', array('id'=>$course->id,'sesskey'=>sesskey(), 'switchrole'=>0, 'returnurl'=>$this->page->url->out_as_local_url(false)));
-        }
+                $header->headerlinks = [
+                    'headerlinksdata' => array(
+                        array(
+                            'status' => !isguestuser() ,
+                            'icon' => 'fa-user',
+                            'title' => get_string('profile', 'moodle'),
+                            'url' => new moodle_url('/user/profile.php', array('id' => $USER->id)),
+                            ),
+                        array(
+                            'status' => $gradestatus && isset($theme->settings->headergrades),
+                            'icon' => 'fa-table',
+                            'title' => get_string('grades', 'moodle'),
+                            'url' => $gradeurl,
+                            ),
+                        array(
+                            'status' => !isguestuser()  && isset($theme->settings->headercalendar),
+                            'icon' => 'fa-calendar',
+                            'title' => get_string('calendar', 'calendar'),
+                            'url' => $calendarurl,
+                            ),
+                        array(
+                            'status' => !isguestuser(),
+                            'icon' => 'fa-wrench',
+                            'title' => get_string('preferences', 'moodle'),
+                            'url' => new moodle_url('/user/preferences.php'),
+                            ),
+                        array(
+                            'status' => !isguestuser() && $isteacher || is_role_switched($course->id),
+                            'icon' => 'fa-user-secret',
+                            'title' => $switchroletitle,
+                            'url' => $switchrolelink,
+                            ),
 
-        // Easy Enrollment Integration.
-        $globalhaseasyenrollment = enrol_get_plugin('easy');
-        $coursehaseasyenrollment = '';
-        $easycodelink = '';
-        $easycodetitle = '';
-        if ($globalhaseasyenrollment) {
-            $coursehaseasyenrollment = $DB->record_exists('enrol', array('courseid' => $COURSE->id, 'enrol' => 'easy'));
-            $easyenrollinstance = $DB->get_record('enrol', array('courseid' => $COURSE->id,'enrol' => 'easy'));
-        }
-        if ($coursehaseasyenrollment && isset($COURSE->id) && $COURSE->id > 1) {
-            $easycodetitle = get_string('header_coursecodes', 'enrol_easy');
-            $easycodelink = new moodle_url('/enrol/editinstance.php', array('courseid' => $PAGE->course->id,'id' => $easyenrollinstance->id,'type' => 'easy'));
-        }
+                    ),
+                ];
+            }
 
-        // Header links on dashboard.
-        if ($COURSE->id <= 1  && isloggedin() && !isguestuser() && $PAGE->pagelayout !== 'coursecategory') {
-            $header->headerlinks = [
-                'headerlinksdata' => array(
-                    array(
-                        'status' => !isguestuser() ,
-                        'icon' => 'fa-user',
-                        'title' => get_string('profile', 'moodle'),
-                        'url' => new moodle_url('/user/profile.php', array('id' => $USER->id)),
-                        ),
-                    array(
-                        'status' => $gradestatus && isset($theme->settings->headergrades),
-                        'icon' => 'fa-table',
-                        'title' => get_string('grades', 'moodle'),
-                        'url' => $gradeurl,
-                        ),
-                    array(
-                        'status' => !isguestuser()  && isset($theme->settings->headercalendar),
-                        'icon' => 'fa-calendar',
-                        'title' => get_string('calendar', 'calendar'),
-                        'url' => $calendarurl,
-                        ),
-                    array(
-                        'status' => !isguestuser(),
-                        'icon' => 'fa-wrench',
-                        'title' => get_string('preferences', 'moodle'),
-                        'url' => new moodle_url('/user/preferences.php'),
-                        ),
-                    array(
-                        'status' => !isguestuser() && $isteacher || is_role_switched($course->id),
-                        'icon' => 'fa-user-secret',
-                        'title' => $switchroletitle,
-                        'url' => $switchrolelink,
-                        ),
+            // Header links on course page.
+            if ($COURSE->id > 1) {
+                $course = $this->page->course;
+                $context = context_course::instance($course->id);
+                $hasgradebookshow = $PAGE->course->showgrades == 1;
+                $hasactivitycompletionshow = $PAGE->course->enablecompletion == 1;
+                $hascompetencyshow = get_config('core_competency', 'enabled');
+                $isteacher = has_capability('moodle/course:viewhiddenactivities', $context);
+                $isstudent = !has_capability('moodle/course:viewhiddenactivities', $context);
+                $hascontentbankpermission = has_capability('contenttype/h5p:access', $context);
 
-                ),
-            ];
+                if (is_role_switched($course->id)) { // Has switched roles
+                        $rolename = '';
+                        $realuser = \core\session\manager::get_realuser();
+                        $fullname = fullname($realuser, true);
+                        if ($role = $DB->get_record('role', array('id'=>$USER->access['rsw'][$context->path]))) {
+                            $rolename = ': '.role_get_name($role, $context);
+                        }
+
+                        $loggedinas = get_string('loggedinas', 'moodle', $fullname).$rolename;
+                }
+
+                if (\core\session\manager::is_loggedinas()) {
+                    $header->loginas = $this->login_info();
+                }
+                if (is_role_switched($course->id) && !\core\session\manager::is_loggedinas()) {
+                    $header->roleswitch = $loggedinas;
+                }
+                
+
+                $calendarurl = '';
+                if (isset($COURSE->id) && $COURSE->id > 1 && isloggedin() && !isguestuser()) {
+                    $calendarurl = new moodle_url('/calendar/view.php?view=upcoming', array('course' => $PAGE->course->id ));
+                } else {
+                    $calendarurl = new moodle_url('/calendar/view.php?view=upcoming');
+                }
+
+                $gradeurl = '';
+                $gradestatus = '';
+                // Show on homepage.
+                if ($COURSE->id <= 1 && isloggedin() && !isguestuser() && has_capability('gradereport/overview:view', $context)) {
+                    $gradeurl = new moodle_url('/grade/report/overview/index.php');
+                    $gradestatus = true;
+                }
+                // Show for student in course.
+                if ($COURSE->id > 1 && isloggedin() && !isguestuser() && has_capability('gradereport/user:view', $context) && $hasgradebookshow) {
+                    $gradeurl = new moodle_url('/grade/report/user/index.php', array('id' => $PAGE->course->id));
+                    $gradestatus = true;
+                }
+                // Show for teacher in course.
+                if ($COURSE->id > 1 && has_capability('gradereport/grader:view', $context) && isloggedin() && !isguestuser()) {
+                    $gradeurl = new moodle_url('/grade/report/grader/index.php', array('id' => $PAGE->course->id));
+                    $gradestatus = true;
+                }
+
+                $switchroletitle = get_string('switchroleto', 'moodle');
+                $switchrolelink = new moodle_url('/course/switchrole.php', array('id' => $PAGE->course->id, 'switchrole' => '-1', 'returnurl' => '%2Fcourse%2Fview.php%3F', 'id' => $PAGE->course->id));
+                if (is_role_switched($course->id)) {
+                $switchroletitle = get_string('switchrolereturn', 'moodle');
+                $switchrolelink = new moodle_url('/course/switchrole.php', array('id'=>$course->id,'sesskey'=>sesskey(), 'switchrole'=>0, 'returnurl'=>$this->page->url->out_as_local_url(false)));
+                }
+
+                // Easy Enrollment Integration.
+                $globalhaseasyenrollment = enrol_get_plugin('easy');
+                $coursehaseasyenrollment = '';
+                $easycodelink = '';
+                $easycodetitle = '';
+                if ($globalhaseasyenrollment) {
+                    $coursehaseasyenrollment = $DB->record_exists('enrol', array('courseid' => $COURSE->id, 'enrol' => 'easy'));
+                    $easyenrollinstance = $DB->get_record('enrol', array('courseid' => $COURSE->id,'enrol' => 'easy'));
+                }
+                if ($coursehaseasyenrollment && isset($COURSE->id) && $COURSE->id > 1) {
+                    $easycodetitle = get_string('header_coursecodes', 'enrol_easy');
+                    $easycodelink = new moodle_url('/enrol/editinstance.php', array('courseid' => $PAGE->course->id,'id' => $easyenrollinstance->id,'type' => 'easy'));
+                }
+                    $header->headerlinks = [
+                        'headerlinksdata' => array(
+                            array(
+                                'status' => $gradestatus && isset($theme->settings->headergrades),
+                                'icon' => 'fa-table',
+                                'title' => get_string('grades', 'moodle'),
+                                'url' => $gradeurl,
+                                ),
+                            array(
+                                'status' => !isguestuser() && has_capability('moodle/course:viewparticipants', $context)  && isset($theme->settings->headerparticipants),
+                                'icon' => 'fa-users',
+                                'title' => get_string('participants', 'moodle'),
+                                'url' => new moodle_url('/user/index.php', array('id' => $PAGE->course->id)),
+                                ),
+                            array(
+                                'status' => has_capability('moodle/badges:earnbadge', $context)  && isset($theme->settings->headerbadges),
+                                'icon' => 'fa-id-badge',
+                                'title' => get_string('badges', 'badges'),
+                                'url' => new moodle_url('/badges/view.php?type=2', array('id' => $PAGE->course->id)),
+                                ),
+                            array(
+                                'status' => !isguestuser()  && isset($theme->settings->headercalendar),
+                                'icon' => 'fa-calendar',
+                                'title' => get_string('calendar', 'calendar'),
+                                'url' => $calendarurl,
+                                ),
+                            array(
+                                'status' => !isguestuser() && $hascompetencyshow,
+                                'icon' => 'fa-sign-out',
+                                'title' => get_string('competencies', 'competency'),
+                                'url' => new moodle_url('/admin/tool/lp/coursecompetencies.php', array('courseid' => $PAGE->course->id)),
+                                ),
+                            array(
+                                'status' => $coursehaseasyenrollment && $isteacher,
+                                'icon' => 'fa-key',
+                                'title' => $easycodetitle,
+                                'url' => $easycodelink,
+                                ),
+                            array(
+                                'status' => $hascontentbankpermission  && isset($theme->settings->headercontentbank),
+                                'icon' => 'fa-cloud-upload',
+                                'title' => get_string('contentbank', 'moodle'),
+                                'url' => new moodle_url('/contentbank/index.php', array('contextid' => $context->id)),
+                                ),
+                            array(
+                                'status' => !isguestuser() && $isteacher || is_role_switched($course->id),
+                                'icon' => 'fa-user-secret',
+                                'title' => $switchroletitle,
+                                'url' => $switchrolelink,
+                                ),
+                        ),
+                    ];
+            }
         }
-
-        // Header links on course page.
-        if ($COURSE->id > 1 && isloggedin() && !isguestuser()) {
-            $header->headerlinks = [
-                'headerlinksdata' => array(
-                    array(
-                        'status' => $gradestatus && isset($theme->settings->headergrades),
-                        'icon' => 'fa-table',
-                        'title' => get_string('grades', 'moodle'),
-                        'url' => $gradeurl,
-                        ),
-                    array(
-                        'status' => !isguestuser() && has_capability('moodle/course:viewparticipants', $context)  && isset($theme->settings->headerparticipants),
-                        'icon' => 'fa-users',
-                        'title' => get_string('participants', 'moodle'),
-                        'url' => new moodle_url('/user/index.php', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => has_capability('moodle/badges:earnbadge', $context)  && isset($theme->settings->headerbadges),
-                        'icon' => 'fa-id-badge',
-                        'title' => get_string('badges', 'badges'),
-                        'url' => new moodle_url('/badges/view.php?type=2', array('id' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => !isguestuser()  && isset($theme->settings->headercalendar),
-                        'icon' => 'fa-calendar',
-                        'title' => get_string('calendar', 'calendar'),
-                        'url' => $calendarurl,
-                        ),
-                    array(
-                        'status' => !isguestuser() && $hascompetencyshow,
-                        'icon' => 'fa-sign-out',
-                        'title' => get_string('competencies', 'competency'),
-                        'url' => new moodle_url('/admin/tool/lp/coursecompetencies.php', array('courseid' => $PAGE->course->id)),
-                        ),
-                    array(
-                        'status' => $coursehaseasyenrollment && $isteacher,
-                        'icon' => 'fa-key',
-                        'title' => $easycodetitle,
-                        'url' => $easycodelink,
-                        ),
-                    array(
-                        'status' => $hascontentbankpermission  && isset($theme->settings->headercontentbank),
-                        'icon' => 'fa-cloud-upload',
-                        'title' => get_string('contentbank', 'moodle'),
-                        'url' => new moodle_url('/contentbank/index.php', array('contextid' => $context->id)),
-                        ),
-                    array(
-                        'status' => !isguestuser() && $isteacher || is_role_switched($course->id),
-                        'icon' => 'fa-user-secret',
-                        'title' => $switchroletitle,
-                        'url' => $switchrolelink,
-                        ),
-                ),
-            ];
-        }
-
         return $this->render_from_template('theme_rebel/core/full_header', $header);
     }
 
@@ -286,7 +351,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $title = get_string('enrolform_heading', 'enrol_easy');
         $blurp = get_string('easyenrol_blurp', 'theme_rebel');
 
-        if ($plugin && !isguestuser() && $PAGE->pagelayout == 'mydashboard') {
+        if ($plugin && !isguestuser()) {
             $enrolform = '<section id="easyenrol" class=" block_easyenrol block  card mb-3" role="complementary" aria-labelledby="easyenrol">
     <div class="card-body p-3">
         <h5 class="card-title d-inline">' . $title . '</h5>
