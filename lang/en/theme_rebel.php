@@ -90,7 +90,57 @@ $string['rawscss_desc'] = 'Use this field to provide SCSS or CSS code which will
 // Raw initial SCSS setting.
 $string['rawscsspre'] = 'Raw initial SCSS';
 // Raw initial SCSS setting help text.
-$string['rawscsspre_desc'] = 'In this field you can provide initialising SCSS code, it will be injected before everything else. Most of the time you will use this setting to define variables.';
+$string['rawscsspre_desc'] = '// Top Navbar area</br>
+$navbar-bg: #e3eaf5 !default;</br>
+$navbartextcolor: #333 !default;</br>
+
+// Top Header area</br>
+$header-bg: #eef5f9 !default;</br>
+$headerimageheight: 650px !default;</br>
+$headerlinks-bg: #e3eaf5 !default;</br>
+$headerlinks-link: $black !default;</br>
+
+// Breadcrumbs in Rebel</br>
+$breadcrumbblock: #607d8b;</br>
+$breadcrumbblock-darken: #213561;</br>
+$breadcrumbblock-highlight: #213561;</br>
+$breadcrumbblock-highlight-darken: #607d8b;</br>
+$breadcrumblinkcolor: $white;</br>
+$breadcrumblinkcolor-hover: $white;</br>
+
+//Sidebar icons menu</br>
+$sidebar-bg: $body-bg !default;</br>
+$sidebar-iconcolor: $white !default;</br>
+$sidebar-ahover-bg: #1f77b2 !default;</br>
+$sidebar-aattention: #4caf50 !default;</br>
+$sidebar-borderright-color: $white !default;</br>
+
+// Bottom Footer area</br>
+$footer-bg: #e5ebef !default;</br>
+$footerlinkcolor: #333 !default;</br>
+$footertextcolor: #333 !default;</br>
+
+//Used to style Easy Enrollment plugin</br>
+$easyenrolltextcolor: $white !default;</br>
+$easyenroll-bg: #4caf50 !default;</br>
+
+//Other Important Colors</br>
+$card-bg: rgba(255, 255, 255, 0.98)!default;</br>
+$body-bg: #213561 !default;</br>
+$primary:       #1968BE !default;</br>
+$success:       $green !default;</br>
+$info:          #4caf50 !default;</br>
+$warning:       $orange !default;</br>
+$danger:        $red !default;</br>
+$secondary:     $gray-400 !default;</br>
+
+// Tabs</br>
+$nav-tabs-border-color:             $gray-300 !default;</br>
+$nav-tabs-link-hover-border-color:  $gray-200 $gray-200 $nav-tabs-border-color !default;</br>
+$nav-tabs-link-active-color:        $gray-700 !default;</br>
+$nav-tabs-link-active-bg:           $gray-200 !default;</br>
+$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;';
+
 // We need to include a lang string for each block region.
 $string['region-side-pre'] = 'Right';
 

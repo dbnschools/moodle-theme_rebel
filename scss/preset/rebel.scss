@@ -39,7 +39,7 @@ $enable-responsive-font-sizes: true !default;
 // Body
 $body-color:    $gray-800 !default;
 $card-bg: rgba(255, 255, 255, 0.98)!default;
-$body-bg: #009CA3 !default;
+$body-bg: #213561 !default;
 $drawer-bg:	lighten($body-bg, 15%)!default;
 
 // Fonts
@@ -62,15 +62,16 @@ $alert-border-width:                0 !default;
 
 
 // REBEL variables
-$navbar-bg: #dee9f7 !default;
-$navbartextcolor: #000 !default;
+$navbar-bg: #e3eaf5 !default;
+$navbartextcolor: #333 !default;
 $header-bg: #eef5f9 !default;
 $headerimageheight: 650px !default;
-$headerlinks-bg: #fff !default;
-$footer-bg: #2b3035 !default;
-$footerlinkcolor: $white !default;
-$footertextcolor: $white !default;
-$sidebar-bg: #114e78 !default;
+$headerlinks-bg: #e3eaf5 !default;
+$headerlinks-link: $black !default;
+$footer-bg: #e5ebef !default;
+$footerlinkcolor: #333 !default;
+$footertextcolor: #333 !default;
+$sidebar-bg: $body-bg !default;
 $sidebar-iconcolor: $white !default;
 $sidebar-ahover-bg: #1f77b2 !default;
 $sidebar-aattention: #4caf50 !default;
@@ -85,11 +86,11 @@ $nav-tabs-link-active-color:        $gray-700 !default;
 $nav-tabs-link-active-bg:           $gray-200 !default;
 $nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
 
-// Breadcrumb
-$breadcrumbblock: #1F77B2;
-$breadcrumbblock-darken: #114e78;
-$breadcrumbblock-highlight: #4caf50;
-$breadcrumbblock-highlight-darken: #16a085;
+// Breadcrumbs in Rebel
+$breadcrumbblock: #607d8b;
+$breadcrumbblock-darken: #213561;
+$breadcrumbblock-highlight: #213561;
+$breadcrumbblock-highlight-darken: #607d8b;
 $breadcrumblinkcolor: $white;
 $breadcrumblinkcolor-hover: $white;
 
@@ -123,13 +124,30 @@ body {
 
 // REBEL Styling changes
 
+@media (min-width: 700px) {
+  div#learningcontent {
+      box-shadow: 0 0 10px -4px rgba(0,0,0,.6);
+      margin: 0px 0px 0px 62px !important;
+  }
+}
+@media (max-width: 700px) {
+  div#learningcontent {
+      box-shadow: 0 0 10px -4px rgba(0,0,0,.6);
+      margin: 0px 0px 0px 47px !important;
+  }
+}
+
+.sidebar {
+  top: 0!important;
+}
+
 #page {
     margin-top: 0px;
     background-color: $white;
 }
 
 .page-context-header .page-header-headings, .page-context-header .header-button-group {
-    color: $gray-800;
+    color: $white;
 }
 
 aside#block-region-side-pre section.block {
@@ -141,26 +159,92 @@ aside#block-region-side-pre section.block {
 aside#block-region-side-pre section.block_timeline .list-group-item {
     background-color: transparent;
 }
-
-.headerbkg {
-    background-image: url([[pix:theme_rebel|defaultbackgroundimage]]);
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    -webkit-mask-image: linear-gradient(to top,transparent 0%,rgba(255,255,255,.9) 50%);
-    mask-image: linear-gradient(to top,transparent 0%,rgba(255,255,255,.9) 50%);
-    height: $headerimageheight;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
+header#page-header {
+    position: relative;
+    background: #38b1a7;
+    background: linear-gradient(8deg,#0d58a9 0%,#8070da 100%);
 }
-
 .course-content ul.topics li.section, .course-content ul.weeks li.section {
     margin: 2rem 0;
     padding-bottom: 1rem;
     border: 0;
     border-bottom: 1px solid $gray-300;
+}
+
+//Dropdown overrides for Rebel Preset
+.dropdown-menu.iconsidebar.show {
+    padding: 1.25rem!important;
+    color: $white;
+    background-color: $body-bg;
+}
+.dropdown-menu.iconsidebar.show::-webkit-scrollbar-track {
+    background-color: $body-bg!important;
+}
+.dropdown-menu.iconsidebar.show::-webkit-scrollbar-thumb {
+    background-color: $white!important;
+}
+
+
+// Collapsible Topics Format Styling
+.format-collapsibletopics li#section-0 {
+    background-color: #e3eaf5;
+    padding: 1rem;
+    border-top: 7px solid;
+    border-radius: 4px;
+}
+.format-collapsibletopics div#collapse-0 {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 4px;
+}
+.format-collapsibletopics div#collapse-0 img.activityicon {
+    height: 60px;
+    width: 60px;
+    vertical-align: middle;
+}
+
+.format-collapsibletopics div#collapse-0 li.activity {
+    margin-bottom: 1rem;
+}
+.format-collapsibletopics div#collapse-0 li.activity:hover {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: .25rem;
+}
+.format-collapsibletopics li.activity {
+    padding: .25rem;
+    border: 1px solid transparent;
+    min-width: 100%;
+}
+.format-collapsibletopics li.activity:hover {
+    background-color: $navbar-bg;
+    border: 1px solid $gray-300;
+    border-radius: 4px;
+    padding: .25rem;
+}
+.section .activity.modtype_label.label {
+    padding: .25rem;
+}
+.format-collapsibletopics li.activity.label:hover {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: .25rem;
+}
+.format-collapsibletopics div#collapse-0 span.instancename {
+    font-size: 20px;
+    padding-left: .75rem;
+}
+.format-collapsibletopics .course-content ul li.section.main {
+    padding: 1rem 0;
+}
+.course-content .collapsible-actions {
+    margin-top: 1rem;
+    clear: both;
+    text-align: left;
+}
+body.editing ul.collapsibletopics .content .summarytext {
+    margin-left: 0;
+    margin-right: 0;
 }

@@ -23,29 +23,49 @@
 
 <div class="sidebar">
     <div class="sidebar-items">
-      <a href="{{{mycoursesurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{mycourses}}}" class="sideicon mydashboard"><i class="fa fa-user"></i></a>
+
+      <div class="dropright">
+
+            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-tooltip="tooltip" data-placement= "right" title="{{{mycourses}}}" class="sideicon mydashboard"><i class="fa fa-user"></i></a>
+
+              <div class="dropdown-menu iconsidebar">
+                <h5>{{{mycourses}}}</h5>
+                  {{{mycoursesmenu}}}
+              </div>
+
+      </div>
+
       {{{ editpage }}}
+
       {{#userisediting}}
-          <a href="{{{addblockurl}}}" data-key="addblock" data-tooltip="tooltip" data-placement= "right" class="btn-danger sideicon" title="{{{addblock}}}" class="sideicon"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+          <a href="{{{addblockurl}}}" data-key="addblock" data-tooltip="tooltip" data-placement= "right" class="btn-danger sideicon editingblocks" title="{{{addblock}}}" class="sideicon"><i class="fa fa-th-large" aria-hidden="true"></i></a>
       {{/userisediting}}
+
       {{#showincourseonly}}
         {{#showcourseadminlink}}
               <div data-region="drawer-toggle">
-                  <a href="{{{directcourseadminlink}}}" data-tooltip="tooltip" data-placement= "right" title="{{{courseadmin}}}"class="sideicon"><i class="fa fa-cog"></i><span class="sr-only">{{{courseadmin}}}</span></a>
+                  <a href="{{{directcourseadminlink}}}" data-tooltip="tooltip" data-placement= "right" title="{{{courseadmin}}}"class="sideicon coursemanagement"><i class="fa fa-cog"></i><span class="sr-only">{{{courseadmin}}}</span></a>
               </div>
         {{/showcourseadminlink}}
       {{/showincourseonly}}
+
       {{#showloggedinonly}}
+
         {{#showondashboardonly}}
           {{#hascreatecourse}}
-              <a href="{{{createcourseurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{createcourse}}}" class="sideicon attention"><i class="fa fa-plus-square"></i></a>
+              <a href="{{{createcourseurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{createcourse}}}" class="sideicon attention createacourse"><i class="fa fa-plus-square"></i></a>
           {{/hascreatecourse}}
-          <a href="{{{viewcoursesurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{viewcourses}}}" class="sideicon"><i class="fa fa-graduation-cap"></i></a>
+
+          <a href="{{{viewcoursesurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{viewcourses}}}" class="sideicon viewcourses"><i class="fa fa-graduation-cap"></i></a>
         {{/showondashboardonly}}
+
         {{#hasadminlink}}
           <a href="{{{siteadminurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{siteadmintitle}}}" class="sideicon siteadmin"><i class="fa fa-sitemap" aria-hidden="true"></i></a>
         {{/hasadminlink}}
-        <a href="{{{logouturl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{logouttitle}}}" class="sideicon"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+
+        <a href="{{{logouturl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{logouttitle}}}" class="sideicon logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+
       {{/showloggedinonly}}
+
     </div>
 </div>

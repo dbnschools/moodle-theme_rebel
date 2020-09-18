@@ -54,7 +54,7 @@
 
 <div id="page-wrapper" class="d-print-block">
     {{{ output.standard_top_of_body_html }}}
-    
+
     {{{ output.iconsidebarmenu }}}
     
     <div id="learningcontent">
@@ -62,8 +62,15 @@
     {{> theme_rebel/navbar }}
     
     <div id="page" class="container-fluid d-print-block">
+
         {{{ output.full_header }}}
+        
         <div id="page-content" class="row pb-3 d-print-block">
+            <div class="custommenu">
+                <ul class="custommenu">
+                {{{output.custom_menu}}}
+                </ul>
+            </div>
             <div id="region-main-box" class="col-12">
                 {{#hasregionmainsettingsmenu}}
                 <div id="region-main-settings-menu" class="d-print-none {{#hasblocks}}has-blocks{{/hasblocks}}">
@@ -94,7 +101,7 @@
         </div>
     </div>
     {{{ output.standard_after_main_region_html }}}
-    {{> theme_boost/footer }}
+    {{> theme_rebel/footer }}
     </div>
 </div>
 

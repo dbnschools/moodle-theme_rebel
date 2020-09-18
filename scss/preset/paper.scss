@@ -68,7 +68,8 @@ $navbar-bg: #E6EDDD !default;
 $navbartextcolor: #000 !default;
 $header-bg: #ecefe8 !default;
 $headerimageheight: 500px !default;
-$headerlinks-bg: $white !default;
+$headerlinks-bg: #e6eddd !default;
+$headerlinks-link: #333 !default;
 $footer-bg: $navbar-bg !default;
 $footerlinkcolor: $black !default;
 $footertextcolor: $black !default;
@@ -198,12 +199,7 @@ aside#block-region-side-pre.block-region .block.card:before {
     border-style: solid;
 }
 
-.headerbkg {
+body {
     background-image: url([[pix:theme_rebel|paperbackgroundimage]]);
-    width: 100%;
-    mask-image: none;
-    height: 100%;
-    position: fixed;
     background-repeat: repeat;
-    z-index: -1;
 }

@@ -8,7 +8,7 @@
     padding: .5rem 1rem .5rem 2px;
     line-height: 0;
     max-height: 45px;
-    color: $navbartextcolor
+    color: $navbartextcolor;
 }
 .navbar a {
   color: $navbartextcolor; 
@@ -48,8 +48,10 @@ section#region-main, section#region-main .card, header#page-header .card {
       margin: 30px 30px 30px 90px;
   }
 }
-div#learningcontent {
-    box-shadow: 0px 0px 25px -5px rgba($black,.6);
+@media (max-width: 700px) {
+  div#learningcontent {
+      margin: 0 0 0 50px;
+  }
 }
 .region_main_settings_menu_proxy {
     background-color: transparent;
@@ -59,29 +61,39 @@ a#message-user-button {
 }
 .headerlinks {
     display: inline-flex;
-    flex-wrap: wrap;
+    overflow-x: auto;
     align-items: center;
-    padding: .75rem 1.5rem .75rem .5rem;
+    padding: .5rem;
     text-align: center;
     background-color: $headerlinks-bg;
-    border: 1px solid $gray-400;
     font-size: 16px;
-    margin-bottom: 1.5rem;
+    z-index: 1;
 }
 @media (min-width: 700px) {
   .headerlinks {
     background-color: $headerlinks-bg;
-    border-bottom: 1px solid $gray-400;
-    border-right: 1px solid $gray-400;
-    margin-bottom: 0;
+    border-top: 1px solid lighten($headerlinks-bg, 15%);
+    border-right: 1px solid lighten($headerlinks-bg, 15%);
   }
 }
 a.headerlink {
     margin-left: 1rem;
+    color: $headerlinks-link;
 }
 header#page-header {
   background-color: $header-bg;
   border-bottom: 1px solid $gray-400;
+}
+.headerlinks::-webkit-scrollbar {
+    height: 7px;
+}
+
+.headerlinks::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.headerlinks::-webkit-scrollbar-thumb {
+    background-color: $brand-primary;
 }
 [data-region="blocks-column"] {
     padding-top: 1rem;
@@ -92,8 +104,13 @@ section#easyenrol {
 }
 @media (max-width: 480px) {
   .navbar .popover-region .popover-region-container {
-      top: 110px;
+    top: 45px;
+    z-index: 4;
   }
+}
+
+.page-context-header {
+    padding: 1rem .25rem;
 }
 
 // Sidebar Icon Navigation Sidebar
@@ -130,24 +147,45 @@ section#easyenrol {
   background-color: $sidebar-ahover-bg;
   border-right: 7px solid $sidebar-borderright-color;
 }
+
+.sidebar .sideicon.mydashboardmobile {display: none;}
+
 @media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: fixed;
-    top:0;
-    left: 0;
-  }
-  .sidebar a.sideicon {float: left; font-size: initial;}
-  div#learningcontent {
-        margin-top: 70px;
-  }
+    .sidebar {
+      margin: 0;
+      padding: 0;
+      width: 45px;
+      background-color: $sidebar-bg;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow: visible;
+      z-index: 4;
+    }
+    .sidebar a.sideicon {
+      display: block;
+      text-align: center;
+      padding: 4px;
+      transition: all 0.3s ease;
+      
+    }
+    .sidebar a.sideicon i {
+      color: $sidebar-iconcolor;
+      font-size: 16px;
+    }
+    .sidebar a.sideicon.attention {
+      background-color: $sidebar-aattention;
+    }
+    .sidebar a.sideicon:hover:not(.active) {
+      background-color: $sidebar-ahover-bg;
+      border-right: 7px solid $sidebar-borderright-color;
+    }
 }
 .dropdown-menu.iconsidebar.show {
-    height: 250px;
+    height: 325px;
     overflow-y: scroll;
     padding: 1rem .5rem;
-    width: 250px;
+    width: 275px;
     border-radius: 7px;
 }
 @media screen and (max-width: 400px) {
@@ -296,14 +334,14 @@ button.close {
 }
 
 
-@media (max-width: 576px) {
+@media (max-width: 700px) {
   #page-navbar {
     display: none;
   }
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
   .breadcrumb:not(:empty) {
       width: 100%;
       border: 0; 
@@ -426,7 +464,9 @@ button.close {
 .path-mod-assign [data-region="grade-actions-panel"] {
     background-color: $white;
 }
-
+.activity-navigation {
+    text-align: center;
+}
 @media (min-width: 700px) {
   .tooltip-inner {
     font-size:18px;
@@ -456,3 +496,27 @@ button.close {
 .path-calendar .maincalendar .calendar_event_course {
     border-color: $gray-500;
 }
+
+
+//MyCourses Styling
+ul.headermycourses {
+    list-style: none;
+    margin: 0;
+}
+ul.headermycourses .nav-link {
+  padding: 0;
+}
+ul.headermycourses a {
+  color: $headerlinks-link;
+}
+.custommenu {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+ul.custommenu {
+    list-style: none;
+    margin-bottom: 0;
+}
+

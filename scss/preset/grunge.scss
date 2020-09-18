@@ -39,7 +39,7 @@ $enable-responsive-font-sizes: true !default;
 // Body
 $body-color:    $gray-800 !default;
 $card-bg: rgba(255, 255, 255, 0.98)!default;
-$body-bg: #b8c1ca !default;
+$body-bg: #D3D2A6 !default;
 $drawer-bg:	lighten($body-bg, 15%)!default;
 
 // Fonts
@@ -62,14 +62,15 @@ $alert-border-width:                0 !default;
 
 
 // REBEL variables
-$navbar-bg: #dee9f7 !default;
-$navbartextcolor: #000 !default;
-$header-bg: #eef5f9 !default;
-$headerimageheight: 500px !default;
-$headerlinks-bg: #f2f2f2 !default;
-$footer-bg: $gray-600 !default;
-$footerlinkcolor: $black !default;
-$footertextcolor: $black !default;
+$navbar-bg: #2c3e41 !default;
+$navbartextcolor: $white !default;
+$header-bg: #d6e0e2 !default;
+$headerimageheight: 600px !default;
+$headerlinks-bg: $navbar-bg !default;
+$headerlinks-link: $white !default;
+$footer-bg: $navbar-bg !default;
+$footerlinkcolor: $white !default;
+$footertextcolor: $white !default;
 $sidebar-bg: #555 !default;
 $sidebar-iconcolor: $white !default;
 $sidebar-ahover-bg: $black !default;
@@ -86,12 +87,19 @@ $nav-tabs-link-active-bg:           $gray-200 !default;
 $nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
 
 // Breadcrumb
-$breadcrumbblock: #1F77B2 !default;
-$breadcrumbblock-darken: #114e78 !default;
-$breadcrumbblock-highlight: #1abc9c !default;
+$breadcrumbblock: #2f8290 !default;
+$breadcrumbblock-darken: #2980b9 !default;
+$breadcrumbblock-highlight: #0961ce !default;
 $breadcrumbblock-highlight-darken: #16a085 !default;
 $breadcrumblinkcolor: $white !default;
 $breadcrumblinkcolor-hover: $black !default;
+
+// Sidebar
+$sidebar-bg: $breadcrumbblock;
+$sidebar-iconcolor: $white;
+$sidebar-ahover-bg: $breadcrumbblock-highlight !default;
+$sidebar-aattention: #4caf50;
+$sidebar-borderright-color: #F7CDB6;
 
 // stylelint-disable
 $theme-colors: () !default;
@@ -120,45 +128,19 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-// rebel SCSS for the theme.
-
-// Grunge variables
-$navbar-bg: #2c3e41;
-$header-bg: #d6e0e2;
-$headerimageheight: 600px;
-$footer-bg: $navbar-bg;
-$footerlinkcolor: $white;
-$footertextcolor: $white;
-$headerlinks-bg: $white;
-$navbartextcolor: $white;
-$body-bg: #D3D2A6;
-
-// Breadcrumb
-$breadcrumbblock: #2f8290;
-$breadcrumbblock-darken: #2980b9;
-$breadcrumbblock-highlight: #0961ce;
-$breadcrumbblock-highlight-darken: #16a085;
-
-// Sidebar
-$sidebar-bg: $breadcrumbblock;
-$sidebar-iconcolor: $white;
-$sidebar-ahover-bg: $breadcrumbblock-highlight !default;
-$sidebar-aattention: #4caf50;
-$sidebar-borderright-color: #F7CDB6;
-
-
 #page {
     margin-top: 0px;
     background-color: $white;
 }
 
-header#page-header a {
-    color: $gray-800;
+.page-context-header .page-header-headings, .page-context-header .header-button-group {
+    color: $black;
 }
 
 aside#block-region-side-pre section.block {
     background-color: $gray-100;
 }
+
 //remove white box for Timeline block in sidebar
 aside#block-region-side-pre section.block_timeline .list-group-item {
     background-color: transparent;

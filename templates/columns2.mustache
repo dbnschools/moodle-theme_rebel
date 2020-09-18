@@ -54,20 +54,29 @@
 
 <div id="page-wrapper" class="d-print-block">
     {{{ output.standard_top_of_body_html }}}
-    <div class="headerbkg"></div>
-    {{> theme_rebel/nav-drawer }}
+    
     {{{ output.iconsidebarmenu }}}
     
     <div id="learningcontent">
-
+    
     {{> theme_rebel/navbar }}
-    
-    
+
     <div id="page" class="container-fluid d-print-block">
+    
         {{{ output.full_header }}}
 
         <div id="page-content" class="row pb-3 d-print-block">
+            <div class="custommenu">
+                <ul class="custommenu">
+                {{{output.custom_menu}}}
+                </ul>
+            </div>
+            <div class="mr-auto d-flex pt-1 pl-1">
+                {{{output.page_heading_button}}}
+            </div>
+
             <div id="region-main-box" class="col-12">
+            {{{ output.activity_navigation }}}
                 {{#hasregionmainsettingsmenu}}
                 <div id="region-main-settings-menu" class="d-print-none {{#hasblocks}}has-blocks{{/hasblocks}}">
                     <div> {{{ output.region_main_settings_menu }}} </div>
@@ -78,6 +87,7 @@
                     {{#hasregionmainsettingsmenu}}
                         <div class="region_main_settings_menu_proxy"></div>
                     {{/hasregionmainsettingsmenu}}
+
                     {{{ output.course_content_header }}}
                     {{{ output.main_content }}}
                     {{{ output.course_content_footer }}}
@@ -103,10 +113,5 @@ require(['jquery','theme_boost/bootstrap/tooltip'], function($){$('[data-tooltip
 M.util.js_pending('theme_boost/loader');
 require(['theme_boost/loader'], function() {
     M.util.js_complete('theme_boost/loader');
-});
-M.util.js_pending('theme_boost/drawer');
-require(['theme_boost/drawer'], function(drawer) {
-    drawer.init();
-    M.util.js_complete('theme_boost/drawer');
 });
 {{/js}}

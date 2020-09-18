@@ -74,7 +74,8 @@ $navbar-bg: #6fa9cc !default;
 $navbartextcolor: #000 !default;
 $header-bg: #f3f3f3 !default;
 $headerimageheight: 500px !default;
-$headerlinks-bg: $white !default;
+$headerlinks-bg: #e8efee !default;
+$headerlinks-link: $primary !default;
 $footer-bg: #255673 !default;
 $footerlinkcolor: $white !default;
 $footertextcolor: $white !default;
@@ -133,7 +134,7 @@ body {
 
 @media (min-width: 700px) {
       div#learningcontent {
-          margin: 20px 20px 20px 80px !important;
+          margin: 0px 0px 0px 65px !important;
       }
     // Round buttons
     .sidebar a.sideicon {
@@ -141,7 +142,9 @@ body {
         margin-bottom: 3px;
     }
 }
-
+.sidebar {
+  top: 0!important;
+}
 #page {
     margin-top: 0px;
     background-color: $white;
@@ -164,16 +167,9 @@ aside#block-region-side-pre section.block_timeline .list-group-item {
 
 .headerbkg {
     background-image: none;
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    -webkit-mask-image: linear-gradient(to top,transparent 0%,rgba(255,255,255,.9) 50%);
-    mask-image: linear-gradient(to top,transparent 0%,rgba(255,255,255,.9) 50%);
-    height: $headerimageheight;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
+}
+header#page-header {
+    position: relative;
+    background: #f8f9fa;
+    background: linear-gradient(0deg,#c2d4d2 7%,#fdfdfd 100%);
 }

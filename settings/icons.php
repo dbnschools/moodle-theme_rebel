@@ -20,14 +20,19 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+// This line protects the file from being accessed by a URL directly.
 defined('MOODLE_INTERNAL') || die();
 
-if ($ADMIN->fulltree) {
-    // Note new tabs layout for admin settings pages.
-    $settings = new theme_boost_admin_settingspage_tabs('themesettingrebel', get_string('configtitle', 'theme_rebel'));
+    // Advanced settings.
+    $page = new admin_settingpage('theme_rebel_icons', get_string('iconsettings', 'theme_rebel'));
 
-    require('settings/general.php');
-    require('settings/colors.php');
-    require('settings/login.php');
+    // icon One
+    $name = 'theme_rebel/extraiconsmenu';
+    $title = get_string('extraiconsmenu', 'theme_rebel');
+    $description = get_string('extraiconsmenu_desc', 'theme_rebel');
+    $setting = new admin_setting_configtextarea($name, $title, $description, '', PARAM_RAW, '50', '10');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
 
-}
+    $settings->add($page);
+    

@@ -37,6 +37,7 @@ function theme_rebel_get_main_scss_content($theme) {
     $scss = '';
 
     $filename = !empty($theme->settings->preset) ? $theme->settings->preset : null;
+    $headerimage = !empty($theme->settings->defaultbackgroundimage) ? $theme->settings->defaultbackgroundimage : null;
     $fs = get_file_storage();
 
     $context = context_system::instance();
@@ -64,9 +65,14 @@ function theme_rebel_get_main_scss_content($theme) {
         $scss .= $presetfile->get_content();
     } else {
         // Safety fallback - maybe new installs etc.
-        $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/preset/default.scss');
+        $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/preset/rebel.scss');
     }
 
+    //Detect and use a header image for default rebel preset.
+    if ($headerimage !== null &&  $filename == 'rebel.scss') {
+        // We still load the default preset files directly from the boost theme. No sense in duplicating them.
+        $scss .= file_get_contents($CFG->dirroot . '/theme/rebel/scss/headerimage.scss');
+    }
 
     // Pre CSS - this is loaded AFTER any prescss from the setting but before the main scss.
     $pre = file_get_contents($CFG->dirroot . '/theme/rebel/scss/pre.scss');
