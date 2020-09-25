@@ -29,7 +29,6 @@ use help_icon;
 use context_system;
 use core_course_list_element;
 use context_course;
-
 use coding_exception;
 use tabobject;
 use tabtree;
@@ -44,13 +43,6 @@ use url_select;
 
 defined('MOODLE_INTERNAL') || die;
 
-/**
- * Renderers to align Moodle's HTML with that expected by Bootstrap
- *
- * @package    theme_boost
- * @copyright  2012 Bas Brands, www.basbrands.nl
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
- */
 class core_renderer extends \theme_boost\output\core_renderer {
 
     public function full_header() {
@@ -76,12 +68,10 @@ class core_renderer extends \theme_boost\output\core_renderer {
         )) , $this->context_header());
         //$header->hasnavbar = empty($this->page->layout_options['nonavbar']);
         //$header->navbar = $this->navbar();
-        //$header->pageheadingbutton = $this->page_heading_button();
         $header->courseheader = $this->course_header();
         $header->headeractions = $this->page->get_header_actions();
         $header->mycourses = $this->rebel_mycourses();
-        //$header->activitynav = $this->activity_navigation();
-        //$header->rebel_custom_menu = $this->rebel_custom_menu();
+
 
         // Header Menus for Users.
         if ($PAGE->pagelayout !== 'coursecategory' && $PAGE->pagelayout !== 'admin') {
@@ -168,13 +158,13 @@ class core_renderer extends \theme_boost\output\core_renderer {
                             'url' => new moodle_url('/user/profile.php', array('id' => $USER->id)),
                             ),
                         array(
-                            'status' => $gradestatus && isset($theme->settings->headergrades),
+                            'status' => $gradestatus,
                             'icon' => 'fa-table',
                             'title' => get_string('grades', 'moodle'),
                             'url' => $gradeurl,
                             ),
                         array(
-                            'status' => !isguestuser()  && isset($theme->settings->headercalendar),
+                            'status' => !isguestuser(),
                             'icon' => 'fa-calendar',
                             'title' => get_string('calendar', 'calendar'),
                             'url' => $calendarurl,
@@ -207,19 +197,19 @@ class core_renderer extends \theme_boost\output\core_renderer {
                             'url' => $gradeurl,
                             ),
                         array(
-                            'status' => !isguestuser() && has_capability('moodle/course:viewparticipants', $context)  && isset($theme->settings->headerparticipants),
+                            'status' => !isguestuser() && has_capability('moodle/course:viewparticipants', $context),
                             'icon' => 'fa-users',
                             'title' => get_string('participants', 'moodle'),
                             'url' => new moodle_url('/user/index.php', array('id' => $PAGE->course->id)),
                             ),
                         array(
-                            'status' => has_capability('moodle/badges:earnbadge', $context)  && isset($theme->settings->headerbadges),
+                            'status' => has_capability('moodle/badges:earnbadge', $context),
                             'icon' => 'fa-id-badge',
                             'title' => get_string('badges', 'badges'),
                             'url' => new moodle_url('/badges/view.php?type=2', array('id' => $PAGE->course->id)),
                             ),
                         array(
-                            'status' => !isguestuser()  && isset($theme->settings->headercalendar),
+                            'status' => !isguestuser(),
                             'icon' => 'fa-calendar',
                             'title' => get_string('calendar', 'calendar'),
                             'url' => $calendarurl,
@@ -592,7 +582,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             $branch->add($dashlabel, $dashurl, $dashtitle);
            
                 $courses = enrol_get_my_courses(null, 'sortorder ASC');
-                $nomycourses = '<div class="alert alert-info alert-block">' . get_string('nomycourses', 'theme_fordson') . '</div>';
+                $nomycourses = '<div class="alert alert-info alert-block">' . get_string('nomycourses', 'theme_rebel') . '</div>';
                 if ($courses) {
                     // We have something to work with.  Get the last accessed information for the user and populate.
                     global $DB, $USER;

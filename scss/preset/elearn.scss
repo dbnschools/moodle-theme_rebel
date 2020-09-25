@@ -65,8 +65,8 @@ $navbar-bg: transparent !default;
 $navbartextcolor: #000 !default;
 $header-bg: #ebf5ff !default;
 $headerimageheight: 500px !default;
-$headerlinks-bg: $white !default;
-$headerlinks-link: $primary !default;
+$headerlinks-bg: #1F77B2 !default;
+$headerlinks-link: $white !default;
 $footer-bg: #ebf5ff !default;
 $drawer-bg: $header-bg;
 $footerlinkcolor: $black !default;
@@ -167,4 +167,59 @@ aside#block-region-side-pre section.block {
     right: 0;
     bottom: 0;
     z-index: -1;
+}
+
+// Collapsible Topics Format Styling
+.format-collapsibletopics li#section-0 {
+    background-color: #e3eaf5;
+    padding: 1rem;
+    border-top: 7px solid;
+    border-radius: 4px;
+}
+.format-collapsibletopics div#collapse-0 {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 4px;
+}
+.format-collapsibletopics div#collapse-0 img.activityicon {
+    height: 60px;
+    width: 60px;
+    vertical-align: middle;
+}
+
+.format-collapsibletopics div#collapse-0 li.activity {
+    margin-bottom: 1rem;
+}
+.format-collapsibletopics div#collapse-0 li.activity:hover {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: .25rem;
+}
+.format-collapsibletopics li.activity {
+    padding: .25rem;
+    border: 1px solid transparent;
+    min-width: 100%;
+}
+.format-collapsibletopics li.activity:hover {
+    background-color: $navbar-bg;
+    border: 1px solid $gray-300;
+    border-radius: 4px;
+    padding: .25rem;
+}
+.section .activity.modtype_label.label {
+    padding: .25rem;
+}
+.format-collapsibletopics li.activity.label:hover {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: .25rem;
+}
+.format-collapsibletopics div#collapse-0 span.instancename {
+    font-size: 20px;
+    padding-left: .75rem;
+}
+.format-collapsibletopics .course-content ul li.section.main {
+    padding: 1rem 0;
 }

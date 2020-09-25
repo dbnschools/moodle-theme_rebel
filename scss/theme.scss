@@ -5,9 +5,9 @@
     background-color: $navbar-bg;
     border-bottom: 1px solid $gray-500;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .08);
-    padding: .5rem 1rem .5rem 2px;
+    padding: 2px 1rem 2px 2px;
     line-height: 0;
-    max-height: 45px;
+    max-height: 46px;
     color: $navbartextcolor;
 }
 .navbar a {
@@ -102,13 +102,28 @@ section#easyenrol {
     color: $easyenrolltextcolor;
     background-color: $easyenroll-bg;
 }
-@media (max-width: 480px) {
-  .navbar .popover-region .popover-region-container {
-    top: 45px;
-    z-index: 4;
-  }
-}
 
+.usernavbar .popover-region .popover-region-container {
+  top: 32px;
+  z-index: 4;
+}
+.usernavbar .popover-region {
+  float: left;
+  padding: 0;
+  margin: 0;
+  max-height: 45px;
+  line-height: 0;
+}
+.usernavbar .popover-region-toggle::before {
+  position: absolute;
+  bottom: 0;
+  right: 21px;
+}
+.usernavbar .popover-region-toggle::after {
+  position: absolute;
+  bottom: 0;
+  right: 21px;
+}
 .page-context-header {
     padding: 1rem .25rem;
 }
@@ -134,7 +149,6 @@ section#easyenrol {
   text-align: center;
   padding: 16px;
   transition: all 0.3s ease;
-  
 }
 .sidebar a.sideicon i {
   color: $sidebar-iconcolor;
@@ -231,6 +245,34 @@ body.drawer-open-left {
         padding: 1rem 0;
     } 
 }
+.message-app {
+    background-color: $drawer-bg;
+}
+
+.popover-region-footer-container {
+    padding-top: 15px;
+}
+
+.popover-region-container {
+    right: 0;
+    top: 0;
+    height: auto;
+    z-index: 4;
+}
+
+@media (max-width: 767px) {
+  .navbar .popover-region .popover-region-container {
+      right: -40px;
+  }
+}
+[data-region=right-hand-drawer] .closewidget {
+    display: block;
+}
+
+[data-region=right-hand-drawer].drawer {
+    top: 0;
+    height: 100%;
+}
 
 // Sidebar Course Settings Scrollbars.
 [data-region="drawer"]::-webkit-scrollbar {
@@ -298,49 +340,16 @@ a:not([class]),
     }
 }
 
-// Accessible focus styling for buttons like elements that do not use the .btn class. Add
-// .aabtn to you element if you need the same focus styles.
-.aabtn,
-.btn-link,
-.nav-link,
-.atto_link_button,
-[role="button"],
-.list-group-item-action,
-input[type="checkbox"],
-input[type="radio"],
-input[type="file"],
-input[type="image"],
-.sr-only-focusable,
-a.dropdown-item,
-a.dropdown-toggle,
-.modal-dialog[tabindex="0"],
-.moodle-dialogue-base .closebutton,
-button.close {
-    &.focus,
-    &:focus {
-        outline: none;
-        box-shadow: none;
-    }
-    &:focus:hover {
-        text-decoration: none;
-    }
-}
-
 // breadcrumb styling
 
 #page-navbar {
-  z-index:2;
-  position: absolute;
+  width: auto;
 }
-
-
-@media (max-width: 700px) {
+@media (max-width: 500px) {
   #page-navbar {
     display: none;
   }
 }
-
-
 @media (max-width: 700px) {
   .breadcrumb:not(:empty) {
       width: 100%;
@@ -352,7 +361,8 @@ button.close {
 
 .breadcrumb{
   list-style:none;
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
   
   .icon{
     font-size: 14px;
@@ -456,6 +466,19 @@ button.close {
     }
   }
 }
+@media only screen and ( max-width: 900px ) {
+  .breadcrumb{
+    li{
+     display: none;
+      &:first-child{
+       display: block;
+      }
+      &:last-child{
+       display: block;
+      }
+    }
+  }
+}
 
 // Assignment Grading
 .path-mod-assign [data-region="grading-navigation-panel"] {
@@ -520,3 +543,13 @@ ul.custommenu {
     margin-bottom: 0;
 }
 
+// Collapsible Topics format
+.course-content .collapsible-actions {
+    margin-top: 1rem;
+    clear: both;
+    text-align: left;
+}
+body.editing ul.collapsibletopics .content .summarytext {
+    margin-left: 0;
+    margin-right: 0;
+}

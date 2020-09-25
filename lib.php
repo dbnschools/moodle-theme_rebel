@@ -65,7 +65,7 @@ function theme_rebel_get_main_scss_content($theme) {
         $scss .= $presetfile->get_content();
     } else {
         // Safety fallback - maybe new installs etc.
-        $scss .= file_get_contents($CFG->dirroot . '/theme/boost/scss/preset/rebel.scss');
+        $scss .= file_get_contents($CFG->dirroot . '/theme/rebel/scss/preset/rebel.scss');
     }
 
     //Detect and use a header image for default rebel preset.

@@ -27,3 +27,6 @@ REBEL FEATURES
 ## Moodle 3.9 Rebel Initial Release 1
 * Brand new theme.  Minimal setup.  5 page layouts.  Unique navigation.  Custom background image for pages and login.
 
+### Rebel version 1.2
+* Fixed issues related to https://tracker.moodle.org/browse/CONTRIB-8220
+

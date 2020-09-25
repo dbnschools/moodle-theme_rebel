@@ -17,9 +17,9 @@
 /**
  * Overridden collapsibletopics format renderer class
  *
- * @package    theme_receptic
- * @author     Jean-Roch Meurisse
- * @copyright  2016 - Cellule TICE - Unversite de Namur
+ * @package    theme_rebel
+ * @author     Chris Kenniburg
+ * @copyright  Dearborn Public Schools
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 

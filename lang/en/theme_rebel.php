@@ -38,6 +38,10 @@ $string['headermenuinfo_desc'] = 'Determine which links you would like to displa
 $string['customlogininfo'] = 'Enhance the Login Page';
 $string['customlogininfo_desc'] = 'Use the options below to enhance the login page for Rebel.';
 
+// Misc strings
+$string['nomycourses'] = 'You are not enrolled in any courses.';
+
+
 // Privacy.
 $string['privacy:metadata'] = 'The Rebel theme does not store any individual user data.';
 
@@ -154,8 +158,6 @@ $string['easyenrol_blurp'] = 'Enter your course code below to enroll in new cour
 // Settings Pages
 $string['courseadminlinktoggle'] = 'Show or hide this link in the Course Management navigation drawer.';
 $string['courseheaderlinktoggle'] = 'Show or hide this link in the header area.';
-//$string['shownavdrawer'] = 'Show Nav Drawer';
-//$string['shownavdrawer_desc'] = 'Would you like the nav drawer to display or would you like the sidebar link to just take the user to the Course Administration page?  If you show the Nav Drawer you can select what links appear below.';
 
 // Courseadmin links
 $string['courseadminmenutitle'] = 'Course Management';
