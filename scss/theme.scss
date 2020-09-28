@@ -363,7 +363,7 @@ a:not([class]),
   list-style:none;
   display: flex;
   flex-direction: row;
-  
+  flex-wrap: nowrap;
   .icon{
     font-size: 14px;
   }

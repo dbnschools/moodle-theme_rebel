@@ -30,3 +30,5 @@ REBEL FEATURES
 ### Rebel version 1.2
 * Fixed issues related to https://tracker.moodle.org/browse/CONTRIB-8220
 
+### Rebel version 1.3
+* Fixed issue: https://github.com/dbnschools/moodle-theme_rebel/issues/1
