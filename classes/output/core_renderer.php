@@ -191,7 +191,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 $header->headerlinks = [
                     'headerlinksdata' => array(
                         array(
-                            'status' => $gradestatus && isset($theme->settings->headergrades),
+                            'status' => $gradestatus,
                             'icon' => 'fa-table',
                             'title' => get_string('grades', 'moodle'),
                             'url' => $gradeurl,
@@ -227,7 +227,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                             'url' => $easycodelink,
                             ),
                         array(
-                            'status' => $hascontentbankpermission  && isset($theme->settings->headercontentbank),
+                            'status' => $hascontentbankpermission,
                             'icon' => 'fa-cloud-upload',
                             'title' => get_string('contentbank', 'moodle'),
                             'url' => new moodle_url('/contentbank/index.php', array('contextid' => $context->id)),

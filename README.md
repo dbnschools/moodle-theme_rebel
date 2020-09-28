@@ -32,3 +32,6 @@ REBEL FEATURES
 
 ### Rebel version 1.3
 * Fixed issue: https://github.com/dbnschools/moodle-theme_rebel/issues/1
+
+### Rebel version 1.4
+* Fixed issues related to https://tracker.moodle.org/browse/CONTRIB-8220  Additional fixes to certain header links not appearing when on a course page for users.
