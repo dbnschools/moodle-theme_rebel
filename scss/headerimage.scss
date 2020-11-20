@@ -1,11 +1,5 @@
-.headerbkg {
-    background-image: url([[pix:theme_rebel|defaultbackgroundimage]]);
-    background-size: cover;
-    background-position: center;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.page-context-header .page-header-headings, .page-context-header .header-button-group {
+    background: rgb(0 0 0 / 90%);
+    padding: .5rem 2rem;
+    border-radius: 5px;
 }

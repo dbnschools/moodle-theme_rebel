@@ -357,6 +357,12 @@
                 </div>
             {{/error}}
 
+            {{#alertbox}}
+                <div class="alert alert-warning d-flex justify-content-center" role="alert">
+                    {{{alertbox}}}  
+                </div>
+            {{/alertbox}}
+
             <div class="row justify-content-md-center">
                 <div class="col-md-5">
                     <form class="mt-3" action="{{loginurl}}" method="post" id="login">

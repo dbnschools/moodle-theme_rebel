@@ -26,6 +26,48 @@ defined('MOODLE_INTERNAL') || die();
     // Advanced settings.
     $page = new admin_settingpage('theme_rebel_advanced', get_string('advancedsettings', 'theme_rebel'));
 
+    $name = 'theme_rebel/brandcolor';
+    $title = get_string('brandcolor', 'theme_rebel');
+    $description = get_string('brandcolor_desc', 'theme_rebel');
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $name = 'theme_rebel/navbarbg';
+    $title = get_string('navbar-bg', 'theme_rebel');
+    $description = get_string('color_desc', 'theme_rebel');
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $name = 'theme_rebel/headerbg';
+    $title = get_string('header-bg', 'theme_rebel');
+    $description = get_string('color_desc', 'theme_rebel');
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $name = 'theme_rebel/headerlinksbg';
+    $title = get_string('headerlinks-bg', 'theme_rebel');
+    $description = get_string('color_desc', 'theme_rebel');
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $name = 'theme_rebel/sidebarbg';
+    $title = get_string('sidebar-bg', 'theme_rebel');
+    $description = get_string('color_desc', 'theme_rebel');
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    $name = 'theme_rebel/footerbg';
+    $title = get_string('footer-bg', 'theme_rebel');
+    $description = get_string('color_desc', 'theme_rebel');
+    $setting = new admin_setting_configcolourpicker($name, $title, $description, '');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
     // Raw SCSS to include before the content.
     $setting = new admin_setting_configtextarea('theme_rebel/scsspre',
         get_string('rawscsspre', 'theme_rebel'), get_string('rawscsspre_desc', 'theme_rebel'), '', PARAM_RAW);

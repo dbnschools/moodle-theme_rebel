@@ -26,6 +26,7 @@ if ($ADMIN->fulltree) {
     $settings = new theme_boost_admin_settingspage_tabs('themesettingrebel', get_string('configtitle', 'theme_rebel'));
 
     require('settings/general.php');
+    require('settings/branding.php');
     require('settings/colors.php');
     require('settings/login.php');
 

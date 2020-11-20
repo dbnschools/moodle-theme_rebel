@@ -29,7 +29,15 @@
 }}
 <header id="page-header" class="row">
 
-<div class="headerbkg"></div>
+    {{{headerimage}}}
+
+    <div class="headeroverlay"></div>
+
+    {{#hasbrandlogo}}
+        <div class="brandlogo">
+            <img src="{{{brandlogourl}}}" class="img-fluid" alt="Responsive image">
+        </div>
+    {{/hasbrandlogo}}
 
     <div class="col-12 pt-1 pb-1">
         <div class="card {{^contextheader}}border-0 bg-transparent{{/contextheader}}">
@@ -42,9 +50,6 @@
                     </div>
                     {{/hasnavbar}}
 
-                    {{{roleswitch}}}
-                    {{{loginas}}}
-                    
                     <div id="course-header">
                         {{{courseheader}}}                    
                     </div>
@@ -52,9 +57,18 @@
                 </div>
 
                 <div class="d-flex flex-wrap align-items-center">
+                    {{#contextheader}}
                     <div class="mr-auto">
                     {{{contextheader}}}
                     </div>
+                    {{/contextheader}}
+
+                    
+
+                    <div id="course-header">
+                        {{{courseheader}}}
+                    </div>
+
                     <div class="header-actions-container flex-shrink-0" data-region="header-actions-container">
                         {{#headeractions}}
                             <div class="header-action ml-2">{{{.}}}</div>
@@ -62,19 +76,23 @@
                     </div>
                 </div>
 
+                <div class="ml-auto d-flex">
+                    {{{pageheadingbutton}}}
+                </div>
+                
             </div>
+            {{{roleswitch}}} {{{loginas}}}
+                    
         </div>
     </div>
 
     {{#headerlinks}}
         <div class="headerlinks">
-
             {{#headerlinksdata}}
                 {{#status}}
                 <a href="{{{url}}}" title="{{{title}}}" class="headerlink"><i class="fa {{{icon}}}"></i> {{{title}}}</a>
                 {{/status}}
             {{/headerlinksdata}}
-
         </div>
     {{/headerlinks}}
 

@@ -53,12 +53,11 @@
 {{> core/local/toast/wrapper}}
 
 <div id="page-wrapper" class="d-print-block">
+
     {{{ output.standard_top_of_body_html }}}
     
-    {{{ output.iconsidebarmenu }}}
-    
     <div id="learningcontent">
-    
+
     {{> theme_rebel/navbar }}
 
     <div id="page" class="container-fluid d-print-block">
@@ -72,13 +71,15 @@
                 </ul>
             </div>
 
-
-
-            <div id="region-main-box" class="col-12">
+            <div class="col-1">
+                {{{ output.iconsidebarmenu }}}
+            </div>
+            
+            <div id="region-main-box" class="col-11">
             <div class="topactivity">
             {{{ output.activity_navigation }}}
             </div>
-            
+
             <div class="pagebutton mr-auto d-flex pt-1 pl-1">
                 {{{output.page_heading_button}}}
             </div>
@@ -88,6 +89,7 @@
                     <div> {{{ output.region_main_settings_menu }}} </div>
                 </div>
                 {{/hasregionmainsettingsmenu}}
+
                 <section id="region-main" {{#hasblocks}}class="has-blocks mb-3"{{/hasblocks}} aria-label="{{#str}}content{{/str}}">
 
                     {{#hasregionmainsettingsmenu}}
@@ -99,11 +101,13 @@
                     {{{ output.course_content_footer }}}
 
                 </section>
+
                 {{#hasblocks}}
                 <section data-region="blocks-column" class="d-print-none" aria-label="{{#str}}blocks{{/str}}">
                     {{{ sidepreblocks }}}
                 </section>
                 {{/hasblocks}}
+                
             </div>
         </div>
     </div>

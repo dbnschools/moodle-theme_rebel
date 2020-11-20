@@ -27,33 +27,6 @@ defined('MOODLE_INTERNAL') || die();
     // Each page is a tab - the first is the "General" tab.
     $page = new admin_settingpage('theme_rebel_general', get_string('generalsettings', 'theme_rebel'));
 
-    // Replicate the preset setting from boost.
-    $name = 'theme_rebel/preset';
-    $title = get_string('preset', 'theme_rebel');
-    $description = get_string('preset_desc', 'theme_rebel');
-    $default = 'rebel.scss';
-
-    // We list files in our own file area to add to the drop down. We will provide our own function to
-    // load all the presets from the correct paths.
-    $context = context_system::instance();
-    $fs = get_file_storage();
-    $files = $fs->get_area_files($context->id, 'theme_rebel', 'preset', 0, 'itemid, filepath, filename', false);
-
-    $choices = [];
-    foreach ($files as $file) {
-        $choices[$file->get_filename()] = $file->get_filename();
-    }
-    // These are the built in presets from Boost.
-    $choices['rebel.scss'] = 'Rebel';
-    $choices['paper.scss'] = 'Shuffled Papers';
-    $choices['elearn.scss'] = 'eLearn';
-    $choices['grunge.scss'] = 'Grunge';
-    $choices['university.scss'] = 'University';
-
-    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
-    $setting->set_updatedcallback('theme_reset_all_caches');
-    $page->add($setting);
-
     // Preset files setting.
     $name = 'theme_rebel/presetfiles';
     $title = get_string('presetfiles','theme_rebel');
@@ -63,19 +36,16 @@ defined('MOODLE_INTERNAL') || die();
         array('maxfiles' => 20, 'accepted_types' => array('.scss')));
     $page->add($setting);
 
-
-    // Variable $brand-color.
-    // We use an empty default value because the default colour should come from the preset.
-    $name = 'theme_rebel/brandcolor';
-    $title = get_string('brandcolor', 'theme_rebel');
-    $description = get_string('brandcolor_desc', 'theme_rebel');
-    $setting = new admin_setting_configcolourpicker($name, $title, $description, '');
+    // Default background settings.
+    // Show header images.
+    $name = 'theme_rebel/showheaderimages';
+    $title = get_string('showheaderimages', 'theme_rebel');
+    $description = get_string('showheaderimages_desc', 'theme_rebel');
+    $default = 0;
+    $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
-
-    // Default background setting.
-    // We use variables for readability.
     $name = 'theme_rebel/defaultbackgroundimage';
     $title = get_string('defaultbackgroundimage', 'theme_rebel');
     $description = get_string('defaultbackgroundimage_desc', 'theme_rebel');
@@ -83,6 +53,50 @@ defined('MOODLE_INTERNAL') || die();
     // This function will copy the image into the data_root location it can be served from.
     $setting->set_updatedcallback('theme_rebel_update_settings_images');
     // We always have to add the setting to a page for it to have any effect.
+    $page->add($setting);
+
+    // overlay header overlay.
+    $name = 'theme_rebel/headeroverlay';
+    $title = get_string('headeroverlay', 'theme_rebel');
+    $description = get_string('headeroverlay_desc', 'theme_rebel');
+    global $CFG;
+    $cp = $CFG->wwwroot.'/theme/rebel/pix/overlay/';
+    $overlaychoices[] = '';
+    // Add overlay files from theme overlay folder.
+    $iterator = new DirectoryIterator($CFG->dirroot . '/theme/rebel/pix/overlay/');
+    foreach ($iterator as $overlayfile) {
+        if (!$overlayfile->isDot()) {
+            $overlayname = substr($overlayfile, 0); // Name - '.scss'.
+            $overlaychoices[$cp . $overlayname] = ucfirst($overlayname);
+        }
+    }
+    // Sort choices.
+    natsort($overlaychoices);
+    $default = '';
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $overlaychoices);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // overlay header overlay.
+    $name = 'theme_rebel/footeroverlay';
+    $title = get_string('footeroverlay', 'theme_rebel');
+    $description = get_string('footeroverlay_desc', 'theme_rebel');
+    global $CFG;
+    $cp = $CFG->wwwroot.'/theme/rebel/pix/overlay/';
+    $overlaychoices[] = '';
+    // Add overlay files from theme overlay folder.
+    $iterator = new DirectoryIterator($CFG->dirroot . '/theme/rebel/pix/overlay/');
+    foreach ($iterator as $overlayfile) {
+        if (!$overlayfile->isDot()) {
+            $overlayname = substr($overlayfile, 0); // Name - '.scss'.
+            $overlaychoices[$cp . $overlayname] = ucfirst($overlayname);
+        }
+    }
+    // Sort choices.
+    natsort($overlaychoices);
+    $default = '';
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $overlaychoices);
+    $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
     // Login page background setting.
@@ -97,10 +111,39 @@ defined('MOODLE_INTERNAL') || die();
     // We always have to add the setting to a page for it to have any effect.
     $page->add($setting);
 
+    // Default background setting.
+    // We use variables for readability.
+    $name = 'theme_rebel/coursetilebg';
+    $title = get_string('coursetilebg', 'theme_rebel');
+    $description = get_string('coursetilebg_desc', 'theme_rebel');
+    $setting = new admin_setting_configstoredfile($name, $title, $description, 'coursetilebg');
+    // This function will copy the image into the data_root location it can be served from.
+    $setting->set_updatedcallback('theme_rebel_update_settings_images');
+    // We always have to add the setting to a page for it to have any effect.
+    $page->add($setting);
+
     // Alert setting.
     $name = 'theme_rebel/alertbox';
     $title = get_string('alert', 'theme_rebel');
     $description = get_string('alert_desc', 'theme_rebel');
+    $default = '';
+    $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // Dashboard Teacher Textbox.
+    $name = 'theme_rebel/cmnoteteacher';
+    $title = get_string('cmnoteteacher', 'theme_rebel');
+    $description = get_string('cmnoteteacher_desc', 'theme_rebel');
+    $default = '';
+    $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // Dashboard Student Textbox.
+    $name = 'theme_rebel/cmnotestudent';
+    $title = get_string('cmnotestudent', 'theme_rebel');
+    $description = get_string('cmnotestudent_desc', 'theme_rebel');
     $default = '';
     $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
     $setting->set_updatedcallback('theme_reset_all_caches');

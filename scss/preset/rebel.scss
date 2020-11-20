@@ -39,7 +39,7 @@ $enable-responsive-font-sizes: true !default;
 // Body
 $body-color:    $gray-800 !default;
 $card-bg: rgba(255, 255, 255, 0.98)!default;
-$body-bg: #314351 !default;
+$body-bg: #e3eaf5 !default;
 $drawer-bg:	$white;
 
 // Fonts
@@ -62,20 +62,21 @@ $alert-border-width:                0 !default;
 
 
 // REBEL variables
-$navbar-bg: #e3eaf5 !default;
-$navbartextcolor: #333 !default;
-$header-bg: #1968be !default;
+$navbar-bg: #256d92 !default;
+$navbartextcolor: $white !default;
+
+$header-bg: #8ab3da !default;
 $headerimageheight: 650px !default;
-$headerlinks-bg: #e3eaf5 !default;
+$headerlinks-bg: rgba(227,234,245,.60) !default;
 $headerlinks-link: $black !default;
-$footer-bg: #e5ebef !default;
-$footerlinkcolor: #333 !default;
-$footertextcolor: #333 !default;
+$footer-bg: $navbar-bg !default;
+$footerlinkcolor: $white !default;
+$footertextcolor: $white !default;
 $sidebar-bg: $body-bg !default;
-$sidebar-iconcolor: $white !default;
-$sidebar-ahover-bg: #1f77b2 !default;
+$sidebar-iconcolor: $gray-800 !default;
+$sidebar-ahover-bg: darken($body-bg, 10%) !default;
 $sidebar-aattention: #4caf50 !default;
-$sidebar-borderright-color: $white !default;
+$sidebar-borderright-color: $cyan !default;
 $easyenrolltextcolor: $white !default;
 $easyenroll-bg: #4caf50 !default;
 
@@ -87,21 +88,16 @@ $nav-tabs-link-active-bg:           $gray-200 !default;
 $nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;
 
 // Breadcrumbs in Rebel
-//$breadcrumbblock: #607d8b;
-//$breadcrumbblock-darken: #213561;
-//$breadcrumbblock-highlight: #213561;
-//$breadcrumbblock-highlight-darken: #607d8b;
-//$breadcrumblinkcolor: $white;
-//$breadcrumblinkcolor-hover: $white;
+$breadcrumbblock: darken($body-bg, 10%);
+$breadcrumbblock-darken: #e3eaf5;
+$breadcrumbblock-highlight: #e3eaf5;
+$breadcrumbblock-highlight-darken: darken($body-bg, 10%);
+$breadcrumblinkcolor: $black;
+$breadcrumblinkcolor-hover: $black;
 
-
-// Breadcrumbs in Rebel
-$breadcrumbblock: #d43f3a;
-$breadcrumbblock-darken: $body-bg;
-$breadcrumbblock-highlight: $body-bg;
-$breadcrumbblock-highlight-darken: #d43f3a;
-$breadcrumblinkcolor: $white;
-$breadcrumblinkcolor-hover: $white;
+// Drop Down colors
+$dropdown-link-hover-color: initial;
+$dropdown-link-hover-bg: $gray-200;
 
 // stylelint-disable
 $theme-colors: () !default;
@@ -132,27 +128,22 @@ body {
 
 
 // REBEL Styling changes
-@media (min-width: 700px) {
+@media (min-width: 768px) {
   div#learningcontent {
       box-shadow: 0 0 10px -4px rgba(0,0,0,.6);
-      margin: 0px 0px 0px 62px !important;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   div#learningcontent {
       box-shadow: 0 0 10px -4px rgba(0,0,0,.6);
-      margin: 0px 0px 0px 47px !important;
   }
-}
-.sidebar {
-  top: 0!important;
 }
 #page {
     margin-top: 0px;
     background-color: $white;
 }
 .page-context-header .page-header-headings, .page-context-header .header-button-group {
-    color: $white;
+    color: $black;
 }
 aside#block-region-side-pre section.block {
     background-color: $gray-100;
@@ -175,12 +166,24 @@ aside#block-region-side-pre section.block {
     display: inline-flex;
     border: 1px solid #bdcee8;
     border-top: 0;
-    background-color: #e3eaf5;
+    background-color: $navbar-bg;
     border-radius: 0 0 4px 4px;
 }
+.activity-navigation a.btn-link {
+    color: $white;
+}
+.activity-navigation a.btn-link:hover {
+    color: $white;
+    text-decoration: underline;
+}
+
+.editcogbutton {
+    float: right;
+    width: 100%;
+}
 .section-summary-activities.pr-2.mdl-right, .course-content ul.collapsibletopics .sectiontoggle.collapsed~.section-summary-activities {
-    border: 1px solid darken($navbar-bg, 10%);
-    background-color: $navbar-bg;
+    border: 1px solid darken($body-bg, 10%);
+    background-color: $body-bg;
     display: inline-flex;
     margin-left: 1rem;
     color: $black;
@@ -195,13 +198,14 @@ li.activity {
     min-width: 100%;
 }
 li.activity:hover {
-    background-color: rgba($navbar-bg, 0.4);
+    background-color: rgba($body-bg, 0.5);
     border: 1px solid $gray-300;
     border-radius: 4px;
     padding: .25rem!important;
 }
 .section .activity.modtype_label.label {
     padding: .25rem!important;
+    border: 1px solid transparent;
 }
 li.activity.label:hover {
     background-color: transparent;
@@ -215,8 +219,6 @@ aside#block-region-side-pre section.block_timeline .list-group-item {
 }
 header#page-header {
     position: relative;
-    background: #1968be;
-    background: linear-gradient(170deg,#0784a0 20%,#169fc1 65%);
 }
 .course-content ul.topics li.section, .course-content ul.weeks li.section {
     margin: 2rem 0;
@@ -228,7 +230,7 @@ header#page-header {
 //Dropdown overrides for Rebel Preset
 .dropdown-menu.iconsidebar.show {
     padding: 1.25rem!important;
-    color: $white;
+    color: $dark;
     background-color: $body-bg;
 }
 .dropdown-menu.iconsidebar.show::-webkit-scrollbar-track {
@@ -242,7 +244,7 @@ header#page-header {
 .format-collapsibletopics li#section-0 {
     background-color: #e3eaf5;
     padding: 1rem;
-    border-top: 7px solid $body-bg;
+    border-top: 7px solid darken($body-bg, 30%);
     border-radius: 4px;
 }
 .format-collapsibletopics div#collapse-0 {
@@ -250,32 +252,20 @@ header#page-header {
     padding: 1rem;
     border-radius: 4px;
 }
-.format-collapsibletopics div#collapse-0 img.activityicon {
-    height: 60px;
-    width: 60px;
-    vertical-align: middle;
-}
-.format-collapsibletopics div#collapse-0 li.activity {
-    margin-bottom: 1rem;
-}
-.format-collapsibletopics div#collapse-0 li.activity:hover {
-    background-color: transparent;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    padding: .25rem;
-}
+
 .format-collapsibletopics li.activity.label:hover {
     background-color: transparent;
     border: 1px solid transparent;
     border-radius: 4px;
     padding: .25rem;
 }
-.format-collapsibletopics div#collapse-0 span.instancename {
-    font-size: 20px;
-    padding-left: .75rem;
-}
 .format-collapsibletopics .course-content ul li.section.main {
     padding: 1rem 0;
+}
+.format-collapsibletopics .course-content .collapsible-actions {
+    display: inline-block;
+    background-color: $body-bg;
+    padding: .5rem 1rem;
 }
 
 // Show One Topic per page

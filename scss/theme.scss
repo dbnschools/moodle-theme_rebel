@@ -16,7 +16,9 @@
 .navbar a:hover {
   color: darken($navbartextcolor, 10%); 
 }
-
+.nav-item {
+    display: inline-flex;
+}
 // Footer
 #page-wrapper #page-footer {
     background-color: $footer-bg;
@@ -43,14 +45,14 @@ section#region-main, section#region-main .card, header#page-header .card {
 }
 
 // Main learning content styling
-@media (min-width: 700px) {
+@media (min-width: 768px) {
   div#learningcontent {
-      margin: 30px 30px 30px 90px;
+ //     margin: 30px 30px 30px 90px;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   div#learningcontent {
-      margin: 0 0 0 50px;
+  //    margin: 0 0 0 50px;
   }
 }
 .region_main_settings_menu_proxy {
@@ -59,70 +61,18 @@ section#region-main, section#region-main .card, header#page-header .card {
 a#message-user-button {
     display: none;
 }
-.headerlinks {
-    display: inline-flex;
-    overflow-x: auto;
-    align-items: center;
-    padding: .5rem;
-    text-align: center;
-    background-color: $headerlinks-bg;
-    font-size: 16px;
-    z-index: 1;
-}
-@media (min-width: 700px) {
-  .headerlinks {
-    background-color: $headerlinks-bg;
-    border-top: 1px solid lighten($headerlinks-bg, 15%);
-    border-right: 1px solid lighten($headerlinks-bg, 15%);
-  }
-}
-a.headerlink {
-    margin-left: 1rem;
-    color: $headerlinks-link;
-}
+
 header#page-header {
   background-color: $header-bg;
   border-bottom: 1px solid $gray-400;
 }
-.headerlinks::-webkit-scrollbar {
-    height: 7px;
-}
 
-.headerlinks::-webkit-scrollbar-track {
-    background-color: #fff;
-}
-
-.headerlinks::-webkit-scrollbar-thumb {
-    background-color: $brand-primary;
-}
 [data-region="blocks-column"] {
     padding-top: 1rem;
 }
 section#easyenrol {
     color: $easyenrolltextcolor;
     background-color: $easyenroll-bg;
-}
-
-.usernavbar .popover-region .popover-region-container {
-  top: 32px;
-  z-index: 4;
-}
-.usernavbar .popover-region {
-  float: left;
-  padding: 0;
-  margin: 0;
-  max-height: 45px;
-  line-height: 0;
-}
-.usernavbar .popover-region-toggle::before {
-  position: absolute;
-  bottom: 0;
-  right: 21px;
-}
-.usernavbar .popover-region-toggle::after {
-  position: absolute;
-  bottom: 0;
-  right: 21px;
 }
 .page-context-header {
     padding: 1rem .25rem;
@@ -132,14 +82,17 @@ section#easyenrol {
 
 .sidebar {
   margin: 0;
-  padding: 0;
-  width: 60px;
+  padding: 5px;
+  width: 70px;
   background-color: $sidebar-bg;
-  position: fixed;
-  top: 80px;
+  position: sticky;
+  top: 10px;
   left: 0;
   overflow: visible;
   z-index: 4;
+  margin-top: 2rem;
+  float:left;
+  border-radius: 5px;
 }
 #page-grade-report-grader-index .sidebar {
     position: absolute;
@@ -149,6 +102,8 @@ section#easyenrol {
   text-align: center;
   padding: 16px;
   transition: all 0.3s ease;
+  border-radius: 5px;
+  margin-bottom: 2px;
 }
 .sidebar a.sideicon i {
   color: $sidebar-iconcolor;
@@ -164,24 +119,25 @@ section#easyenrol {
 
 .sidebar .sideicon.mydashboardmobile {display: none;}
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
     .sidebar {
-      margin: 0;
-      padding: 0;
+      margin-left: -15px;
+      padding: 3px;
       width: 45px;
       background-color: $sidebar-bg;
-      position: fixed;
+      position: sticky;
       top: 0;
       left: 0;
       overflow: visible;
       z-index: 4;
+      border-radius: 3px;
     }
     .sidebar a.sideicon {
       display: block;
       text-align: center;
       padding: 4px;
       transition: all 0.3s ease;
-      
+      border-radius: 5px;
     }
     .sidebar a.sideicon i {
       color: $sidebar-iconcolor;
@@ -219,7 +175,7 @@ section#easyenrol {
     background-color: #555;
 }
 .dropdown-menu.iconsidebar.show::-webkit-scrollbar-thumb {
-    background-color: $brand-primary;
+    background-color: #CCCCCC;
 }
 
 // NavDrawer
@@ -232,13 +188,13 @@ body.drawer-open-left {
         border-radius: 10px;
         height:100%
     }
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 768px) {
     #nav-drawer {
         left: 60px;
         top: 0px;
     }
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
     #nav-drawer {
         top: 62px;
         height: calc(100% - 62px);
@@ -251,6 +207,7 @@ body.drawer-open-left {
 
 .popover-region-footer-container {
     padding-top: 15px;
+    color: initial;
 }
 
 .popover-region-container {
@@ -258,6 +215,7 @@ body.drawer-open-left {
     top: 0;
     height: auto;
     z-index: 4;
+    color: initial;
 }
 
 @media (max-width: 767px) {
@@ -284,7 +242,7 @@ body.drawer-open-left {
 }
 
 [data-region="drawer"]::-webkit-scrollbar-thumb {
-    background-color: $brand-primary;
+    background-color: #CCCCCC;
 }
 
 // Login Image and card background restore.
@@ -294,10 +252,10 @@ body.pagelayout-login section#region-main .card {
 body.pagelayout-login #page {
     background-color: transparent;
 }
-body.pagelayout-login {
+/*body.pagelayout-login {
     background-image: url([[pix:theme_rebel|loginbkgimage]]);
     background-size: cover;
-}
+}*/
 
 // Accessibility links
 .aalink.focus, .aalink:focus,
@@ -347,10 +305,10 @@ a:not([class]),
 }
 @media (max-width: 500px) {
   #page-navbar {
-    display: none;
+    //display: none;
   }
 }
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .breadcrumb:not(:empty) {
       width: 100%;
       border: 0; 
@@ -490,7 +448,7 @@ a:not([class]),
 .activity-navigation {
     text-align: center;
 }
-@media (min-width: 700px) {
+@media (min-width: 768px) {
   .tooltip-inner {
     font-size:18px;
     padding: 10px;
@@ -552,4 +510,103 @@ ul.custommenu {
 body.editing ul.collapsibletopics .content .summarytext {
     margin-left: 0;
     margin-right: 0;
+}
+
+// Course Dashboard Styling.
+
+#coursemanagement .modal-dialog {
+    max-width: 1200px;
+    margin: 30px auto;
+    z-index: 9999;
+}
+.modal {
+    z-index: 1080;
+}
+
+.headerlinks {
+    display: inline-flex;
+    overflow-x: auto;
+    align-items: center;
+    padding: 1.5rem;
+    text-align: center;
+    background-color: $headerlinks-bg;
+    font-size: 16px;
+    z-index: 1;
+    width: 100%;
+}
+a.headerlink {
+    margin-left: 1rem;
+    color: $headerlinks-link;
+    padding: .5rem;
+}
+a.headerlink:hover {
+    background-color: $white;
+    border-radius: 4px;
+}
+.headerlinks::-webkit-scrollbar {
+    height: 7px;
+}
+.headerlinks::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+.headerlinks::-webkit-scrollbar-thumb {
+    background-color: #CCCCCC;
+}
+.studentprogress {
+    margin: 2rem 0;
+}
+.studentprogress .progress {
+    height: 2rem;
+}
+.coursemanagementdashboard {
+    padding: 1rem;
+}
+
+.headerlinksrow {
+  margin-bottom: 1.25rem;
+}
+
+.page-context-header .page-header-headings, .page-context-header .header-button-group {
+    color: $white;
+}
+
+.headerbkg {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.brandlogo {
+    position: absolute;
+    max-width: 300px;
+    right: 0;
+    top: 0;
+}
+
+ul.footercontact {
+    list-style: none;
+}
+
+.headeroverlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-outline-secondary {
+  color: initial;
+}
+
+.dropdown-item:active a, .dropdown-item:hover a, .dropdown-item:focus a, .dropdown-item:focus-within a {
+    color: initial;
 }

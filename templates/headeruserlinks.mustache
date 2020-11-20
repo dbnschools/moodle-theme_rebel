@@ -3,11 +3,14 @@
 }}
 
 
+<div class="headerlinks">
 
-    <div class="headerlinks">
-        {{#headerlinksdata}}
-            {{#status}}
-            <a href="{{{url}}}" title="{{{title}}}" class="headerlink"><i class="fa {{{icon}}}"></i> {{{title}}}</a>
-            {{/status}}
-        {{/headerlinksdata}}
-    </div>
+    {{#headerlinksdata}}
+
+        {{#status}}
+        <a href="{{{url}}}" title="{{{title}}}" class="headerlink"><i class="fa {{{icon}}}"></i> {{{title}}}</a>
+        {{/status}}
+
+    {{/headerlinksdata}}
+
+</div>

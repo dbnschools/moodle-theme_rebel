@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 // This is the version of the plugin.
-$plugin->version = 2020092900;
+$plugin->version = 2020112000;
 
 // This is the version of Moodle this plugin requires.
 $plugin->requires = 2020060900;
@@ -37,12 +37,12 @@ $plugin->component = 'theme_rebel';
 
 // This is a list of plugins, this plugin depends on (and their versions).
 $plugin->dependencies = [
-    'theme_boost' => 2020061500
+    'theme_boost' => 2020060900,
 ];
 
 // This is a stable release.
 $plugin->maturity = MATURITY_STABLE;
 
 // This is the named version.
-$plugin->release = 'Rebel Theme 1.4';
+$plugin->release = 'Rebel Theme 1.6';
 

@@ -20,44 +20,72 @@
 
 }}
 
+{{#showondashboardonly}}
+  {{{enrolform}}}
+  {{/showondashboardonly}}
+
+{{#showguestonly}}
+  {{> theme_rebel/loginpopup }}
+{{/showguestonly}}
+
+{{#showincourseonly}}
+  {{{coursedashboard}}}
+{{/showincourseonly}}
+
 
 <div class="sidebar">
     <div class="sidebar-items">
 
-      <div class="dropright">
+      {{#showguestonly}}
+         <a href="#loginformpopup" data-tooltip="tooltip" data-placement="right" data-toggle="modal" title="{{{loginiconbutton}}}"class="sideicon attention easyenrollform"><i class="fa fa-lock" aria-hidden="true"></i><span class="sr-only">{{{loginiconbutton}}}</span></a>
+      {{/showguestonly}}
 
-            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-tooltip="tooltip" data-placement= "right" title="{{{mycourses}}}" class="sideicon mydashboard"><i class="fa fa-user"></i></a>
+      {{#showloggedinonly}}
 
-              <div class="dropdown-menu iconsidebar">
-                <h5>{{{mycourses}}}</h5>
-                  {{{mycoursesmenu}}}
-              </div>
+        <div class="dropright">
+              <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-tooltip="tooltip" data-placement= "right" title="{{{mycourses}}}" class="sideicon mydashboard"><i class="fa fa-user"></i></a>
 
-      </div>
+                <div class="dropdown-menu iconsidebar">
+                  <h5>{{{mycourses}}}</h5>
+                    {{{mycoursesmenu}}}
+                </div>
+        </div>
 
-      {{{ editpage }}}
+        {{{ editpage }}}
 
-      {{#userisediting}}
-          <a href="{{{addblockurl}}}" data-key="addblock" data-tooltip="tooltip" data-placement= "right" class="btn-danger sideicon editingblocks" title="{{{addblock}}}" class="sideicon"><i class="fa fa-th-large" aria-hidden="true"></i></a>
-      {{/userisediting}}
+        {{#userisediting}}
+            <a href="{{{addblockurl}}}" data-key="addblock" data-tooltip="tooltip" data-placement= "right" class="btn-danger sideicon editingblocks" title="{{{addblock}}}" class="sideicon"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+        {{/userisediting}}
+
+      {{/showloggedinonly}}
 
       {{#showincourseonly}}
-        {{#showcourseadminlink}}
+
               <div data-region="drawer-toggle">
-                  <a href="{{{directcourseadminlink}}}" data-tooltip="tooltip" data-placement= "right" title="{{{courseadmin}}}"class="sideicon coursemanagement"><i class="fa fa-cog"></i><span class="sr-only">{{{courseadmin}}}</span></a>
+                  <a href="#coursemanagement" data-tooltip="tooltip" data-placement="right" data-toggle="modal" title="{{{courseadmin}}}"class="sideicon coursemanagement"><i class="fa fa-tachometer" aria-hidden="true"></i><span class="sr-only">{{{courseadmin}}}</span></a>
               </div>
-        {{/showcourseadminlink}}
+
       {{/showincourseonly}}
 
       {{#showloggedinonly}}
 
         {{#showondashboardonly}}
+
+          {{#globalhaseasyenrollment}}
+            <a href="#easyenrollformpopup" data-tooltip="tooltip" data-placement="right" data-toggle="modal" title="{{{enrolformtitle}}}"class="sideicon attention easyenrollform"><i class="fa fa-plus-square" aria-hidden="true"></i><span class="sr-only">{{{enrolformtitle}}}</span></a>
+          {{/globalhaseasyenrollment}}
+
           {{#hascreatecourse}}
-              <a href="{{{createcourseurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{createcourse}}}" class="sideicon attention createacourse"><i class="fa fa-plus-square"></i></a>
+            <a href="{{{createcourseurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{createcourse}}}" class="sideicon attention createacourse"><i class="fa fa-edit"></i></a>
           {{/hascreatecourse}}
 
           <a href="{{{viewcoursesurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{viewcourses}}}" class="sideicon viewcourses"><i class="fa fa-graduation-cap"></i></a>
+
         {{/showondashboardonly}}
+
+        {{#showswitchicon}}
+          <a href="{{{switchrolelink}}}" data-tooltip="tooltip" data-placement= "right" title="{{{switchroletitle}}}" class="sideicon switchrole"><i class="fa fa-user-secret"></i></a>
+        {{/showswitchicon}}
 
         {{#hasadminlink}}
           <a href="{{{siteadminurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{siteadmintitle}}}" class="sideicon siteadmin"><i class="fa fa-sitemap" aria-hidden="true"></i></a>

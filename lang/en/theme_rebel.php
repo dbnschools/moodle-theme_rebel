@@ -26,9 +26,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 // The name of the second tab in the theme settings.
-$string['advancedsettings'] = 'Advanced Settings';
+$string['advancedsettings'] = 'Colors';
 $string['courseadminmenusettings'] = 'Navigation Menu Settings';
 $string['loginsettings'] = 'Login Settings';
+$string['brandingsettings'] = 'Branding Settings';
 
 $string['courseadmininfo'] = 'Teacher Course Management Links';
 $string['courseadminreportinfo'] = 'Teacher Course Management Report Links';
@@ -37,7 +38,8 @@ $string['headermenuinfo'] = 'Header Menu Items';
 $string['headermenuinfo_desc'] = 'Determine which links you would like to display in the header area.';
 $string['customlogininfo'] = 'Enhance the Login Page';
 $string['customlogininfo_desc'] = 'Use the options below to enhance the login page for Rebel.';
-
+$string['brandinginfo'] = 'Branding Options';
+$string['brandinginfo_desc'] = 'Use the options below to provide branding for your site.';
 // Misc strings
 $string['nomycourses'] = 'You are not enrolled in any courses.';
 
@@ -55,14 +57,25 @@ $string['brandcolor_desc'] = 'The accent colour.';
 $string['choosereadme'] = 'Theme rebel is a child theme of Boost. It adds the ability to upload background rebel.';
 // Name of the settings pages.
 $string['configtitle'] = 'Rebel Theme';
+// Show Header Images toggle.
+$string['showheaderimages'] = 'Show Header Images';
+$string['showheaderimages_desc'] = 'Allow Rebel to use custom images for the header area. You may still set a Course Tile image below but it will not be used as a header image within a course. This setting turns off using header images completely.';
+// Show Header Overlay textures.
+$string['headeroverlay'] = 'Header Texture';
+$string['headeroverlay_desc'] = 'You can choose to change the header background texture.  We download transparent background images from here: <a href="https://www.transparenttextures.com/">https://www.transparenttextures.com/</a> ';
+$string['footeroverlay'] = 'Footer Texture';
+$string['footeroverlay_desc'] = 'You can choose to change the footer background texture.  We download transparent background images from here: <a href="https://www.transparenttextures.com/">https://www.transparenttextures.com/</a> ';
+// Background image for coursetiles.
+$string['coursetilebg'] = 'Default Course Image';
+$string['coursetilebg_desc'] = 'This is the default image for course tiles on the Dashboard and the default header image for all courses where a teacher has not uploaded an image into Course Settings.  Even with Header Images turned off you can use an image here to be the default Dashboard Course Tile image.  ';
 // Background image for dashboard page.
 $string['dashboardbackgroundimage'] = 'Dashboard page background image';
 // Background image for dashboard page.
 $string['dashboardbackgroundimage_desc'] = 'An image that will be stretched to fill the background of the dashboard page.';
 // Background image for default page.
-$string['defaultbackgroundimage'] = 'Default page background image';
+$string['defaultbackgroundimage'] = 'Site Page Header Image';
 // Background image for default page.
-$string['defaultbackgroundimage_desc'] = 'An image that will be stretched to fill the background of all pages without a more specific background image.';
+$string['defaultbackgroundimage_desc'] = 'This image is used in the header area for all of the main Moodle pages: Dashboard, Profile, Site Home, all pages besides course pages.';
 // Background image for front page.
 $string['frontpagebackgroundimage'] = 'Front page background image';
 // Background image for front page.
@@ -95,14 +108,14 @@ $string['rawscss_desc'] = 'Use this field to provide SCSS or CSS code which will
 $string['rawscsspre'] = 'Raw initial SCSS';
 // Raw initial SCSS setting help text.
 $string['rawscsspre_desc'] = '// Top Navbar area</br>
-$navbar-bg: #e3eaf5 !default;</br>
-$navbartextcolor: #333 !default;</br>
+$navbar-bg: #e3eaf5 ;</br>
+$navbartextcolor: #333;</br>
 
 // Top Header area</br>
-$header-bg: #eef5f9 !default;</br>
-$headerimageheight: 650px !default;</br>
-$headerlinks-bg: #e3eaf5 !default;</br>
-$headerlinks-link: $black !default;</br>
+$header-bg: #eef5f9;</br>
+$headerimageheight: 650px;</br>
+$headerlinks-bg: #e3eaf5;</br>
+$headerlinks-link: $black;</br>
 
 // Breadcrumbs in Rebel</br>
 $breadcrumbblock: #607d8b;</br>
@@ -113,37 +126,37 @@ $breadcrumblinkcolor: $white;</br>
 $breadcrumblinkcolor-hover: $white;</br>
 
 //Sidebar icons menu</br>
-$sidebar-bg: $body-bg !default;</br>
-$sidebar-iconcolor: $white !default;</br>
-$sidebar-ahover-bg: #1f77b2 !default;</br>
-$sidebar-aattention: #4caf50 !default;</br>
-$sidebar-borderright-color: $white !default;</br>
+$sidebar-bg: $body-bg;</br>
+$sidebar-iconcolor: $white;</br>
+$sidebar-ahover-bg: #1f77b2;</br>
+$sidebar-aattention: #4caf50;</br>
+$sidebar-borderright-color: $white;</br>
 
 // Bottom Footer area</br>
-$footer-bg: #e5ebef !default;</br>
-$footerlinkcolor: #333 !default;</br>
-$footertextcolor: #333 !default;</br>
+$footer-bg: #e5ebef;</br>
+$footerlinkcolor: #333;</br>
+$footertextcolor: #333;</br>
 
 //Used to style Easy Enrollment plugin</br>
-$easyenrolltextcolor: $white !default;</br>
-$easyenroll-bg: #4caf50 !default;</br>
+$easyenrolltextcolor: $white;</br>
+$easyenroll-bg: #4caf50;</br>
 
 //Other Important Colors</br>
 $card-bg: rgba(255, 255, 255, 0.98)!default;</br>
-$body-bg: #213561 !default;</br>
-$primary:       #1968BE !default;</br>
-$success:       $green !default;</br>
-$info:          #4caf50 !default;</br>
-$warning:       $orange !default;</br>
-$danger:        $red !default;</br>
-$secondary:     $gray-400 !default;</br>
+$body-bg: #213561;</br>
+$primary:       #1968BE;</br>
+$success:       $green;</br>
+$info:          #4caf50;</br>
+$warning:       $orange;</br>
+$danger:        $red;</br>
+$secondary:     $gray-400;</br>
 
 // Tabs</br>
-$nav-tabs-border-color:             $gray-300 !default;</br>
-$nav-tabs-link-hover-border-color:  $gray-200 $gray-200 $nav-tabs-border-color !default;</br>
-$nav-tabs-link-active-color:        $gray-700 !default;</br>
-$nav-tabs-link-active-bg:           $gray-200 !default;</br>
-$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg !default;';
+$nav-tabs-border-color:             $gray-300;</br>
+$nav-tabs-link-hover-border-color:  $gray-200 $gray-200 $nav-tabs-border-color;</br>
+$nav-tabs-link-active-color:        $gray-700;</br>
+$nav-tabs-link-active-bg:           $gray-200;</br>
+$nav-tabs-link-active-border-color: $gray-300 $gray-300 $nav-tabs-link-active-bg;';
 
 // We need to include a lang string for each block region.
 $string['region-side-pre'] = 'Right';
@@ -153,6 +166,8 @@ $string['editon'] = 'Turn Edit On';
 $string['editoff'] = 'Turn Edit Off';
 
 // Easy Enrollment.
+$string['easyenrol_title'] = 'Enrollment Form';
+$string['easyenrol_btn'] = 'Enroll in a Course';
 $string['easyenrol_blurp'] = 'Enter your course code below to enroll in new courses.  Your teacher provides a course code. ';
 
 // Settings Pages
@@ -177,3 +192,52 @@ $string['loginbottomtext'] = 'Bottom Textbox';
 $string['loginbottomtext_desc'] = 'This is a full-width textbox that appears at the very bottom of the login page.';
 $string['alert'] = 'Login Page Alert';
 $string['alert_desc'] = 'Add a special alert on your homepage such as an emergency.';
+
+//teacher and student dashboard slider
+$string['userlinks'] = 'User Links';
+$string['userlinks_desc'] = 'Manage your students';
+$string['qbank'] = 'Question Bank';
+$string['qbank_desc'] = 'Create and organize quiz questions';
+$string['badges'] = 'Badges';
+$string['badges_desc'] = 'Award your students';
+$string['coursemanage'] = 'Course Settings';
+$string['coursemanage_desc'] = 'Manage your entire course';
+$string['coursemanagementbutton'] = 'Course Management';
+$string['studentdashbutton'] = 'Course Dashboard';
+$string['courseinfo'] = 'Course Description';
+$string['coursestaff'] = 'Course Teachers';
+$string['cmnotetitle'] = 'Course Dashboard';
+$string['cmnotetitle_desc'] = 'Course Dashboard notes';
+$string['myprogresstext'] = 'My Progress';
+$string['myprogresspercentage'] = '% Complete';
+$string['mygradestext'] = 'My Grades';
+
+// Branding.
+$string['footnote'] = 'Footnote';
+$string['footnotedesc'] = 'Footnote content editor for main footer';
+$string['brandorganization'] = 'Organization Name';
+$string['brandorganizationdesc'] = 'Organization name to appear in the footer.';
+$string['brandwebsite'] = 'Organization Website';
+$string['brandwebsitedesc'] = 'Website address to appear in footer for organization.';
+$string['brandphone'] = 'Organization Phone';
+$string['brandphonedesc'] = 'Phone number to appear in footer.';
+$string['brandemail'] = 'Organization Email';
+$string['brandemaildesc'] = 'Email address for organization that appears in footer.';
+$string['brandlogo'] = 'Brand Logo Image';
+$string['brandlogo_desc'] = 'This image is displayed in the header area and footer area.  It should be a small sized logo.';
+
+$string['cmnotestudent'] = 'Student Dashboard Message';
+$string['cmnotestudent_desc'] = 'Provide a message for all students in the course management panel.';
+$string['cmnoteteacher'] = 'Teacher Dashboard Message';
+$string['cmnoteteacher_desc'] = 'Provide a message for all teachers in the course management panel.';
+
+// Colors.
+$string['color_desc'] = 'Choose a new background color for this variable.';
+$string['header-bg'] = 'Header Background';
+$string['footer-bg'] = 'Footer Background';
+$string['navbar-bg'] = 'Top Navbar Background';
+$string['headerlinks-bg'] = 'Headerlinks Navbar Background';
+$string['sidebar-bg'] = 'Sidebar Background';
+
+$string['loginiconbutton'] = 'Login to Site';
+$string['dashboardiconbutton'] = 'Course Dashboard';

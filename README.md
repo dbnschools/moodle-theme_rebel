@@ -6,32 +6,49 @@ Radically different, beautifully executed, and intelligently designed.  Rebel is
 
 REBEL FEATURES
 * Intuitive navigation that breaks free of hidden menus
-* Clean and consistent layout
-* Smart Edit is available anywhere on the course page and keeps you focused
+* All main navigational elements are front and center for the user in the header or sidebar
+* Clean, intuitive, and consistent layout
+* Course Dashboard modal popup management system for teachers
+* Course Dashboard modal popup class overview and course contacts for students 
+* Smart Edit is available anywhere on the course page and keeps you focused on the page (No more scrolling to edit a page)
 * Dynamic Icon Sidebar navigation never leaves your side
 * Custom page image
 * Custom login image
-* 5 Style Presets to instantly change the look.  Presets are simple enough to modify and change colors.
-	* Rebel Preset
-	* Shuffled Paper Preset
-	* eLearn Preset
-	* Grunge Preset
-	* University Preset
+* Choose from 99 Textured background overlays for header and footer styling
+* Color choosers for background colors
 * Super easy setup and install for site admins
 * Super easy interface for users
 * Custom login page with image and text features
 * Login page alertbox
+* Custom homepage login modal window from sidebar
+* Organizational branding in the footer and custom logo in the header
 
 # Versions and Updates
 
-## Moodle 3.9 Rebel Initial Release 1
-* Brand new theme.  Minimal setup.  5 page layouts.  Unique navigation.  Custom background image for pages and login.
+### Rebel version 1.6
+* Header Images uses course image file to display in header
+* Modal "Easy Enrollment plugin" pop up integration on homepage
+* Course Dashboard modal window for teachers and students in courses.  A dashboard that contains everything a teacher needs to manage the course all in one place.
+* New "Textured Background Overlay" chooser for header and footer.  Choose from over 99 transparent textures to style your Moodle site.
+* New Color Choosers for background colors of main areas such as header, footer, navbar, headerlinks, and sidebar icons.
+* Complete listing of variables used so that you can quickly change a color.  
+* Custom Login modal popup from sidebar icons
+* WARNING: Major changes to layout and styling.  This release is a major overhaul that further refines the direction of the look and feel we want for the Rebel theme.
 
-### Rebel version 1.2
-* Fixed issues related to https://tracker.moodle.org/browse/CONTRIB-8220
+### Rebel version 1.5
+* Compatible with Moodle 3.10.
+* Layout changes to further streamline navigation.
+* Added Course Management Dashboard made popular in the Fordson Theme.
+* Removed other presets to ensure compatiblity.  You can still upload a preset.  
+
+### Rebel version 1.4
+* Fixed issues related to https://tracker.moodle.org/browse/CONTRIB-8220  Additional fixes to certain header links not appearing when on a course page for users.
 
 ### Rebel version 1.3
 * Fixed issue: https://github.com/dbnschools/moodle-theme_rebel/issues/1
 
-### Rebel version 1.4
-* Fixed issues related to https://tracker.moodle.org/browse/CONTRIB-8220  Additional fixes to certain header links not appearing when on a course page for users.
+### Rebel version 1.2
+* Fixed issues related to https://tracker.moodle.org/browse/CONTRIB-8220
+
+## Moodle 3.9 Rebel Initial Release 1
+* Brand new theme.  Minimal setup.  5 page layouts.  Unique navigation.  Custom background image for pages and login.
