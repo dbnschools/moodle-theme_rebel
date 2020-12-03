@@ -27,6 +27,30 @@ defined('MOODLE_INTERNAL') || die();
     // Each page is a tab - the first is the "General" tab.
     $page = new admin_settingpage('theme_rebel_general', get_string('generalsettings', 'theme_rebel'));
 
+    // Replicate the preset setting from boost.
+    $name = 'theme_rebel/preset';
+    $title = get_string('preset', 'theme_rebel');
+    $description = get_string('preset_desc', 'theme_rebel');
+    $default = 'rebel.scss';
+
+    // We list files in our own file area to add to the drop down. We will provide our own function to
+    // load all the presets from the correct paths.
+    $context = context_system::instance();
+    $fs = get_file_storage();
+    $files = $fs->get_area_files($context->id, 'theme_rebel', 'preset', 0, 'itemid, filepath, filename', false);
+
+    $choices = [];
+    foreach ($files as $file) {
+        $choices[$file->get_filename()] = $file->get_filename();
+    }
+    // These are the built in presets from Boost.
+    $choices['rebel.scss'] = 'Rebel';
+
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+
     // Preset files setting.
     $name = 'theme_rebel/presetfiles';
     $title = get_string('presetfiles','theme_rebel');
@@ -77,7 +101,7 @@ defined('MOODLE_INTERNAL') || die();
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
-    // overlay header overlay.
+    // overlay footer overlay.
     $name = 'theme_rebel/footeroverlay';
     $title = get_string('footeroverlay', 'theme_rebel');
     $description = get_string('footeroverlay_desc', 'theme_rebel');
@@ -96,6 +120,25 @@ defined('MOODLE_INTERNAL') || die();
     natsort($overlaychoices);
     $default = '';
     $setting = new admin_setting_configselect($name, $title, $description, $default, $overlaychoices);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
+    // Toggle topic/weekly Section Layout design
+    $name = 'theme_rebel/sectionlayout';
+    $title = get_string('sectionlayout' , 'theme_rebel');
+    $description = get_string('sectionlayout_desc', 'theme_rebel');
+    $sectionlayout1 = get_string('sectionlayout1', 'theme_rebel');
+    $sectionlayout2 = get_string('sectionlayout2', 'theme_rebel');
+    $sectionlayout3 = get_string('sectionlayout3', 'theme_rebel');
+    $sectionlayout4 = get_string('sectionlayout4', 'theme_rebel');
+    /*$sectionlayout5 = get_string('sectionlayout5', 'theme_rebel');
+    $sectionlayout6 = get_string('sectionlayout6', 'theme_rebel');
+    $sectionlayout7 = get_string('sectionlayout7', 'theme_rebel');
+    $sectionlayout8 = get_string('sectionlayout8', 'theme_rebel');*/
+
+    $default = '1';
+    $choices = array('1'=>$sectionlayout1, '2'=>$sectionlayout2, '3'=>$sectionlayout3, '4'=>$sectionlayout4, /*'5'=>$sectionlayout5, '6'=>$sectionlayout6, '7'=>$sectionlayout7, '8'=>$sectionlayout8*/);
+    $setting = new admin_setting_configselect($name, $title, $description, $default, $choices);
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
@@ -149,6 +192,13 @@ defined('MOODLE_INTERNAL') || die();
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
+    $name = 'theme_rebel/dashboardtextbox';
+    $title = get_string('dashboardtextbox', 'theme_rebel');
+    $description = get_string('dashboardtextbox_desc', 'theme_rebel');
+    $default = '';
+    $setting = new admin_setting_confightmleditor($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
 
     // Must add the page after defining all the settings!
     $settings->add($page);

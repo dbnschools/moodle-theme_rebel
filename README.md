@@ -25,6 +25,12 @@ REBEL FEATURES
 
 # Versions and Updates
 
+### Rebel version 1.7
+* Better logic for when and how the header textures are applied with ability to turn it off by not selecting a pattern.
+* Fixed uploaded presets not showing up due to removal of Preset selector.
+* Added Brand Logo to footer area.
+* Added Custom Textbox for the Dashboard page
+
 ### Rebel version 1.6
 * Header Images uses course image file to display in header
 * Modal "Easy Enrollment plugin" pop up integration on homepage

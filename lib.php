@@ -39,13 +39,20 @@ function theme_rebel_get_main_scss_content($theme) {
     $post = '';
 
     $headerimage = !empty($theme->settings->defaultbackgroundimage) ? $theme->settings->defaultbackgroundimage : null;
+    $filename = !empty($theme->settings->preset) ? $theme->settings->preset : null;
     $fs = get_file_storage();
     $context = context_system::instance();
 
-    $headeroverlay = !empty($theme->settings->headeroverlay) ? $theme->settings->headeroverlay : null;
-    if (isset($headeroverlay)) {
+    if (!empty($theme->settings->headeroverlay) && $theme->settings->showheaderimages == 0) {
         $overlaylink = $theme->settings->headeroverlay;
         $pre .= '.headeroverlay {background-image: url("' . $overlaylink . '");}';
+    } else if ($theme->settings->showheaderimages == 1  && !empty($theme->settings->headeroverlay)) {
+        $overlaylink = $theme->settings->headeroverlay;
+        $pre .= '.headeroverlay {background-image: url("' . $overlaylink . '");}';
+    } else if ($theme->settings->showheaderimages == 1) {
+        $pre .= '.path-course .headeroverlay {background-image: none;}';
+    } else if (empty($theme->settings->headeroverlay)) {
+        $pre .= '.headeroverlay {background-image: none;}';
     } else {
         $defaultoverlay = $CFG->wwwroot.'/theme/rebel/pix/overlay/diamond-upholstery.png';
         $pre .= '.headeroverlay {background-image: url("' . $defaultoverlay . '");}';
@@ -56,13 +63,34 @@ function theme_rebel_get_main_scss_content($theme) {
         $overlaylink = $theme->settings->footeroverlay;
         $pre .= '#page-footer {background-image: url("' . $overlaylink . '");}';
     } else {
-        $defaultoverlay = $CFG->wwwroot.'/theme/rebel/pix/overlay/diamond-upholstery.png';
-        $pre .= '#page-footer {background-image: url("' . $defaultoverlay . '");}';
-    }
+        $pre .= '#page-footer {background-image: none;}';
+    } 
 
 
     // Set default preset.
-    $scss .= file_get_contents($CFG->dirroot . '/theme/rebel/scss/preset/rebel.scss');
+    if ($filename == 'rebel.scss') {
+        $scss .= file_get_contents($CFG->dirroot . '/theme/rebel/scss/preset/rebel.scss');
+    } else if ($filename && ($presetfile = $fs->get_file($context->id, 'theme_rebel', 'preset', 0, '/', $filename))) {
+        // This preset file was fetched from the file area for theme_rebel and not theme_boost (see the line above).
+        $scss .= $presetfile->get_content();
+    } else {
+        // Safety fallback - maybe new installs etc.
+        $scss .= file_get_contents($CFG->dirroot . '/theme/rebel/scss/preset/rebel.scss');
+    }
+
+    // Section Style
+    if ($theme->settings->sectionlayout == 1) {
+        $scss .= file_get_contents($CFG->dirroot . '/theme/rebel/scss/sectionstyles/section1.scss');
+    }
+    if ($theme->settings->sectionlayout == 2) {
+        $scss .= file_get_contents($CFG->dirroot . '/theme/rebel/scss/sectionstyles/section2.scss');
+    }
+    if ($theme->settings->sectionlayout == 3) {
+        $scss .= file_get_contents($CFG->dirroot . '/theme/rebel/scss/sectionstyles/section3.scss');
+    }
+    if ($theme->settings->sectionlayout == 4) {
+        $scss .= file_get_contents($CFG->dirroot . '/theme/rebel/scss/sectionstyles/section4.scss');
+    }
 
     // Set the background image for the login page.
     $loginbg = $theme->setting_file_url('loginbkgimage', 'loginbkgimage');

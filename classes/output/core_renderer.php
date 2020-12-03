@@ -1309,12 +1309,6 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 width: 100%; height: 100%;'
             ));
             $html .= html_writer::end_div(); // End withoutimage inline style div.
-        }  else if (!$courseimage && isset($coursetilebg) && $COURSE->id > 1 && $allowheader) {
-            $html .= html_writer::start_div('customimage', array(
-                'style' => 'background-image: url("' . $coursetilebgimgurl . '"); background-size: cover; background-position:center;
-                width: 100%; height: 100%;'
-            ));
-            $html .= html_writer::end_div(); // End withoutimage inline style div.
         } else if ($COURSE->id > 1 && $allowheader) {
             $html .= html_writer::start_div('default', array(
                 'style' => 'background-image: url("' . $defaultimgurl . '"); background-size: cover; background-position:center;
@@ -1371,7 +1365,16 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $setting = $theme->settings->brandemail;
         return $setting != '' ? $setting : '';
     }
-
+    public function brandlogo() {
+        $theme = theme_config::load('rebel');
+        $setting = $theme->setting_file_url('brandlogo', 'brandlogo', true);
+        return $setting != '' ? $setting : '';
+    }
+    public function dashboardtextbox() {
+        $theme = theme_config::load('rebel');
+        $setting = format_text($theme->settings->dashboardtextbox);
+        return $setting != '' ? $setting : '';
+    }
 
 
 }

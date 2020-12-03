@@ -19,6 +19,7 @@
 .nav-item {
     display: inline-flex;
 }
+
 // Footer
 #page-wrapper #page-footer {
     background-color: $footer-bg;
@@ -32,7 +33,17 @@
     color: $footertextcolor;
 }
 
-// Remove margins
+// Rebel theme styling.
+@media (min-width: 768px) {
+  div#learningcontent {
+      box-shadow: 0 0 10px -4px rgba(0,0,0,.6);
+  }
+}
+@media (max-width: 768px) {
+  div#learningcontent {
+      box-shadow: 0 0 10px -4px rgba(0,0,0,.6);
+  }
+}
 #page {
     margin-top: 0px;
     background-color: $white;
@@ -45,19 +56,11 @@ section#region-main, section#region-main .card, header#page-header .card {
 }
 
 // Main learning content styling
-@media (min-width: 768px) {
-  div#learningcontent {
- //     margin: 30px 30px 30px 90px;
-  }
-}
-@media (max-width: 768px) {
-  div#learningcontent {
-  //    margin: 0 0 0 50px;
-  }
-}
+
 .region_main_settings_menu_proxy {
     background-color: transparent;
 }
+
 a#message-user-button {
     display: none;
 }
@@ -69,11 +72,14 @@ header#page-header {
 
 [data-region="blocks-column"] {
     padding-top: 1rem;
+    width: 360px;
 }
+
 section#easyenrol {
     color: $easyenrolltextcolor;
     background-color: $easyenroll-bg;
 }
+
 .page-context-header {
     padding: 1rem .25rem;
 }
@@ -94,9 +100,11 @@ section#easyenrol {
   float:left;
   border-radius: 5px;
 }
+
 #page-grade-report-grader-index .sidebar {
     position: absolute;
 }
+
 .sidebar a.sideicon {
   display: block;
   text-align: center;
@@ -105,19 +113,24 @@ section#easyenrol {
   border-radius: 5px;
   margin-bottom: 2px;
 }
+
 .sidebar a.sideicon i {
   color: $sidebar-iconcolor;
   font-size: 24px;
 }
+
 .sidebar a.sideicon.attention {
   background-color: $sidebar-aattention;
 }
+
 .sidebar a.sideicon:hover:not(.active) {
   background-color: $sidebar-ahover-bg;
   border-right: 7px solid $sidebar-borderright-color;
 }
 
-.sidebar .sideicon.mydashboardmobile {display: none;}
+.sidebar .sideicon.mydashboardmobile {
+  display: none;
+}
 
 @media screen and (max-width: 768px) {
     .sidebar {
@@ -151,6 +164,7 @@ section#easyenrol {
       border-right: 7px solid $sidebar-borderright-color;
     }
 }
+
 .dropdown-menu.iconsidebar.show {
     height: 325px;
     overflow-y: scroll;
@@ -158,6 +172,7 @@ section#easyenrol {
     width: 275px;
     border-radius: 7px;
 }
+
 @media screen and (max-width: 400px) {
   a.sideicon.siteadmin {
       display: none;
@@ -171,9 +186,11 @@ section#easyenrol {
 .dropdown-menu.iconsidebar.show::-webkit-scrollbar {
     width: 9px;
 }
+
 .dropdown-menu.iconsidebar.show::-webkit-scrollbar-track {
     background-color: #555;
 }
+
 .dropdown-menu.iconsidebar.show::-webkit-scrollbar-thumb {
     background-color: #CCCCCC;
 }
@@ -182,18 +199,21 @@ section#easyenrol {
 body.drawer-open-left {
     margin-left: 0;
 }
+
 #nav-drawer {
-        border: 1px solid #ccc;
-        z-index: 3;
-        border-radius: 10px;
-        height:100%
-    }
+  border: 1px solid #ccc;
+  z-index: 3;
+  border-radius: 10px;
+  height:100%;
+}
+
 @media screen and (min-width: 768px) {
     #nav-drawer {
         left: 60px;
         top: 0px;
     }
 }
+
 @media screen and (max-width: 768px) {
     #nav-drawer {
         top: 62px;
@@ -201,6 +221,7 @@ body.drawer-open-left {
         padding: 1rem 0;
     } 
 }
+
 .message-app {
     background-color: $drawer-bg;
 }
@@ -223,6 +244,7 @@ body.drawer-open-left {
       right: -40px;
   }
 }
+
 [data-region=right-hand-drawer] .closewidget {
     display: block;
 }
@@ -249,13 +271,10 @@ body.drawer-open-left {
 body.pagelayout-login section#region-main .card {
     background-color: $white;
 }
+
 body.pagelayout-login #page {
     background-color: transparent;
 }
-/*body.pagelayout-login {
-    background-image: url([[pix:theme_rebel|loginbkgimage]]);
-    background-size: cover;
-}*/
 
 // Accessibility links
 .aalink.focus, .aalink:focus,
@@ -303,11 +322,7 @@ a:not([class]),
 #page-navbar {
   width: auto;
 }
-@media (max-width: 500px) {
-  #page-navbar {
-    //display: none;
-  }
-}
+
 @media (max-width: 768px) {
   .breadcrumb:not(:empty) {
       width: 100%;
@@ -442,12 +457,15 @@ a:not([class]),
 .path-mod-assign [data-region="grading-navigation-panel"] {
     background-color: $white;
 }
+
 .path-mod-assign [data-region="grade-actions-panel"] {
     background-color: $white;
 }
+
 .activity-navigation {
     text-align: center;
 }
+
 @media (min-width: 768px) {
   .tooltip-inner {
     font-size:18px;
@@ -463,6 +481,7 @@ a:not([class]),
     border-top: 7px solid $gray-600;
     background-color: $gray-100;
 }
+
 #page-login-index section#region-main .card.loginbottomtext {
     border-top: 7px solid $gray-600;
 }
@@ -474,6 +493,7 @@ a:not([class]),
 .calendar_event_course {
     background-color: $navbar-bg;
 }
+
 .path-calendar .maincalendar .calendar_event_course {
     border-color: $gray-500;
 }
@@ -484,18 +504,22 @@ ul.headermycourses {
     list-style: none;
     margin: 0;
 }
+
 ul.headermycourses .nav-link {
   padding: 0;
 }
+
 ul.headermycourses a {
   color: $headerlinks-link;
 }
+
 .custommenu {
     display: flex;
     width: 100%;
     flex-direction: row;
     justify-content: flex-start;
 }
+
 ul.custommenu {
     list-style: none;
     margin-bottom: 0;
@@ -507,18 +531,19 @@ ul.custommenu {
     clear: both;
     text-align: left;
 }
+
 body.editing ul.collapsibletopics .content .summarytext {
     margin-left: 0;
     margin-right: 0;
 }
 
 // Course Dashboard Styling.
-
 #coursemanagement .modal-dialog {
     max-width: 1200px;
     margin: 30px auto;
     z-index: 9999;
 }
+
 .modal {
     z-index: 1080;
 }
@@ -534,30 +559,38 @@ body.editing ul.collapsibletopics .content .summarytext {
     z-index: 1;
     width: 100%;
 }
+
 a.headerlink {
     margin-left: 1rem;
     color: $headerlinks-link;
     padding: .5rem;
 }
+
 a.headerlink:hover {
     background-color: $white;
     border-radius: 4px;
 }
+
 .headerlinks::-webkit-scrollbar {
     height: 7px;
 }
+
 .headerlinks::-webkit-scrollbar-track {
     background-color: #fff;
 }
+
 .headerlinks::-webkit-scrollbar-thumb {
     background-color: #CCCCCC;
 }
+
 .studentprogress {
     margin: 2rem 0;
 }
+
 .studentprogress .progress {
     height: 2rem;
 }
+
 .coursemanagementdashboard {
     padding: 1rem;
 }
@@ -609,4 +642,153 @@ ul.footercontact {
 
 .dropdown-item:active a, .dropdown-item:hover a, .dropdown-item:focus a, .dropdown-item:focus-within a {
     color: initial;
+}
+
+aside#block-region-side-pre section.block {
+    background-color: $gray-100;
+    border-top: 7px solid $body-bg;
+}
+
+.discussion-nav.clearfix {
+    background-color: $navbar-bg;
+    border: 1px solid darken($navbar-bg, 10%);
+    border-radius: 4px;
+}
+
+.discussion-nav.clearfix a{
+    color: $navbartextcolor;
+}
+
+.topactivity {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.activity-navigation {
+    display: inline-flex;
+    border: 1px solid #bdcee8;
+    border-top: 0;
+    background-color: $navbar-bg;
+    border-radius: 0 0 4px 4px;
+}
+
+.activity-navigation a.btn-link {
+    color: $black;
+}
+
+.activity-navigation a.btn-link:hover {
+    color: $black;
+    text-decoration: underline;
+}
+
+.editcogbutton {
+    float: right;
+    width: 100%;
+}
+
+.section-summary-activities.pr-2.mdl-right, .course-content ul.collapsibletopics .sectiontoggle.collapsed~.section-summary-activities {
+    border: 1px solid darken($body-bg, 10%);
+    background-color: $body-bg;
+    display: inline-flex;
+    margin-left: 1rem;
+    color: $black;
+    padding: 0 .75rem!important;
+}
+
+.course-content .section-summary .section-summary-activities .activity-count, .course-content ul.collapsibletopics .content .section-summary-activities .activity-count {
+    color: $black;
+}
+
+li.activity {
+    padding: .25rem!important;
+    border: 1px solid transparent;
+    min-width: 100%;
+}
+
+li.activity:hover {
+    background-color: rgba($body-bg, 0.5);
+    border: 1px solid $gray-300;
+    border-radius: 4px;
+    padding: .25rem!important;
+}
+
+.section .activity.modtype_label.label {
+    padding: .25rem!important;
+    border: 1px solid transparent;
+}
+
+li.activity.label:hover {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: .25rem!important;
+}
+
+//remove white box for Timeline block in sidebar
+aside#block-region-side-pre section.block_timeline .list-group-item {
+    background-color: transparent;
+}
+
+header#page-header {
+    position: relative;
+}
+
+
+
+//Dropdown overrides for Rebel Preset
+.dropdown-menu.iconsidebar.show {
+    padding: 1.25rem!important;
+    color: $dark;
+    background-color: $body-bg;
+}
+
+.dropdown-menu.iconsidebar.show::-webkit-scrollbar-track {
+    background-color: $body-bg!important;
+}
+
+.dropdown-menu.iconsidebar.show::-webkit-scrollbar-thumb {
+    background-color: $white!important;
+}
+
+// Collapsible Topics Format Styling
+.format-collapsibletopics li#section-0 {
+    background-color: #e3eaf5;
+    padding: 1rem;
+    border-top: 7px solid darken($body-bg, 30%);
+    border-radius: 4px;
+}
+
+.format-collapsibletopics div#collapse-0 {
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.format-collapsibletopics li.activity.label:hover {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: .25rem;
+}
+
+.format-collapsibletopics .course-content ul li.section.main {
+    padding: 1rem 0;
+}
+
+.format-collapsibletopics .course-content .collapsible-actions {
+    display: inline-block;
+    background-color: $body-bg;
+    padding: .5rem 1rem;
+}
+
+// Quiz Presentation.
+.que .formulation, .que .comment {
+    background-color: $gray-100;
+    border-color: $body-bg;
+    border-top: 7px solid $body-bg;
+    margin-bottom: 4rem;
+}
+.que .outcome, .que .comment {
+    color: $black;
 }

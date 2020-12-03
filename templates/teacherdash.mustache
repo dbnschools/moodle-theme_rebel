@@ -15,27 +15,22 @@
         <div class="coursemanagementdashboard">
 
             <div class="container-fluid">
-
-                <div class="row editcogrow">
-                    <div class="col">
-                        <div class="editcogbutton">{{{editcog}}}</div>
+            
+                <div class="row coursedash">
+                    <div class="editcogbutton">{{{editcog}}}</div>
+                    <div class="dashtitle">
+                        <h3 class="card-title"><i class="fa fa-check-square-o dashicon"></i>{{{cmnotetitle}}}</h3>
+                        {{#cmnoteteacher}}
+                        <div class="cmtext">
+                            {{{cmnoteteacher}}}
+                        </div>
+                        {{/cmnoteteacher}}
                     </div>
                 </div>
 
                 <div class="row headerlinksrow">
                     {{{headerlinkbuttons}}}
                 </div>
-
-                {{#cmnoteteacher}}
-                <div class="row">
-                    <div class="dashtitle">
-                        <h3 class="card-title"><i class="fa fa-check-square-o dashicon"></i>{{{cmnotetitle}}}</h3>
-                        <div class="cmtext">
-                            {{{cmnoteteacher}}}
-                        </div>
-                    </div>
-                </div>
-                {{/cmnoteteacher}}
                 
                 <div class="row courseadminrow">
 

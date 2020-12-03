@@ -62,9 +62,11 @@ $string['showheaderimages'] = 'Show Header Images';
 $string['showheaderimages_desc'] = 'Allow Rebel to use custom images for the header area. You may still set a Course Tile image below but it will not be used as a header image within a course. This setting turns off using header images completely.';
 // Show Header Overlay textures.
 $string['headeroverlay'] = 'Header Texture';
-$string['headeroverlay_desc'] = 'You can choose to change the header background texture.  We download transparent background images from here: <a href="https://www.transparenttextures.com/">https://www.transparenttextures.com/</a> ';
+$string['headeroverlay_desc'] = 'Recommended overlay: Brushed.png.  You can choose to change the header background texture.  We download transparent background images from here: <a href="https://www.transparenttextures.com/">https://www.transparenttextures.com/</a> ';
 $string['footeroverlay'] = 'Footer Texture';
-$string['footeroverlay_desc'] = 'You can choose to change the footer background texture.  We download transparent background images from here: <a href="https://www.transparenttextures.com/">https://www.transparenttextures.com/</a> ';
+$string['footeroverlay_desc'] = 'Recommended overlay: Brushed.png.  You can choose to change the footer background texture.  We download transparent background images from here: <a href="https://www.transparenttextures.com/">https://www.transparenttextures.com/</a> ';
+$string['dashboardtextbox'] = 'Dashboard Textbox';
+$string['dashboardtextbox_desc'] = 'This is a custom textbox that is displayed on the site Dashboard.  Use it to welcome learners or provide instructions.';
 // Background image for coursetiles.
 $string['coursetilebg'] = 'Default Course Image';
 $string['coursetilebg_desc'] = 'This is the default image for course tiles on the Dashboard and the default header image for all courses where a teacher has not uploaded an image into Course Settings.  Even with Header Images turned off you can use an image here to be the default Dashboard Course Tile image.  ';
@@ -113,7 +115,6 @@ $navbartextcolor: #333;</br>
 
 // Top Header area</br>
 $header-bg: #eef5f9;</br>
-$headerimageheight: 650px;</br>
 $headerlinks-bg: #e3eaf5;</br>
 $headerlinks-link: $black;</br>
 
@@ -241,3 +242,15 @@ $string['sidebar-bg'] = 'Sidebar Background';
 
 $string['loginiconbutton'] = 'Login to Site';
 $string['dashboardiconbutton'] = 'Course Dashboard';
+
+// Section styling chooser.
+$string['sectionlayout'] = 'Section Style Chooser';
+$string['sectionlayout_desc'] = 'Choose from the following topic/weekly section styles.';
+$string['sectionlayout1'] = 'Boost Moodle Default';
+$string['sectionlayout2'] = 'Bold Section Title';
+$string['sectionlayout3'] = 'Simple Rounded Box';
+$string['sectionlayout4'] = 'Topic 0 Boxed';
+$string['sectionlayout5'] = '';
+$string['sectionlayout6'] = '';
+$string['sectionlayout7'] = '';
+$string['sectionlayout8'] = '';

@@ -50,6 +50,11 @@
         </div>
 
         <div class="col-md-4">
+            {{#output.brandlogo}}
+            <div class="brandlogofooter">
+                <img src="{{{output.brandlogo}}}" class="img-fluid" alt="Responsive image">
+            </div>
+            {{/output.brandlogo}}
             <div class="brandbox">
                 {{#output.brandorganization_footer}}<h3>{{output.brandorganization_footer}}</h3>{{/output.brandorganization_footer}}
                     <ul class="footercontact">
