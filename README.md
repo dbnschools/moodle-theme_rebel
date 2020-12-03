@@ -30,6 +30,7 @@ REBEL FEATURES
 * Fixed uploaded presets not showing up due to removal of Preset selector.
 * Added Brand Logo to footer area.
 * Added Custom Textbox for the Dashboard page
+* Added Course Section Style Chooser allowing for a variety of different styled sections and topics.
 
 ### Rebel version 1.6
 * Header Images uses course image file to display in header
