@@ -28,6 +28,7 @@ if ($ADMIN->fulltree) {
     require('settings/general.php');
     require('settings/branding.php');
     require('settings/colors.php');
+    require('settings/fpicons.php');
     require('settings/login.php');
 
 }

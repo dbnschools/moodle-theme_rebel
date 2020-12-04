@@ -1292,8 +1292,6 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $coursetilebg = $PAGE->theme->setting_file_url('coursetilebg', 'coursetilebg');
         $coursetilebgimgurl = $PAGE->theme->setting_file_url('coursetilebg', 'coursetilebg', true);
 
-
-        
         // Create html for header.
         $html = html_writer::start_div('headerbkg');
         // If course image display it in separate div to allow css styling of inline style.
@@ -1374,6 +1372,125 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $theme = theme_config::load('rebel');
         $setting = format_text($theme->settings->dashboardtextbox);
         return $setting != '' ? $setting : '';
+    }
+
+    public function fpicons() {
+        global $PAGE;
+        $context = $this->page->context;
+
+        $hasslideicon = (empty($PAGE->theme->settings->slideicon && isloggedin() && !isguestuser())) ? false : $PAGE->theme->settings->slideicon;
+        $slideiconbuttonurl = 'data-toggle="collapse" data-target="#collapseExample';
+        $slideiconbuttontext = (empty($PAGE->theme->settings->slideiconbuttontext)) ? false : format_string($PAGE->theme->settings->slideiconbuttontext);
+        $hasnav1icon = (empty($PAGE->theme->settings->nav1icon && isloggedin() && !isguestuser())) ? false : $PAGE->theme->settings->nav1icon;
+        $hasnav2icon = (empty($PAGE->theme->settings->nav2icon && isloggedin() && !isguestuser())) ? false : $PAGE->theme->settings->nav2icon;
+        $hasnav3icon = (empty($PAGE->theme->settings->nav3icon && isloggedin() && !isguestuser())) ? false : $PAGE->theme->settings->nav3icon;
+        $hasnav4icon = (empty($PAGE->theme->settings->nav4icon && isloggedin() && !isguestuser())) ? false : $PAGE->theme->settings->nav4icon;
+        $hasnav5icon = (empty($PAGE->theme->settings->nav5icon && isloggedin() && !isguestuser())) ? false : $PAGE->theme->settings->nav5icon;
+        $hasnav6icon = (empty($PAGE->theme->settings->nav6icon && isloggedin() && !isguestuser())) ? false : $PAGE->theme->settings->nav6icon;
+        $hasnav7icon = (empty($PAGE->theme->settings->nav7icon && isloggedin() && !isguestuser())) ? false : $PAGE->theme->settings->nav7icon;
+        $hasnav8icon = (empty($PAGE->theme->settings->nav8icon && isloggedin() && !isguestuser())) ? false : $PAGE->theme->settings->nav8icon;
+        $nav1buttonurl = (empty($PAGE->theme->settings->nav1buttonurl)) ? false : $PAGE->theme->settings->nav1buttonurl;
+        $nav2buttonurl = (empty($PAGE->theme->settings->nav2buttonurl)) ? false : $PAGE->theme->settings->nav2buttonurl;
+        $nav3buttonurl = (empty($PAGE->theme->settings->nav3buttonurl)) ? false : $PAGE->theme->settings->nav3buttonurl;
+        $nav4buttonurl = (empty($PAGE->theme->settings->nav4buttonurl)) ? false : $PAGE->theme->settings->nav4buttonurl;
+        $nav5buttonurl = (empty($PAGE->theme->settings->nav5buttonurl)) ? false : $PAGE->theme->settings->nav5buttonurl;
+        $nav6buttonurl = (empty($PAGE->theme->settings->nav6buttonurl)) ? false : $PAGE->theme->settings->nav6buttonurl;
+        $nav7buttonurl = (empty($PAGE->theme->settings->nav7buttonurl)) ? false : $PAGE->theme->settings->nav7buttonurl;
+        $nav8buttonurl = (empty($PAGE->theme->settings->nav8buttonurl)) ? false : $PAGE->theme->settings->nav8buttonurl;
+        $nav1buttontext = (empty($PAGE->theme->settings->nav1buttontext)) ? false : format_string($PAGE->theme->settings->nav1buttontext);
+        $nav2buttontext = (empty($PAGE->theme->settings->nav2buttontext)) ? false : format_string($PAGE->theme->settings->nav2buttontext);
+        $nav3buttontext = (empty($PAGE->theme->settings->nav3buttontext)) ? false : format_string($PAGE->theme->settings->nav3buttontext);
+        $nav4buttontext = (empty($PAGE->theme->settings->nav4buttontext)) ? false : format_string($PAGE->theme->settings->nav4buttontext);
+        $nav5buttontext = (empty($PAGE->theme->settings->nav5buttontext)) ? false : format_string($PAGE->theme->settings->nav5buttontext);
+        $nav6buttontext = (empty($PAGE->theme->settings->nav6buttontext)) ? false : format_string($PAGE->theme->settings->nav6buttontext);
+        $nav7buttontext = (empty($PAGE->theme->settings->nav7buttontext)) ? false : format_string($PAGE->theme->settings->nav7buttontext);
+        $nav8buttontext = (empty($PAGE->theme->settings->nav8buttontext)) ? false : format_string($PAGE->theme->settings->nav8buttontext);
+        $nav1target = (empty($PAGE->theme->settings->nav1target)) ? false : $PAGE->theme->settings->nav1target;
+        $nav2target = (empty($PAGE->theme->settings->nav2target)) ? false : $PAGE->theme->settings->nav2target;
+        $nav3target = (empty($PAGE->theme->settings->nav3target)) ? false : $PAGE->theme->settings->nav3target;
+        $nav4target = (empty($PAGE->theme->settings->nav4target)) ? false : $PAGE->theme->settings->nav4target;
+        $nav5target = (empty($PAGE->theme->settings->nav5target)) ? false : $PAGE->theme->settings->nav5target;
+        $nav6target = (empty($PAGE->theme->settings->nav6target)) ? false : $PAGE->theme->settings->nav6target;
+        $nav7target = (empty($PAGE->theme->settings->nav7target)) ? false : $PAGE->theme->settings->nav7target;
+        $nav8target = (empty($PAGE->theme->settings->nav8target)) ? false : $PAGE->theme->settings->nav8target;
+        $slidetextbox = (empty($PAGE->theme->settings->slidetextbox && isloggedin())) ? false : format_text($PAGE->theme->settings->slidetextbox, FORMAT_HTML, array(
+            'noclean' => true
+        ));
+
+        $fp_icons = [
+            'hasslidetextbox' => (!empty($PAGE->theme->settings->slidetextbox && isloggedin())) , 
+            'slidetextbox' => $slidetextbox, 'hasfptextboxlogout' => !isloggedin() ,
+            'hasfpiconnav' => ($hasnav1icon || $hasnav2icon || $hasnav3icon || $hasnav4icon || $hasnav5icon || $hasnav6icon || $hasnav7icon || $hasnav8icon || $hasslideicon) ? true : false, 
+            'fpiconnav' => array(
+                array(
+                    'hasicon' => $hasnav1icon,
+                    'linkicon' => $hasnav1icon,
+                    'link' => $nav1buttonurl,
+                    'linktext' => $nav1buttontext,
+                    'linktarget' => $nav1target
+                ) ,
+                array(
+                    'hasicon' => $hasnav2icon,
+                    'linkicon' => $hasnav2icon,
+                    'link' => $nav2buttonurl,
+                    'linktext' => $nav2buttontext,
+                    'linktarget' => $nav2target
+                ) ,
+                array(
+                    'hasicon' => $hasnav3icon,
+                    'linkicon' => $hasnav3icon,
+                    'link' => $nav3buttonurl,
+                    'linktext' => $nav3buttontext,
+                    'linktarget' => $nav3target
+                ) ,
+                array(
+                    'hasicon' => $hasnav4icon,
+                    'linkicon' => $hasnav4icon,
+                    'link' => $nav4buttonurl,
+                    'linktext' => $nav4buttontext,
+                    'linktarget' => $nav4target
+                ) ,
+                array(
+                    'hasicon' => $hasnav5icon,
+                    'linkicon' => $hasnav5icon,
+                    'link' => $nav5buttonurl,
+                    'linktext' => $nav5buttontext,
+                    'linktarget' => $nav5target
+                ) ,
+                array(
+                    'hasicon' => $hasnav6icon,
+                    'linkicon' => $hasnav6icon,
+                    'link' => $nav6buttonurl,
+                    'linktext' => $nav6buttontext,
+                    'linktarget' => $nav6target
+                ) ,
+                array(
+                    'hasicon' => $hasnav7icon,
+                    'linkicon' => $hasnav7icon,
+                    'link' => $nav7buttonurl,
+                    'linktext' => $nav7buttontext,
+                    'linktarget' => $nav7target
+                ) ,
+                array(
+                    'hasicon' => $hasnav8icon,
+                    'linkicon' => $hasnav8icon,
+                    'link' => $nav8buttonurl,
+                    'linktext' => $nav8buttontext,
+                    'linktarget' => $nav8target
+                ) ,
+            ) ,
+            'fpslideicon' => array(
+                array(
+                    'hasicon' => $hasslideicon,
+                    'linkicon' => $hasslideicon,
+                    'link' => $slideiconbuttonurl,
+                    'linktext' => $slideiconbuttontext
+                ) ,
+            ) , 
+        ];
+
+        return $this->render_from_template('theme_rebel/fpicons', $fp_icons);
+
     }
 
 

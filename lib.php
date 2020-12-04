@@ -124,6 +124,7 @@ function theme_rebel_get_pre_scss($theme) {
         'navbarbg' => ['navbar-bg'],
         'headerlinksbg' => ['headerlinks-bg'],
         'sidebarbg' => ['sidebar-bg'],
+        'iconwidth' => ['fpicon-width'],
     ];
 
     // Prepend variables first.

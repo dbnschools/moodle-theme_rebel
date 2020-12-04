@@ -13,14 +13,14 @@ $black:    #000 !default;
 
 $blue:    #1177d1 !default;
 $indigo:  #6610f2 !default;
-$purple:  #613d7c !default;
+$purple:  #6f42c1 !default;
 $pink:    #e83e8c !default;
-$red:     #d43f3a !default;
-$orange:  #f0ad4e !default;
-$yellow:  #ff7518 !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #f3e66b !default;
 $green:   #28a745 !default;
 $teal:    #20c997 !default;
-$cyan:    #5bc0de !default;
+$cyan:    #17a2b8 !default;
 
 $primary:       #1968BE !default;
 $success:       $green !default;
@@ -77,6 +77,7 @@ $sidebar-aattention: #4caf50 !default;
 $sidebar-borderright-color: $cyan !default;
 $easyenrolltextcolor: $white !default;
 $easyenroll-bg: #4caf50 !default;
+$fpicon-width: 100px !default;
 
 // Tabs
 $nav-tabs-border-color:             $gray-300 !default;

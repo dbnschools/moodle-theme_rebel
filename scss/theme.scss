@@ -734,7 +734,10 @@ header#page-header {
     position: relative;
 }
 
-
+.privatereplyinfo {
+    background-color: $yellow;
+    padding: .25rem;
+}
 
 //Dropdown overrides for Rebel Preset
 .dropdown-menu.iconsidebar.show {
@@ -789,6 +792,31 @@ header#page-header {
     border-top: 7px solid $body-bg;
     margin-bottom: 4rem;
 }
+
 .que .outcome, .que .comment {
     color: $black;
+}
+
+// FP Icon Navigation.
+.fpstartwrap {
+    padding:1rem;
+}
+
+.fpstart {
+    text-align: center;
+}
+
+.iconset .btn.btn-secondary {
+    min-width: $fpicon-width;
+    margin-bottom: .5rem;
+    color: $sidebar-iconcolor;
+    background-color: $sidebar-bg;
+}
+
+.iconset .btn.btn-secondary:hover {
+    background-color: $sidebar-ahover-bg;
+}
+
+.iconset .btn.btn-secondary a {
+    color: $sidebar-iconcolor;
 }

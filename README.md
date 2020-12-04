@@ -31,6 +31,7 @@ REBEL FEATURES
 * Added Brand Logo to footer area.
 * Added Custom Textbox for the Dashboard page
 * Added Course Section Style Chooser allowing for a variety of different styled sections and topics.
+* Added frontpage icon navigation with up to 8 icon buttons and one slider icon which toggles a sliding textbox.
 
 ### Rebel version 1.6
 * Header Images uses course image file to display in header
