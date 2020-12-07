@@ -93,6 +93,8 @@ $breadcrumbblock-highlight: #5bc0de !default;
 $breadcrumbblock-highlight-darken: darken($body-bg, 10%) !default;
 $breadcrumblinkcolor: $black !default;
 $breadcrumblinkcolor-hover: $black !default;
+$breadcrumb-dimmed-bg: #757575 !default;
+$breadcrumb-dimmed-linkcolor: #fff !default;
 
 // Drop Down colors
 $dropdown-link-hover-color: initial !default;

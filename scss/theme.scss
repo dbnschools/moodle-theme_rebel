@@ -438,6 +438,37 @@ a:not([class]),
       }
     }
   }
+  li.dimmed_text{
+    a {
+       background-color: $breadcrumb-dimmed-bg;
+       color: $breadcrumb-dimmed-linkcolor;
+      &:before{
+        border-color: $breadcrumb-dimmed-bg;
+        border-left-color: transparent;
+      }
+      &:after{
+        border-left-color: $breadcrumb-dimmed-bg;
+      }
+    }
+    
+    &:last-child{
+      a{
+        background-color: $breadcrumb-dimmed-bg;
+        padding-right:15px;
+        @include border-radius(0 4px 4px 0);
+        &:after{
+          border:none;
+         }
+        &:before{
+          border-color: $breadcrumb-dimmed-bg;
+          border-left-color: transparent;
+         }
+        &:after{
+          border-left-color: $breadcrumb-dimmed-bg;
+        }
+      }
+    }
+  }
 }
 @media only screen and ( max-width: 900px ) {
   .breadcrumb{
@@ -452,6 +483,16 @@ a:not([class]),
     }
   }
 }
+
+/*li.breadcrumb-block.dimmed_text a {
+    background-color: #757575;
+    color: #fff;
+}*/
+
+/*.breadcrumb li.breadcrumb-block.dimmed_text:last-child a:before {
+    border-color: #757575;
+    border-left-color: transparent;
+}*/
 
 // Assignment Grading
 .path-mod-assign [data-region="grading-navigation-panel"] {
