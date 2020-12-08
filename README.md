@@ -25,6 +25,10 @@ REBEL FEATURES
 
 # Versions and Updates
 
+### Rebel version 1.7.1
+* Fixed language string issues.
+* Other styling fixes. 
+
 ### Rebel version 1.7
 * Better logic for when and how the header textures are applied with ability to turn it off by not selecting a pattern.
 * Fixed uploaded presets not showing up due to removal of Preset selector.
