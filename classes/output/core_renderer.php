@@ -150,7 +150,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $headerlinks = '';
         $editcog = html_writer::div($this->context_header_settings_menu() , 'pull-xs-right context-header-settings-menu');
         // Header Menus for Users.
-        if ($PAGE->pagelayout !== 'coursecategory' && $PAGE->pagelayout !== 'admin') {
+        if ($PAGE->pagelayout !== 'coursecategory' && $PAGE->pagetype !== 'course-management') {
             $course = $this->page->course;
             $context = context_course::instance($course->id);
             $hasgradebookshow = $PAGE->course->showgrades == 1;
@@ -328,6 +328,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $hasadminlink = has_capability('moodle/site:configview', $context);
         $showincourseonly = isset($COURSE->id) && $COURSE->id > 1 && isloggedin() && !isguestuser();
         $showondashboardonly = $PAGE->pagelayout == 'mydashboard';
+        $showeasyenrollmentform = $PAGE->pagelayout == 'coursecategory' || $PAGE->pagelayout == 'mydashboard';
         $showloggedinonly = isloggedin();
         $showguestonly = !isloggedin();
         $userisediting = $PAGE->user_is_editing() && $PAGE->user_can_edit_blocks();
@@ -400,7 +401,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
 
         // Send to template
         $iconsidebar = [
-            'showcoursemanagebutton' => $isteacherdash && isset($theme->settings->shownavdrawer) && $theme->settings->shownavdrawer == 1,
+            'showeasyenrollmentform' => $showeasyenrollmentform,
             'showincourseonly' => $showincourseonly,
             'hasswitchrole' => $hasswitchrole,
             'showswitchicon' => $showswitchicon,
@@ -935,7 +936,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $courseteachers = array();
         $courseother = array();
 
-        $showonlygroupteachers = !empty(groups_get_all_groups($course->id, $USER->id)) && $PAGE->theme->settings->showonlygroupteachers == 1;
+        $showonlygroupteachers = !empty(groups_get_all_groups($course->id, $USER->id));
         if ($showonlygroupteachers) {
             $groupids = array();
             $studentgroups = groups_get_all_groups($course->id, $USER->id);
@@ -1297,19 +1298,19 @@ class core_renderer extends \theme_boost\output\core_renderer {
         // If course image display it in separate div to allow css styling of inline style.
         if ($courseimage && $allowheader) {
             $html .= html_writer::start_div('courseimage', array(
-                'style' => 'background-image: url("' . $courseimage . '"); background-size: cover; background-position:center;
+                'style' => 'background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("' . $courseimage . '"); background-size: cover; background-position:center;
                 width: 100%; height: 100%;'
             ));
             $html .= html_writer::end_div(); // End withimage inline style div.
         } else if (!$courseimage && isset($headerbg) && $COURSE->id <= 1 && $allowheader) {
             $html .= html_writer::start_div('customimage', array(
-                'style' => 'background-image: url("' . $headerbgimgurl .  '"); background-size: cover; background-position:center;
+                'style' => 'background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("' . $headerbgimgurl .  '"); background-size: cover; background-position:center;
                 width: 100%; height: 100%;'
             ));
             $html .= html_writer::end_div(); // End withoutimage inline style div.
         } else if ($COURSE->id > 1 && $allowheader) {
             $html .= html_writer::start_div('default', array(
-                'style' => 'background-image: url("' . $defaultimgurl . '"); background-size: cover; background-position:center;
+                'style' => 'background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("' . $defaultimgurl . '"); background-size: cover; background-position:center;
                 width: 100%; height: 100%;'
             ));
             $html .= html_writer::end_div(); // End default inline style div.

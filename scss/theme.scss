@@ -531,6 +531,7 @@ a:not([class]),
 .calendar_event_course {
     border-color: $gray-500;
 }
+
 .calendar_event_course {
     background-color: $navbar-bg;
 }
@@ -640,8 +641,12 @@ a.headerlink:hover {
   margin-bottom: 1.25rem;
 }
 
-.page-context-header .page-header-headings, .page-context-header .header-button-group {
+.page-context-header .page-header-headings, .page-context-header .header-button-group, .roleswitch {
     color: $white;
+}
+
+.page-context-header .page-header-headings h1, .page-context-header .header-button-group h1 {
+  font-weight: bold;
 }
 
 .headerbkg {

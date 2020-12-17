@@ -25,6 +25,10 @@ REBEL FEATURES
 
 # Versions and Updates
 
+### Rebel version 1.7.2
+* Fixed missing variable
+* Numerous CSS styling fixes especially when using header images
+
 ### Rebel version 1.7.1
 * Fixed language string issues.
 * Other styling fixes. 

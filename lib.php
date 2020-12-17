@@ -49,6 +49,7 @@ function theme_rebel_get_main_scss_content($theme) {
     } else if ($theme->settings->showheaderimages == 1  && !empty($theme->settings->headeroverlay)) {
         $overlaylink = $theme->settings->headeroverlay;
         $pre .= '.headeroverlay {background-image: url("' . $overlaylink . '");}';
+        $pre .= '.path-course .headeroverlay {background-image: none;}';
     } else if ($theme->settings->showheaderimages == 1) {
         $pre .= '.path-course .headeroverlay {background-image: none;}';
     } else if (empty($theme->settings->headeroverlay)) {

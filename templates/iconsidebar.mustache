@@ -20,9 +20,9 @@
 
 }}
 
-{{#showondashboardonly}}
+{{#showeasyenrollmentform}}
   {{{enrolform}}}
-  {{/showondashboardonly}}
+{{/showeasyenrollmentform}}
 
 {{#showguestonly}}
   {{> theme_rebel/loginpopup }}
@@ -69,11 +69,15 @@
 
       {{#showloggedinonly}}
 
-        {{#showondashboardonly}}
-
+        {{#showeasyenrollmentform}}
+          
           {{#globalhaseasyenrollment}}
             <a href="#easyenrollformpopup" data-tooltip="tooltip" data-placement="right" data-toggle="modal" title="{{{enrolformtitle}}}"class="sideicon attention easyenrollform"><i class="fa fa-plus-square" aria-hidden="true"></i><span class="sr-only">{{{enrolformtitle}}}</span></a>
           {{/globalhaseasyenrollment}}
+
+        {{/showeasyenrollmentform}}
+
+        {{#showondashboardonly}}
 
           {{#hascreatecourse}}
             <a href="{{{createcourseurl}}}" data-tooltip="tooltip" data-placement= "right" title="{{{createcourse}}}" class="sideicon attention createacourse"><i class="fa fa-pencil"></i></a>

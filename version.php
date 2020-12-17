@@ -26,7 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 // This is the version of the plugin.
-$plugin->version = 2020120700;
+$plugin->version = 2020121700;
 
 // This is the version of Moodle this plugin requires.
 $plugin->requires = 2020061500;
@@ -44,5 +44,5 @@ $plugin->dependencies = [
 $plugin->maturity = MATURITY_STABLE;
 
 // This is the named version.
-$plugin->release = 'Rebel Theme 1.7.1';
+$plugin->release = 'Rebel Theme 1.7.2';
 
