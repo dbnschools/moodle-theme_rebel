@@ -31,8 +31,10 @@
 
     {{{headerimage}}}
 
-    <div class="headeroverlay"></div>
-
+    {{#hasoverlayimage}}
+        <div class="headeroverlay"></div>
+    {{/hasoverlayimage}}
+    
     {{#hasbrandlogo}}
         <div class="brandlogo">
             <img src="{{{brandlogourl}}}" class="img-fluid" alt="Responsive image">

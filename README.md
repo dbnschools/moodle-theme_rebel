@@ -25,6 +25,9 @@ REBEL FEATURES
 
 # Versions and Updates
 
+### Rebel version 1.7.3
+* Improved styling to address using images and the texture overlays.  Added additional logic so that the texture doesn't appear on any course pages when using header images.
+
 ### Rebel version 1.7.2
 * Fixed missing variable
 * Numerous CSS styling fixes especially when using header images

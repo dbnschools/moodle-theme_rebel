@@ -70,13 +70,18 @@ class core_renderer extends \theme_boost\output\core_renderer {
         //$header->navbar = $this->navbar();
         $header->courseheader = $this->course_header();
         $header->headeractions = $this->page->get_header_actions();
-        //$header->mycourses = $this->rebel_mycourses();
+        $header->hasoverlayimage = $COURSE->id <=1 && !empty($PAGE->theme->settings->headeroverlay) && $PAGE->theme->settings->showheaderimages == 1;
         $header->headerimage = $this->headerimage();
         $header->hasbrandlogo = $COURSE->id <=1 && null !== $PAGE->theme->setting_file_url('brandlogo', 'brandlogo');
         $header->brandlogourl = $PAGE->theme->setting_file_url('brandlogo', 'brandlogo', true);
 
-        if ($PAGE->pagelayout == 'mydashboard' || $PAGE->pagelayout == 'mypublic'
-    ) {
+        if($COURSE->id <=1 && !empty($PAGE->theme->settings->headeroverlay) && $PAGE->theme->settings->showheaderimages == 1){
+            $header->hasoverlayimage = true;
+        } else if ( !empty($PAGE->theme->settings->headeroverlay) && $PAGE->theme->settings->showheaderimages == 0) {
+            $header->hasoverlayimage = true;
+        }
+
+        if ($PAGE->pagelayout == 'mydashboard' || $PAGE->pagelayout == 'mypublic') {
             $header->pageheadingbutton = $this->page_heading_button();
         }
         
@@ -1298,19 +1303,19 @@ class core_renderer extends \theme_boost\output\core_renderer {
         // If course image display it in separate div to allow css styling of inline style.
         if ($courseimage && $allowheader) {
             $html .= html_writer::start_div('courseimage', array(
-                'style' => 'background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("' . $courseimage . '"); background-size: cover; background-position:center;
+                'style' => 'background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("' . $courseimage . '"); background-size: cover; background-position:center;
                 width: 100%; height: 100%;'
             ));
             $html .= html_writer::end_div(); // End withimage inline style div.
         } else if (!$courseimage && isset($headerbg) && $COURSE->id <= 1 && $allowheader) {
             $html .= html_writer::start_div('customimage', array(
-                'style' => 'background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("' . $headerbgimgurl .  '"); background-size: cover; background-position:center;
+                'style' => 'background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("' . $headerbgimgurl .  '"); background-size: cover; background-position:center;
                 width: 100%; height: 100%;'
             ));
             $html .= html_writer::end_div(); // End withoutimage inline style div.
         } else if ($COURSE->id > 1 && $allowheader) {
             $html .= html_writer::start_div('default', array(
-                'style' => 'background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("' . $defaultimgurl . '"); background-size: cover; background-position:center;
+                'style' => 'background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("' . $defaultimgurl . '"); background-size: cover; background-position:center;
                 width: 100%; height: 100%;'
             ));
             $html .= html_writer::end_div(); // End default inline style div.

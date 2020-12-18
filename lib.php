@@ -32,7 +32,7 @@ defined('MOODLE_INTERNAL') || die();
  * @return string
  */
 function theme_rebel_get_main_scss_content($theme) {
-    global $CFG;
+    global $CFG ;
 
     $scss = '';
     $pre = '';
@@ -43,26 +43,16 @@ function theme_rebel_get_main_scss_content($theme) {
     $fs = get_file_storage();
     $context = context_system::instance();
 
-    if (!empty($theme->settings->headeroverlay) && $theme->settings->showheaderimages == 0) {
-        $overlaylink = $theme->settings->headeroverlay;
-        $pre .= '.headeroverlay {background-image: url("' . $overlaylink . '");}';
-    } else if ($theme->settings->showheaderimages == 1  && !empty($theme->settings->headeroverlay)) {
-        $overlaylink = $theme->settings->headeroverlay;
-        $pre .= '.headeroverlay {background-image: url("' . $overlaylink . '");}';
-        $pre .= '.path-course .headeroverlay {background-image: none;}';
-    } else if ($theme->settings->showheaderimages == 1) {
-        $pre .= '.path-course .headeroverlay {background-image: none;}';
-    } else if (empty($theme->settings->headeroverlay)) {
-        $pre .= '.headeroverlay {background-image: none;}';
-    } else {
-        $defaultoverlay = $CFG->wwwroot.'/theme/rebel/pix/overlay/diamond-upholstery.png';
-        $pre .= '.headeroverlay {background-image: url("' . $defaultoverlay . '");}';
+    $headeroverlay = !empty($theme->settings->headeroverlay) ? $theme->settings->headeroverlay : null;
+    if (isset($headeroverlay)) {
+        $headeroverlaylink = $theme->settings->headeroverlay;
+        $pre .= '.headeroverlay {background-image: url("' . $headeroverlaylink . '");}';
     }
 
     $footeroverlay = !empty($theme->settings->footeroverlay) ? $theme->settings->footeroverlay : null;
     if (isset($footeroverlay)) {
-        $overlaylink = $theme->settings->footeroverlay;
-        $pre .= '#page-footer {background-image: url("' . $overlaylink . '");}';
+        $footeroverlaylinkfooter = $theme->settings->footeroverlay;
+        $pre .= '#page-footer {background-image: url("' . $footeroverlaylinkfooter . '");}';
     } else {
         $pre .= '#page-footer {background-image: none;}';
     } 
