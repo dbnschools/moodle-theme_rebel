@@ -60,6 +60,15 @@ defined('MOODLE_INTERNAL') || die();
         array('maxfiles' => 20, 'accepted_types' => array('.scss')));
     $page->add($setting);
 
+    // Show/hide course editing cog.
+    $name = 'theme_rebel/showcoursesections';
+    $title = get_string('showcoursesections', 'theme_rebel');
+    $description = get_string('showcoursesections_desc', 'theme_rebel');
+    $default = 1;
+    $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $page->add($setting);
+
     // Default background settings.
     // Show header images.
     $name = 'theme_rebel/showheaderimages';

@@ -25,6 +25,13 @@ REBEL FEATURES
 
 # Versions and Updates
 
+### Rebel version 1.8
+* Added This Course drop down menu to the sidebar.  This will allow quick and easy navigation within a course to move between sections.
+* Added toggle to turn This Course drop down on and off for site.
+
+### Rebel version 1.7.4
+* Arranged the Dashboard header menu to be Profile | Preferences | Grades | Calendar.  It just made better sense to order them this way. 
+
 ### Rebel version 1.7.3
 * Improved styling to address using images and the texture overlays.  Added additional logic so that the texture doesn't appear on any course pages when using header images.
 

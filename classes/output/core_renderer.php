@@ -116,11 +116,18 @@ class core_renderer extends \theme_boost\output\core_renderer {
             if ($COURSE->id <= 1  && isloggedin() && !isguestuser()) {
                 $header->headerlinks = [
                     'headerlinksdata' => array(
+                        
                         array(
                             'status' => !isguestuser() ,
                             'icon' => 'fa-user',
                             'title' => get_string('profile', 'moodle'),
                             'url' => new moodle_url('/user/profile.php', array('id' => $USER->id)),
+                            ),
+                        array(
+                            'status' => !isguestuser(),
+                            'icon' => 'fa-wrench',
+                            'title' => get_string('preferences', 'moodle'),
+                            'url' => new moodle_url('/user/preferences.php'),
                             ),
                         array(
                             'status' => $gradestatus,
@@ -134,12 +141,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                             'title' => get_string('calendar', 'calendar'),
                             'url' => $calendarurl,
                             ),
-                        array(
-                            'status' => !isguestuser(),
-                            'icon' => 'fa-wrench',
-                            'title' => get_string('preferences', 'moodle'),
-                            'url' => new moodle_url('/user/preferences.php'),
-                            ),
+                        
                     ),
                 ];
             }
@@ -358,6 +360,8 @@ class core_renderer extends \theme_boost\output\core_renderer {
 
         $mycourses = get_string('mycourses', 'moodle');
         $mycoursesurl = new moodle_url('/my/');
+        $showcoursesections = (empty($this->page->theme->settings->showcoursesections)) ? false : $this->page->theme->settings->showcoursesections;
+        $thiscourse = get_string('thiscourse', 'theme_rebel');
 
         $globalhaseasyenrollment = enrol_get_plugin('easy');
         $enrolform = $this->enrolform();
@@ -387,6 +391,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $directcourseadminlink = new moodle_url('/course/admin.php', array('courseid' => $PAGE->course->id));
 
         $mycoursesmenu = $this->rebel_mycourses();
+        $thiscoursemenu = $this->rebel_thiscourse_menu();
 
         $headerlinkbuttons = $this->headerlinkbuttons();
 
@@ -415,6 +420,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             'siteadmintitle' => $siteadmintitle, 
             'siteadminurl' => $siteadminurl,
             'mycourses' => $mycourses, 
+            'thiscourse' => $thiscourse,
             'mycoursesurl' => $mycoursesurl, 
             'editpage' => $editpage, 
             'addblock' => $addblock, 
@@ -433,6 +439,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
             'showcourseadminlink' => $showcourseadminlink,
             'directcourseadminlink' => $directcourseadminlink,
             'mycoursesmenu' => $mycoursesmenu,
+            'thiscoursemenu' => $thiscoursemenu,
             'headerlinkbuttons' => $headerlinkbuttons,
             'switchroletitle' => $switchroletitle,
             'switchrolelink'=> $switchrolelink,
@@ -445,7 +452,8 @@ class core_renderer extends \theme_boost\output\core_renderer {
             'identityproviders' => $identityproviders,
             'hasidentityproviders' => $hasidentityproviders,
             'loginiconbutton' => $loginiconbutton,
-            'coursedashboard' => $coursedashboard
+            'coursedashboard' => $coursedashboard,
+            'showcoursesections' => $showcoursesections
         ];
 
         return $this->render_from_template('theme_rebel/iconsidebar', $iconsidebar);
@@ -643,7 +651,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $context = $this->page->context;
         $menu = new custom_menu();
         
-            $branchtitle = 'My Courses';
+            $branchtitle = get_string('mycourses', 'moodle');
             $branchlabel = $branchtitle;
             $branchurl = new moodle_url('/my/index.php');
             $branchsort = 10000;
@@ -727,6 +735,110 @@ class core_renderer extends \theme_boost\output\core_renderer {
         return $content;
     }
 
+    /**
+     * Generates an array of sections and an array of activities for the given course.
+     *
+     * This method uses the cache to improve performance and avoid the get_fast_modinfo call
+     *
+     * @param stdClass $course
+     * @return array Array($sections, $activities)
+     */
+    protected function generate_sections_and_activities(stdClass $course) {
+        global $CFG;
+        require_once ($CFG->dirroot . '/course/lib.php');
+        $modinfo = get_fast_modinfo($course);
+        $sections = $modinfo->get_section_info_all();
+        // For course formats using 'numsections' trim the sections list
+        $courseformatoptions = course_get_format($course)->get_format_options();
+        if (isset($courseformatoptions['numsections'])) {
+            $sections = array_slice($sections, 0, $courseformatoptions['numsections'] + 1, true);
+        }
+        $activities = array();
+        foreach ($sections as $key => $section) {
+            // Clone and unset summary to prevent $SESSION bloat (MDL-31802).
+            $sections[$key] = clone ($section);
+            unset($sections[$key]->summary);
+            $sections[$key]->hasactivites = false;
+            if (!array_key_exists($section->section, $modinfo->sections)) {
+                continue;
+            }
+            foreach ($modinfo->sections[$section->section] as $cmid) {
+                $cm = $modinfo->cms[$cmid];
+                $activity = new stdClass;
+                $activity->id = $cm->id;
+                $activity->course = $course->id;
+                $activity->section = $section->section;
+                $activity->name = $cm->name;
+                $activity->icon = $cm->icon;
+                $activity->iconcomponent = $cm->iconcomponent;
+                $activity->hidden = (!$cm->visible);
+                $activity->modname = $cm->modname;
+                $activity->nodetype = navigation_node::NODETYPE_LEAF;
+                $activity->onclick = $cm->onclick;
+                $url = $cm->url;
+                if (!$url) {
+                    $activity->url = null;
+                    $activity->display = false;
+                }
+                else {
+                    $activity->url = $url->out();
+                    $activity->display = $cm->is_visible_on_course_page() ? true : false;
+                }
+                $activities[$cmid] = $activity;
+                if ($activity->display) {
+                    $sections[$key]->hasactivites = true;
+                }
+            }
+        }
+        return array($sections, $activities);
+    }
+
+    public function rebel_thiscourse_menu() {
+        global $CFG, $COURSE, $course, $PAGE, $OUTPUT;
+        $context = $this->page->context;
+        $menu = new custom_menu();
+
+        $branchtitle = get_string('thiscourse', 'theme_rebel');
+        $branchlabel = '';
+        $branchurl = new moodle_url('/my/index.php');
+        $branchsort = 10000;
+        $thisbranchtitle = get_string('thiscourse', 'theme_rebel');
+
+
+        if (isloggedin() && !isguestuser()) {
+            $showcoursesections = (empty($this->page->theme->settings->showcoursesections)) ? false : $this->page->theme->settings->showcoursesections;
+           
+            $sections = $this->generate_sections_and_activities($COURSE);
+            if ($sections && $COURSE->id > 1 && $showcoursesections) {
+                $branchlabel = $thisbranchtitle;
+                $branch = $menu->add($branchlabel, $branchurl, $branchtitle, $branchsort);
+                $course = course_get_format($COURSE)->get_course();
+                $coursehomelabel = $course->fullname;
+                $coursehomeurl = new moodle_url('/course/view.php?', array(
+                    'id' => $PAGE->course->id
+                ));
+                $coursehometitle = $coursehomelabel;
+                $branch->add($coursehomelabel, $coursehomeurl, $coursehometitle);
+                
+                foreach ($sections[0] as $sectionid => $section) {
+                    $sectionname = get_section_name($COURSE, $section);
+                    if (isset($course->coursedisplay) && $course->coursedisplay == COURSE_DISPLAY_MULTIPAGE) {
+                        $sectionurl = '/course/view.php?id=' . $COURSE->id . '&section=' . $sectionid;
+                    }
+                    else {
+                        $sectionurl = '/course/view.php?id=' . $COURSE->id . '#section-' . $sectionid;
+                    }
+                    $branch->add(format_string($sectionname) , new moodle_url($sectionurl) , format_string($sectionname));
+                }
+            }
+        }
+        $content = '';
+        foreach ($menu->get_children() as $item) {
+            $context = $item->export_for_template($this);
+            $content .= $this->render_from_template('theme_rebel/mycourses', $context);
+        }
+        return $content;
+    }
 
 
     public function teacherdash() {

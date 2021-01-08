@@ -43,9 +43,11 @@ $string['customlogininfo'] = 'Enhance the Login Page';
 $string['customlogininfo_desc'] = 'Use the options below to enhance the login page for Rebel.';
 $string['brandinginfo'] = 'Branding Options';
 $string['brandinginfo_desc'] = 'Use the options below to provide branding for your site.';
+
 // Misc strings
 $string['nomycourses'] = 'You are not enrolled in any courses.';
-
+$string['thiscourse'] = 'Course Sections';
+$string['nothiscourse'] = 'We cannot identify any course sections or topics';
 
 // Privacy.
 $string['privacy:metadata'] = 'The Rebel theme does not store any individual user data.';
@@ -60,6 +62,10 @@ $string['brandcolor_desc'] = 'The accent colour.';
 $string['choosereadme'] = 'Theme rebel is a child theme of Boost. It adds the ability to upload background rebel.';
 // Name of the settings pages.
 $string['configtitle'] = 'Rebel Theme';
+// Show Course Section Navigation
+$string['showcoursesections'] = 'Show Course Section Navigation';
+$string['showcoursesections_desc'] = 'This menu provides a drop down of course sections and allows quick navigation within a course.  It may not work with all course formats.';
+
 // Show Header Images toggle.
 $string['showheaderimages'] = 'Show Header Images';
 $string['showheaderimages_desc'] = 'Allow Rebel to use custom images for the header area. You may still set a Course Tile image below but it will not be used as a header image within a course. This setting turns off using header images completely.';

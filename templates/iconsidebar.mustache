@@ -51,6 +51,19 @@
                 </div>
         </div>
 
+        {{#showincourseonly}}
+        {{#showcoursesections}}
+        <div class="dropright">
+              <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-tooltip="tooltip" data-placement= "right" title="{{{thiscourse}}}" class="sideicon thiscourse"><i class="fa fa-align-justify"></i></a>
+
+                <div class="dropdown-menu iconsidebar">
+                  <h5>{{{thiscourse}}}</h5>
+                    {{{thiscoursemenu}}}
+                </div>
+        </div>
+        {{/showcoursesections}}
+        {{/showincourseonly}}
+        
         {{{ editpage }}}
 
         {{#userisediting}}
