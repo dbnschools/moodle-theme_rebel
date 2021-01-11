@@ -63,11 +63,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
 
         $header = new stdClass();
         $header->settingsmenu = $this->context_header_settings_menu();
-        $header->contextheader = html_writer::link(new moodle_url('/course/view.php', array(
-            'id' => $PAGE->course->id
-        )) , $this->context_header());
-        //$header->hasnavbar = empty($this->page->layout_options['nonavbar']);
-        //$header->navbar = $this->navbar();
+        $header->contextheader = html_writer::link(new moodle_url('/course/view.php', array('id' => $PAGE->course->id)) , $this->context_header());
         $header->courseheader = $this->course_header();
         $header->headeractions = $this->page->get_header_actions();
         $header->hasoverlayimage = $COURSE->id <=1 && !empty($PAGE->theme->settings->headeroverlay) && $PAGE->theme->settings->showheaderimages == 1;
@@ -86,7 +82,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         }
         
         // Switch Role Display Details.
-        if ($PAGE->pagelayout !== 'coursecategory' && $PAGE->pagetype !== 'admin-search' && $PAGE->pagetype !== 'course-management') {
+        if ($PAGE->pagelayout !== 'coursecategory' && $PAGE->pagetype !== 'admin-search' && $PAGE->pagetype !== 'course-management' && $PAGE->pagetype !== 'course-delete') {
 
             $course = $this->page->course;
             $context = context_course::instance($course->id);
@@ -157,7 +153,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $headerlinks = '';
         $editcog = html_writer::div($this->context_header_settings_menu() , 'pull-xs-right context-header-settings-menu');
         // Header Menus for Users.
-        if ($PAGE->pagelayout !== 'coursecategory' && $PAGE->pagetype !== 'course-management') {
+        if ($PAGE->pagelayout !== 'coursecategory' && $PAGE->pagetype !== 'course-management' && $PAGE->pagetype !== 'course-delete') {
             $course = $this->page->course;
             $context = context_course::instance($course->id);
             $hasgradebookshow = $PAGE->course->showgrades == 1;

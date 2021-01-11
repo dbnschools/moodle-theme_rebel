@@ -25,6 +25,9 @@ REBEL FEATURES
 
 # Versions and Updates
 
+### Rebel version 1.8.1
+* Fixed issue with deleting courses.  https://github.com/dbnschools/moodle-theme_rebel/issues/13
+
 ### Rebel version 1.8
 * Added This Course drop down menu to the sidebar.  This will allow quick and easy navigation within a course to move between sections.
 * Added toggle to turn This Course drop down on and off for site.
